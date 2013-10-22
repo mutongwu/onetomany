@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+</head>
+<body>
+<input type="text" id="text" value="text" />
+<input type="button" id="set" value="loadData" />
+<input type="button" id="get" value="loadScriptData" />
+<input type="button" id="get2" value="loadScriptData2" />
+<input type="button" id="get3" value="loadProxyData" />
+<script>
+var proxy = function(){
+	this.fn.apply(this.fn,arguments);
+};
+jQuery.extend(proxy.prototype, {
+	fn : function() {
+		try {
+			var _args = arguments, _jQuery = null, _this = this, _frameName=null;
+			if (typeof(_args[0]) == 'object') {
+				try {
+					_frameName = frames[_args[0]["name"]];
+					_jQuery = frames[_args[0]["name"]]
+							&& frames[_args[0]["name"]].jQuery;
+					if (typeof _args[0]["charset"] !='undefined') {
+						document.charset = _args[0]["charset"];// 设置编码
+					}
+				} catch (e) {
+				}
+
+				if (_jQuery) {
+					var Aargs = jQuery.makeArray(_args);
+					Aargs = Aargs.slice(2);
+					_jQuery[_args[1]].apply(_jQuery, Aargs);
+				} else {
+					if(!_frameName){
+						jQuery('body')
+								.append('<iframe src="'
+										+ _args[0]["path"]
+										+ '" name="'+_args[0]["name"]+'" style="display:none"></iframe>');
+					}
+					setTimeout(function() {
+								_args.callee.apply(_this, _args);
+							}, 500);
+				}
+			}
+		} catch (e) {
+		}
+	}
+});
+/*
+new proxy({name:'tianyacnProxy',path:'http://www.tianya.cn/proxy.html'},'ajax',{
+	url:'http://www.tianya.cn/api/tw?method=followinggroup.ice.selectname&_r=0.07516617012385762',
+	data:{},
+	type:'post',
+	dataType:'json',
+	success:function(json){
+		console.log('ssss')
+	}
+});*/
+</script>
+<script>
+document.domain = "tianya.cn";
+jQuery(function(){
+	require(['io/AjaxProxy'],function(AjaxProxy){
+		
+		//json数据	
+		jQuery("#set").click(function(){
+			var val = jQuery("#text").val();
+			AjaxProxy.request({
+				url: '/demo/io/ajaxData.json',
+				cache:false,
+				success: function(rnt){
+					console.log("loadData:" + rnt);
+				}
+			});
+			
+		});
+		
+		//script数据
+		jQuery("#get").click(function(){
+			AjaxProxy.request({
+				url: '/demo/io/scriptData.js',
+				"tfType": "script", 
+				"dataType": "script",//可空
+				data: {
+					hello: "kk"
+				},
+				success: function(rnt){
+					console.log("loadScriptData:" + rnt);
+				}
+			});
+		});
+		
+		//script 数据，自定义变量
+		jQuery("#get2").click(function(){
+			AjaxProxy.request({
+				url: '/demo/io/scriptData.js',
+				"tfType": "script",
+				varKey: "myVar", //请求的变量参数名
+				varName: "aObj" , //返回的变量名 
+				data: {
+					hello: "kk"
+				},
+				success: function(rnt){
+					console.log("loadScriptData:" + rnt);
+				}
+			});
+		});
+		
+		//proxy数据
+		jQuery("#get3").click(function(){
+			AjaxProxy.request({
+				url: '/demo/io/ajaxData.json',
+				"tfType": "proxy", //使用代理
+				//proxyUrl:'http://www.tianya.cn/proxy.html',
+				//一般使用POST来提交跨子域的数据
+				"type":"post",
+				cache: false,
+				data: {
+					hello: "kk"
+				},
+				success: function(rnt){
+					console.log("ajaxData:" + rnt);
+				}
+			});
+		});
+	});
+});
+</script>
+</body>
+</html>

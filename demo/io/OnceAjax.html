@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+</head>
+<body>
+<input type="text" id="text" value="text" />
+<input type="button" id="set" value="loadData" />
+<input type="button" id="get" value="loadScriptData" />
+<script>
+jQuery(function(){
+	require(['io/OnceAjax'],function(OnceAjax){
+			
+		jQuery("#set").click(function(){
+			var val = jQuery("#text").val();
+			OnceAjax.request({
+				id: val,
+				url: '/demo/io/ajaxData.json',
+				cache:false,
+				success: function(rnt){
+					console.log("loadData:" + rnt);
+				}
+			});
+			
+		});
+		jQuery("#get").click(function(){
+			var val = jQuery("#text").val();
+			OnceAjax.request({
+				id: val + "xx",
+				url: '/demo/io/scriptData.js',
+				"dataType": "script", 
+				success: function(rnt){
+					console.log("loadScriptData:" + rnt);
+				}
+			});
+		});
+	});
+});
+</script>
+</body>
+</html>

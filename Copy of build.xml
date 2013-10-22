@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="onetomany" basedir="." default="release">
+
+    <property name="src" location="src" />
+	<property name="dist" location="dist" />
+    <property name="inputencoding" value="utf-8"/>
+    <property name="outputencoding" value="utf-8"/>
+	<property name="lib" location="lib"/>
+	<!--property name="yuicompressor" value="${lib}/yuicompressor-2.4.2.jar" /-->
+	<property name="compiler" value="${lib}/compiler.jar" />
+	<property name="rhino.js" value="${lib}/js.jar" />
+	<property name="r.js" value="${lib}/r.js" />
+	
+	<!-- 
+		初始化目标目录中相关子目录，根据需要添加
+	-->
+	<target name="init">
+        <mkdir dir="${dist}/core"/>
+		<mkdir dir="${dist}/io"/>
+		<mkdir dir="${dist}/resources"/>
+		<mkdir dir="${dist}/resources/css"/>
+		<mkdir dir="${dist}/resources/images"/>
+		<mkdir dir="${dist}/ui"/>
+		<mkdir dir="${dist}/util"/>
+    </target>
+	<target name="release" depends="init">
+		<java classname="org.mozilla.javascript.tools.shell.Main" fork="true">
+			<classpath>
+           		<pathelement location="${rhino.js}"/>
+           		<pathelement location="${compiler}"/>
+         	</classpath>
+            <arg line="${r.js} -o charset=utf-8 name=main out=dist/main.js baseUrl=src paths.jquery=empty:"/>
+        </java>
+	</target>	
+	<!--
+		清理操作
+	-->
+	<target name="clean">
+        <delete dir="${dist}"/>
+    </target>
+	
+</project>

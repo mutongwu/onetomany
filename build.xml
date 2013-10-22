@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="onetomany" basedir="." default="release">
+
+    <property name="src" location="src" />
+	<property name="dist" location="dist" />
+    <property name="inputencoding" value="utf-8"/>
+    <property name="outputencoding" value="utf-8"/>
+	<property name="lib" location="lib"/>
+	<!--property name="yuicompressor" value="${lib}/yuicompressor-2.4.2.jar" /-->
+	
+	<property name="jsdoc3.dir" value="jsdoc3" />
+	<property name="compiler" value="${lib}/compiler.jar" />
+	<property name="rhino.js" value="${lib}/js.jar" />
+	<property name="r.js" value="${lib}/r.js" />
+	
+	<property environment="env"/>
+	
+	<!-- 
+		初始化目标目录中相关子目录，根据需要添加
+	-->
+	<target name="init">
+        <mkdir dir="${dist}/core"/>
+		<mkdir dir="${dist}/io"/>
+		<mkdir dir="${dist}/resources"/>
+		<mkdir dir="${dist}/resources/css"/>
+		<mkdir dir="${dist}/resources/images"/>
+		<mkdir dir="${dist}/ui"/>
+		<mkdir dir="${dist}/util"/>
+    </target>
+	<target name="release">
+		<exec executable="D:\ziliao\Node\node.exe" >
+			<arg line="${r.js} -o buildCfg.js"/>
+		</exec>
+	</target>
+	
+	<target name="jsdoc3">
+		<java dir="." classname="org.mozilla.javascript.tools.shell.Main" fork="true">
+			<classpath>
+           		<pathelement location="${jsdoc3.dir}/lib/js.jar"/>
+         	</classpath>
+			<arg line="${jsdoc3.dir}/jsdoc.js -c=${jsdoc3.dir}/conf.json  -d=${dist}/docs"/>
+		</java>
+	</target>
+<!--	
+	<target name="jsdoc">
+		<java jar="${jsdoc.dir}/jsrun.jar" fork="true">
+			<arg line="${jsdoc.dir}/app/run.js -r=4 src/ -E=jquery.js$ -t=${jsdoc.dir}/templates/jsdoc -d=${dist}/docs"/>
+		</java>
+	</target>
+-->	
+	<!--
+		清理操作
+	-->
+	<target name="clean">
+        <delete dir="${dist}"/>
+    </target>
+	
+</project>

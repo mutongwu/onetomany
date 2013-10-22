@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+</head>
+<body>
+
+<div class="pageBox">内容</div>
+<div style="height: 200px;"></div>
+<div style="margin-left:100px;">
+<textarea id="area1" style="width: 400px; height: 100px"></textarea>
+    
+    <a id="abc" href="javascript:;">浮层</a>
+</div>
+<p>另外一个</p>
+<textarea id="area2"  style="width: 400px; height: 100px"></textarea>
+    
+<div class="box"></div>
+<button onclick="doScroll()" value="go">嘻嘻嘻</button>
+<p>https://github.com/beviz/jquery-caret-position-getter/blob/master/jquery.caretposition.js
+http://msdn.microsoft.com/en-us/library/ie/ms535872(v=vs.85).aspx
+http://stackoverflow.com/questions/263743/how-to-get-caret-position-in-textarea
+http://help.dottoro.com/ljikwsqs.php
+http://www.csdn.net/article/2012-12-20/2813026-nine-step-of-PM
+</p>
+<script>
+jQuery(function(){
+	require(['ui/atTA'],function(AtTA){
+		
+		new AtTA({
+            areaEl: "area1"
+            ,bindTextarea:true
+            ,el: "abc"
+        });
+		//return;
+        new AtTA({
+            areaEl: "area2"
+            ,bindTextarea:true
+        });
+	});
+	
+});
+</script>
+</body>
+</html>

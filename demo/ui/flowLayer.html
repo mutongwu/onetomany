@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+<style type="text/css">
+.jsLayer{margin:10px;}
+</style>
+</head>
+<body>
+<div style="width:800px;backgroud-color:#ccc;margin:450px auto 0; ">
+	<div style="width:200px;border:1px solid #ccc;position:absolute;left:0;top:100px;">
+	<a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+	<a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+	<a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    </div>
+    
+    <div style="width:200px;border:1px solid #ccc;position:absolute;right:0;top:100px;">
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    </div>
+    <div style="width:200px;border:1px solid #ccc;position:absolute;left:0;">
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    </div>
+        <div style="width:200px;border:1px solid #ccc;position:absolute;right:0;top:350px;">
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    <a href="#" class="jsLayer">事实上</a><a href="#" class="jsLayer">事实上</a>
+    </div>
+</div>
+<script>
+	jQuery(function(){
+		require(['ui/FlowLayer'],function(FlowLayer){
+
+			FlowLayer.init({
+				config: {
+					url: "/demo/io/ajaxData.json",
+					clssName: 'jsLayer',
+					tfType: 'json'
+				},
+				initParams: function(key){
+					return {
+						"aKey":key,"otherParam":"hello"
+					};
+				},
+				getKey: function(target){
+			        return "从target对象获取key" || target.attr("someKey");
+		        },
+		        createDom: function(rnt){
+		        	return "根据返回值 rnt，构造需要显示的内容"
+		        }
+			});
+		});
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,1499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="description" content="Site Logo Script- Click here for a DHTML script that creates a static logo image, positioned in the lower right corner of the browser." />
+<meta name="keywords" content="DHTML, Geocities watermark logo, logo script, static image, DHTML tutorial, free, JavaScript" />
+<title>Dynamic Drive DHTML Scripts- Featured Image Zoomer</title>
+<link rel="stylesheet" type="text/css" href="../ddincludes/mainstyle.css" />
+
+<style type="text/css">
+
+#demoarea ul{
+margin: 0;
+padding: 0;
+}
+
+#demoarea ul li{
+margin-bottom: 5px;
+}
+
+table .codehighlight{
+margin-bottom: 1em;
+margin-left: 15px;
+width: auto;
+}
+
+.multizoomlist > li{
+position: relative;
+}
+
+.multizoomlist > li:after{
+content: '';
+z-index: -1;
+display: block;
+position:absolute;
+left:-30px;
+top:0;
+background: lightblue;
+width: 25px;
+height: 25px;
+}
+
+.multizoomlist > li:nth-of-type(2):after{
+background: #BFD9AD;
+}
+
+.multizoomlist > li:nth-of-type(3):after{
+background: #FFFDBF;
+}
+
+</style>
+
+<link rel="stylesheet" href="multizoom.css" type="text/css" />
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+<script type="text/javascript" src="multizoom.js">
+
+// Featured Image Zoomer (w/ optional multizoom and adjustable power)- By Dynamic Drive DHTML code library (www.dynamicdrive.com)
+// Multi-Zoom code (c)2012 John Davenport Scheuer
+// as first seen in http://www.dynamicdrive.com/forums/
+// username: jscheuer1 - This Notice Must Remain for Legal Use
+// Visit Dynamic Drive at http://www.dynamicdrive.com/ for this script and 100s more
+
+</script>
+
+<script type="text/javascript">
+
+jQuery(document).ready(function($){
+
+	$('#image1').addimagezoom({
+		zoomrange: [3, 10],
+		magnifiersize: [300,300],
+		magnifierpos: 'right',
+		cursorshade: true,
+		largeimage: 'hayden.jpg' //<-- No comma after last option!
+	})
+
+
+	$('#image2').addimagezoom()
+	
+	$('#multizoom1').addimagezoom({ // options same as for previous Featured Image Zoomer's addimagezoom unless noted as '- new'
+		descArea: '#description', // description selector (optional - but required if descriptions are used) - new
+		speed: 1500, // duration of fade in for new zoomable images (in milliseconds, optional) - new
+		descpos: true, // if set to true - description position follows image position at a set distance, defaults to false (optional) - new
+		imagevertcenter: true, // zoomable image centers vertically in its container (optional) - new
+		magvertcenter: true, // magnified area centers vertically in relation to the zoomable image (optional) - new
+		zoomrange: [3, 10],
+		magnifiersize: [250,250],
+		magnifierpos: 'right',
+		cursorshadecolor: '#fdffd5',
+		cursorshade: true //<-- No comma after last option!
+	});
+	
+	$('#multizoom2').addimagezoom({ // options same as for previous Featured Image Zoomer's addimagezoom unless noted as '- new'
+		descArea: '#description2', // description selector (optional - but required if descriptions are used) - new
+		disablewheel: true // even without variable zoom, mousewheel will not shift image position while mouse is over image (optional) - new
+				//^-- No comma after last option!	
+	});
+	
+})
+
+</script>
+
+</head>
+
+<body>
+
+
+<div id="topsection">
+
+
+<a href="http://www.dynamicdrive.com" title="Dynamic Drive DHTML and CSS code library"><img id="ddlogo" src="http://www.dynamicdrive.com/ddincludes/ddlogo.png" style="border-width:0" /></a>
+
+<div id="topsplitmenu">
+
+<a href="http://www.dynamicdrive.com/new.htm" class="sb"><span class="innerspan">New</span></a>
+<a href="http://www.dynamicdrive.com/revised.htm" class="sb"><span class="innerspan">Revised</span></a>
+<a href="http://www.dynamicdrive.com/style/" class="sb"><span class="innerspan">CSS Library</span></a><a class="downtoggler dedicatedtoggler hasdropdown" rel="dropmenucsslib[click]"><span class="innerspan downarrow"> </span></a>
+<a href="http://www.dynamicdrive.com/forums/" class="sb"><span class="innerspan">Forums</span></a>
+<a href="http://tools.dynamicdrive.com" class="sb"><span class="innerspan">Web Tools</span></a><a class="downtoggler dedicatedtoggler hasdropdown" rel="dropmenutools[click]"><span class="innerspan downarrow"> </span></a>
+
+</div>
+
+
+<div id="toprightdivbox">
+
+<form id="topform" method="get" action="http://www.dynamicdrive.com/search/search.php">
+<input type="text" name="zoom_query" id="zoom_query" size="20" class="zoom_searchbox topsearchbox" placeholder="search" />
+<input id="query_submit" type="image" src="http://www.dynamicdrive.com/ddincludes/magnify.gif" />
+
+<input name="zoom_per_page" id="zoom_per_page" type="hidden" value="10" />
+<input name="zoom_and" id="zoom_and" type="hidden" value="1" />
+<input type="hidden" name="zoom_sort" value="0" />
+</form>
+
+<div><a href="http://www.dynamicdrive.com/faqs.htm">FAQs</a> <a href="http://www.dynamicdrive.com/award/">Awards</a> <a href="http://www.dynamicdrive.com/notice.htm">Usage Terms</a> <a href="http://www.dynamicdrive.com/contact.htm">Contact</a> </div>
+
+</div>
+
+</div>
+
+
+<!-- Drop Down #1 -->
+
+<ul id="dropmenucsslib" class="dd_splitdropdown">
+<li><a href="http://www.dynamicdrive.com/style/csslibrary/all/" class="title">CSS Codes</a></li>
+<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C1/">Horizontal CSS Menus</a></li>
+<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C2/">Vertical CSS Menus</a></li>
+<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C4/">Image CSS</a></li>
+<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C6/">Form CSS</a></li>
+<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C5/">DIVs and containers</a></li>
+<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C7/">Links &amp; Buttons</a></li>
+<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C17/">CSS3 demos</a></li>
+<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C8/">Other</a></li>
+<li><a href="http://www.dynamicdrive.com/style/layouts/" class="title">CSS Layouts</a></li>
+<li><a href="http://www.dynamicdrive.com/style/layouts/category/C9/">Two Columns</a></li>
+<li><a href="http://www.dynamicdrive.com/style/layouts/category/C10/">Three Columns</a></li>
+<li><a href="http://www.dynamicdrive.com/style/layouts/category/C12/">Fixed layouts</a></li>
+<li><a href="http://www.dynamicdrive.com/style/layouts/category/C13/">Liquid Layouts</a></li>
+<li><a href="http://www.dynamicdrive.com/style/layouts/category/C11/">CSS Frames</a></li>
+</ul>
+
+<!-- Drop Down #2 -->
+
+<ul id="dropmenutools" class="dd_splitdropdown">
+				<li><a href="http://tools.dynamicdrive.com/imageoptimizer/">Image Optimizer</a></li>
+				<li><a href="http://tools.dynamicdrive.com/favicon/">FavIcon Generator</a></li>
+				<li><a href="http://tools.dynamicdrive.com/animatedgif/">Animated Gif</a></li>
+				<li><a href="http://www.dynamicdrive.com/emailriddler/">Email Riddler</a></li>
+        <li><a href="http://tools.dynamicdrive.com/password/">.htaccess Password</a></li>
+				<li><a href="http://tools.dynamicdrive.com/userban/">.htaccess Banning</a></li>
+        <li><a href="http://tools.dynamicdrive.com/gradient/">Gradient Image</a></li>
+        <li><a href="http://tools.dynamicdrive.com/button/">Button Maker</a></li>
+				<li><a href="http://tools.dynamicdrive.com/ribbon/">Ribbon Rules</a></li>
+				<li><a href="http://tools.dynamicdrive.com/listscrubber/">List Scrubber Tool</a></li>
+				<li><a href="http://www.ddwhois.com/">DD Whois Service</a></li>
+</ul>
+
+<script>
+ddsplitmenu.init("hasdropdown")
+</script>
+
+<p id="pathlinks"><a href="http://www.dynamicdrive.com/">Home</a> <img border="0" src="../ddincludes/arrow2.gif" width="8" height="10" />                                                        
+<a href="http://www.dynamicdrive.com/dynamicindex4/">Image Effects</a> <img border="0" src="../ddincludes/arrow2.gif" width="8" height="10" />                                                        Here</p>
+
+<table id="maintable" border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td id="leftbar" valign="top">
+			<div class="headers">Categories</div>
+			<ul class="categorylinks">
+				<li id="c7"><a href="http://www.dynamicdrive.com/dynamicindex7/" >Calendars</a></li>
+				<li id="c6"><a href="http://www.dynamicdrive.com/dynamicindex6/">Date &amp; Time</a></li>
+				<li id="c3"><a href="http://www.dynamicdrive.com/dynamicindex3/">Document Effects</a></li>
+				<li id="c17"><a href="http://www.dynamicdrive.com/dynamicindex17/">Dynamic Content</a></li>
+				<li id="c16"><a href="http://www.dynamicdrive.com/dynamicindex16/">Form Effects</a></li>
+				<li id="c12"><a href="http://www.dynamicdrive.com/dynamicindex12/">Games</a></li>
+				<li id="c4"><a href="http://www.dynamicdrive.com/dynamicindex4/">Image Effects</a></li>		
+				<li id="c5"><a href="http://www.dynamicdrive.com/dynamicindex5/">Links &amp; Tooltips</a></li>			
+				<li id="c1"><a href="http://www.dynamicdrive.com/dynamicindex1/">Menus &amp; Navigation</a></li>
+				<li id="c13"><a href="http://www.dynamicdrive.com/dynamicindex13/">Mouse and Cursor</a></li>			
+				<li id="c2"><a href="http://www.dynamicdrive.com/dynamicindex2/">Scrollers</a></li>
+				<li id="c10"><a href="http://www.dynamicdrive.com/dynamicindex10/">Text Animations</a></li>
+				<li id="c9"><a href="http://www.dynamicdrive.com/dynamicindex9/">User/System Preference</a></li>
+				<li id="c8"><a href="http://www.dynamicdrive.com/dynamicindex8/">Window and Frames</a></li>
+				<li id="c11"><a href="http://www.dynamicdrive.com/dynamicindex11/">Other</a></li>
+				<li id="c18"><a href="http://www.dynamicdrive.com/dynamicindex18/">XML and RSS</a></li>
+			</ul>
+
+
+
+
+			<div class="headers" style="clear:both">Other Sections</div>
+			<ul class="categorylinks diffpointer">
+				<li><a href="http://www.dynamicdrive.com/forums/">Script Forums</a></li>
+				<li><a href="http://www.dynamicdrive.com/recommendit/">Recommend Us</a></li>
+				<li><a href="http://www.dynamicdrive.com/notice.htm">Usage Terms</a></li>
+				<li><a href="http://www.javascriptkit.com">Free JavaScripts</a></li>		
+			</ul>
+
+<div class="headers" style="margin: 8px 0;">Sweet Ads</div>
+
+
+    <div class="headers">Compatibility</div>
+<ul class="menuitems">
+<li style="border-bottom: 1px solid #ececec;"><b>IE5+:</b> IE 5 and above</li>
+<li style="border-bottom: 1px solid #ececec;"><b>FF1+:</b> Firefox 1.0+. NS6+ and FF beta are 
+  assumed as well.</li>
+<li style="border-bottom: 1px solid #ececec;"><b>Opr7+:</b> Opera 7 and above.</li>
+
+</ul>
+
+<div>
+
+Bookmark <b style="color:navy"><script type="text/javascript">document.write(ddscripttitle)</script></b> online:<br />
+<ul style="margin-top: 5px; font-size: 90%; margin-left: 0; padding-left: 18px"><li><a href="http://www.dynamicdrive.com/bookmark.php?site=deli" onClick="return jsenabledmark('deli')" rel="nofollow">Bookmark</a> to del.icio.us</li>
+<li><a href="http://www.dynamicdrive.com/bookmark.php?site=furl" onClick="return jsenabledmark('furl')" rel="nofollow">Bookmark</a> to Furl.net</li>
+</ul>
+
+</div>
+
+
+<p align="center">
+<!-- AddThis Button BEGIN -->
+<script type="text/javascript">addthis_pub  = 'georgeuser';</script>
+<a href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s9.addthis.com/button2-bm.png" width="160" height="24" border="0" alt="" /></a><script type="text/javascript" src="http://s7.addthis.com/js/152/addthis_widget.js"></script>
+<!-- AddThis Button END -->
+</p>
+
+<p style="margin:20px auto;text-align:center"><g:plusone size="tall"></g:plusone></p>
+
+    </td>
+    <td id="spacertd">
+<img src="../spacer.gif" id="spacergif">
+    </td>
+    <td valign="top" id="contentarea">
+    
+<script type="text/javascript">
+if (showincontentheader)
+document.write('<div id="topbanner" align="left">'+revised_ranban[ran_num]+'</div>')
+</script>
+
+
+<div id="scriptheader"><span class="compatlist">FF2+ IE6+ Opr9+</span>
+          <h3>
+            Featured Image Zoomer (now w/Multi-Zoom) v2.1
+          </h3>
+        </div>
+        <div id="scriptheaderFoot">
+          <span class="rightit"></span>
+          <b>Author:</b>
+          <span id="ddauthor">
+            Dynamic Drive /
+	
+            <a href="http://www.dynamicdrive.com/forums/member.php?2033-jscheuer1">John 
+	Davenport Scheuer</a>
+          </span>
+        </div>
+        <p align="left">
+          <strong>Nov 19, 12': </strong>
+          Script overhauled by John to 
+include support for multiple images swap and zoom and several other new features.
+        </p>
+        <p align="left">
+          <b>Description:</b>
+           This script lets you view a magnified portion of any 
+	image upon moving your mouse over it. A magnifying area appears alongside the 
+	image displaying the magnified image on demand. The user can toggle the zoom 
+	level by using the mousewheel.&nbsp; It's great to use on product images, 
+	photos, or other images with lots of details you want users to be able to get 
+	into on command. Here are the script's features:
+        </p>
+        <ul>
+          <li>
+	Ability to specify either the original image or a larger 
+	version of it as the "magnified" image. The latter setup enables you to 
+	initially show a low-res zoomable image on the page, and use 
+	the larger high-res image to show the image in detail when magnified.</li>
+          <li>
+	The "magnified" image is only loaded on demand (the first 
+	time the user moves his mouse over the zoomable image), saving on initial 
+	page download time.</li>
+          <li>
+	Supports an optional adjustable power setting. When enabled, 
+	the user can adjust the zoom level on demand by using the mouse wheel while 
+	over the image.</li>
+          <li>
+	Customize the dimensions of the viewable area of the magnified image, plus whether it 
+	should appear to the "right" or "left" of the zoomable image.</li>
+          <li>
+	Set whether to display a "magnifying lens" over the 
+	zoomable image that isolates the area that's currently being magnified when 
+	the mouse rolls over it. The style of this lens can be customized, such as 
+	the border and background colors, dimensions etc.</li>
+          <li>
+	Support for single image or multi-zooms. In the latter, you specify a series of 
+	mini thumbnail images that when clicked on load a &quot;midsize&quot; version of the 
+	image, with this image being zoomable. Multi-zooms are great 
+	for previewing and getting in close on a series of product or related images.</li>
+        </ul>
+        <p align="left">Zoom zoom!</p>
+        <p align="left">
+          <strong>Demos:</strong>
+        </p>
+        <table border="0" width="98%" cellspacing="0" cellpadding="0" id="demoarea" style="margin-left:10px">
+          <tbody>
+            <tr>
+              <td width="49%" valign="top">
+                <b>Demo 1:</b>
+                <p>
+                  <img id="image1" border="0" src="haydensmall.jpg" style="width: 250px; height: 338px; visibility: visible; opacity: 1;" data-title="sdf sdfdsdf">
+                </p>
+                <ul class="demodescr">
+                  <li>Different, higher resolution image used as the magnified 
+				image and loaded on demand.</li>
+                  <li>Default power is 3X of original image.</li>
+                  <li>Adjustable power range between "3X to 10X" enabled (use 
+				mouse wheel to change power).</li>
+                  <li>Magnifier size set to 300px by 300px, positioned right of 
+				original image.</li>
+                  <li>Magnifying lens over zoomable image enabled.</li>
+                </ul>
+                <p>&nbsp;</p>
+              </td>
+              <td width="2%" valign="top">&nbsp;</td>
+              <td width="49%" valign="top">
+                <b>Demo 3:</b>
+                <p>
+                  <!--webbot bot="HTMLMarkup" startspan -->
+                </p>
+                <div class="targetarea" style="border:1px solid #eee">
+                  <img id="multizoom1" alt="zoomable" title="" src="http://dynamicdrive.com/dynamicindex4/millasmall.jpg" style="visibility: visible; width: 300px; height: 226px; top: 56px; opacity: 1;">
+                </div>
+                <div id="description" style="visibility: visible; left: 590px; top: 1088px; opacity: 1;">Milla Jojovitch</div>
+                <div class="multizoom1 thumbs">
+                  <a href="millasmall.jpg" data-large="milla.jpg" data-title="Milla Jojovitch">
+                    <img src="milla_tmb.jpg" alt="Milla" title="">
+                  </a>
+                  <a href="saleensmall.jpg" data-lens="false" data-magsize="150,150" data-large="saleen.jpg" data-title="Saleen S7 Twin Turbo">
+                    <img src="saleen_tmb.jpg" alt="Saleen" title="">
+                  </a>
+                  <a href="haydensmall.jpg" data-large="hayden.jpg" data-title="Hayden Panettiere">
+                    <img src="hayden_tmb.jpg" alt="Hayden" title="">
+                  </a>
+                  <a href="jaguarsmall.jpg" data-large="jaguar.jpg" data-title="Jaguar Type E">
+                    <img src="jaguar_tmb.jpg" alt="Jaguar" title="">
+                  </a>
+                </div>
+                <!--webbot bot="HTMLMarkup" endspan i-checksum="43625" -->
+                <br>
+                <ul>
+                  <li>
+                    Lens Effect (
+                    <code style="color:red">cursorshade: true</code>
+                    ) with a yellow shading (<code style="color:red">cursorshadecolor: 
+					'#fdffd5'</code>), 
+			except 2nd image (Saleen S7 Twin Turbo), which has a custom 
+			magnified image size as well:
+			
+                    <p>
+                      <code>
+                        &lt;a href="saleensmall.jpg" 
+                        <span style="color:red">
+			data-lens="false" data-magsize="150,150"</span>
+                         data-la . . 
+                      </code>
+                    </p>
+                  </li>
+                  <li>
+                    Zooms from 3 to 10 (
+                    <code style="color:red">zoomrange: [3, 10]</code>
+                    )
+                  </li>
+                  <li>
+                    Zoomable image centered vertically within its container (
+                    <code style="color:red">imagevertcenter: 
+			true</code>
+                    ) - new with multi-zoom
+                  </li>
+                  <li>
+                    Descripton follows image bottom (
+                    <code style="color:red">descpos: 
+			true</code>
+                    ) - new with multi-zoom
+                  </li>
+                  <li>
+                    Magnified image centered vertically in relation to the zoomable 
+			image (
+                    <code style="color:red">magvertcenter: true</code>
+                    ) - new 
+			with multi-zoom
+                  </li>
+                  <li>
+                    Duration of fade in for new zoomable image 1.5 seconds (
+                    <code style="color:red">speed: 
+			1500</code>
+                    ), defaults to 'slow', 0.6 seconds - new with multi-zoom
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td width="49%" valign="top">&nbsp;</td>
+              <td width="2%" valign="top">&nbsp;</td>
+              <td width="49%" valign="top">&nbsp;</td>
+            </tr>
+            <tr>
+              <td width="49%" valign="top">
+                <b>Demo 2:</b>
+                <p>
+                  <img id="image2" border="0" src="listenmusic.jpg" style="width: 200px; height: 150px; visibility: visible; opacity: 1;">
+                </p>
+                <ul class="demodescr">
+                  <li>Same image used as original and magnified image.</li>
+                  <li>
+                    No default power specified- magnified image used 
+                    <b>as is</b>
+                     
+				inside magnifier.
+                  </li>
+                  <li>Adjustable power option not used. (
+                    <code style="color:red">zoomrange</code>
+                     
+			property not set)</li>
+                  <li>Magnifier size set to 200px by 200px, positioned right of 
+				original image.</li>
+                </ul>
+                <p>&nbsp;</p>
+              </td>
+              <td width="2%" valign="top">&nbsp;</td>
+              <td width="49%" valign="top">
+                <b>Demo 4:</b>
+                <p>
+                  <!--webbot bot="HTMLMarkup" startspan -->
+                </p>
+                <div class="targetarea diffheight">
+                  <img id="multizoom2" alt="zoomable" title="" src="http://dynamicdrive.com/dynamicindex4/angelinasmall.jpg" style="visibility: visible; width: 325px; height: 243px; opacity: 1;">
+                </div>
+                <div id="description2" style="visibility: visible; opacity: 1;">Angelina Jolie</div>
+                <div class="multizoom2 thumbs">
+                  <a href="angelinasmall.jpg" data-large="angelina.jpg" data-title="Angelina Jolie">
+                    <img src="angelina_tmb.jpg" alt="Angelina" title="">
+                  </a>
+                  <a href="saleensmall.jpg" data-large="saleen.jpg" data-title="Saleen S7 Twin Turbo">
+                    <img src="saleen_tmb.jpg" alt="Saleen" title="">
+                  </a>
+                  <a href="jaguarsmall.jpg" data-large="jaguar.jpg" data-title="Jaguar Type E">
+                    <img src="jaguar_tmb.jpg" alt="Jaguar" title="">
+                  </a>
+                  <a href="listenmusic.jpg" data-title="Relaxing Music" data-dims="300, 225">
+                    <img src="listen_tmb.jpg" alt="Relaxing Music" title="">
+                  </a>
+                </div>
+                <!--webbot bot="HTMLMarkup" endspan i-checksum="16626" -->
+                <br>
+                <ul>
+                  <li>
+                    Zooms to actual resolution of the largeimage (
+                    <code style="color:red">zoomrange</code>
+                     
+			property not set)
+                  </li>
+                  <li>
+                    Zoomable image 
+                    <b>not</b>
+                     centered vertically within its 
+			container (
+                    <code style="color:red">imagevertcenter </code>
+                    property 
+			not set)
+                  </li>
+                  <li>
+                    Descripton 
+                    <b>doesn't</b>
+                     follow image bottom (
+                    <code style="color:red">descpos</code>
+                     
+			property not set)
+                  </li>
+                  <li>
+                    Magnified image 
+                    <b>not</b>
+                     centered vertically in relation to 
+			the zoomable image (
+                    <code style="color:red">magvertcenter</code>
+                     
+			property not set)
+                  </li>
+                  <li>
+                    Although there is no variable zoom, mousewheel is disabled while 
+			over image (
+                    <code style="color:red">disablewheel: true</code>
+                    ) - new
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <hr size="1">
+        <p align="left">
+          <strong>Directions </strong>
+          <a target="win2" href="featuredzoomer_dev.htm">
+            <img src="http://www.dynamicdrive.com/dview.gif" width="115" height="19" alt="Developer's View" border="0">
+          </a>
+        </p>
+        <p align="left">
+          <b>Step 1:</b>
+           Add the below code inside the &lt;HEAD> section of the 
+	page:
+        </p>
+        <form>
+          <div align="left">
+            <a class="selectall" href="javascript:highlight(0)">Select All</a>
+            <br>
+            <textarea class="codecontainer" rows="8" name="S1" cols="45" wrap="virtual">&lt;link rel="stylesheet" href="multizoom.css" type="text/css" />
+
+&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">&lt;/script>
+
+&lt;script type="text/javascript" src="multizoom.js">
+
+// Featured Image Zoomer (w/ optional multizoom and adjustable power)- By Dynamic Drive DHTML code library (www.dynamicdrive.com)
+// Multi-Zoom code (c)2012 John Davenport Scheuer
+// as first seen in http://www.dynamicdrive.com/forums/
+// username: jscheuer1 - This Notice Must Remain for Legal Use
+// Visit Dynamic Drive at http://www.dynamicdrive.com/ for this script and 100s more
+
+&lt;/script>
+
+&lt;script type="text/javascript">
+
+jQuery(document).ready(function($){
+
+	$('#image1').addimagezoom({ // single image zoom
+		zoomrange: [3, 10],
+		magnifiersize: [300,300],
+		magnifierpos: 'right',
+		cursorshade: true,
+		largeimage: 'hayden.jpg' //&lt;-- No comma after last option!
+	})
+
+
+	$('#image2').addimagezoom() // single image zoom with default options
+	
+	$('#multizoom1').addimagezoom({ // multi-zoom: options same as for previous Featured Image Zoomer's addimagezoom unless noted as '- new'
+		descArea: '#description', // description selector (optional - but required if descriptions are used) - new
+		speed: 1500, // duration of fade in for new zoomable images (in milliseconds, optional) - new
+		descpos: true, // if set to true - description position follows image position at a set distance, defaults to false (optional) - new
+		imagevertcenter: true, // zoomable image centers vertically in its container (optional) - new
+		magvertcenter: true, // magnified area centers vertically in relation to the zoomable image (optional) - new
+		zoomrange: [3, 10],
+		magnifiersize: [250,250],
+		magnifierpos: 'right',
+		cursorshadecolor: '#fdffd5',
+		cursorshade: true //&lt;-- No comma after last option!
+	});
+	
+	$('#multizoom2').addimagezoom({ // multi-zoom: options same as for previous Featured Image Zoomer's addimagezoom unless noted as '- new'
+		descArea: '#description2', // description selector (optional - but required if descriptions are used) - new
+		disablewheel: true // even without variable zoom, mousewheel will not shift image position while mouse is over image (optional) - new
+				//^-- No comma after last option!	
+	});
+	
+})
+
+&lt;/script></textarea>
+          </div>
+        </form>
+        <p align="left">The above code references two external files plus a loading 
+	gif, which you 
+	should download below (right click, and select "Save As"):</p>
+        <ul>
+          <li>
+            <a href="multizoom.js">multizoom.js</a>
+          </li>
+          <li>
+            <a href="multizoom.css">multizoom.css</a>
+          </li>
+          <li>
+            <img border="0" src="spinningred.gif" width="32" height="32">
+          </li>
+			<li>
+            <a href="samplepics.zip">samplepics.zip</a> (all the images that 
+			make up the demo referenced inside code of Step 2 below, for testing 
+			purposes).</li>
+        </ul>
+        <p>Inside the .js file, you may wish to edit the below two variables near the 
+top:</p>
+        <p class="codehighlight">
+          loadinggif: 'spinningred.gif', //full path or URL to 
+"loading" gif
+          <br>
+          
+magnifycursor: 'crosshair', //Value for CSS's 'cursor' attribute, added to 
+original image
+        </p>
+        <p align="left">
+          <b>Step 2:</b>
+           Insert the below sample code into the BODY 
+section of your page, which shows 3 featured image zoomers:
+        </p>
+        <form>
+          <div align="left">
+            <a class="selectall" href="javascript:highlight(1)">Select All</a>
+            <br>
+            <textarea class="codecontainer" rows="8" name="S2" cols="45" wrap="virtual">&lt;h3>Demo 1:&lt;/h3>
+
+&lt;img id="image1" border="0" src="haydensmall.jpg" style="width:250px;height:338px">
+
+
+
+
+&lt;h3>Demo 2:&lt;/h3>
+
+&lt;img id="image2" border="0" src="listenmusic.jpg" style="width:200px;height:150px">
+
+
+
+
+&lt;h3>Demo 3:&lt;/h3>
+
+&lt;div class="targetarea" style="border:1px solid #eee">&lt;img id="multizoom1" alt="zoomable" title="" src="millasmall.jpg"/>&lt;/div>
+&lt;div id="description">Milla Jojovitch&lt;/div>
+&lt;div class="multizoom1 thumbs">
+&lt;a href="millasmall.jpg" data-large="milla.jpg" data-title="Milla Jojovitch">&lt;img src="milla_tmb.jpg" alt="Milla" title=""/>&lt;/a> 
+&lt;a href="saleensmall.jpg" data-lens="false" data-magsize="150,150" data-large="saleen.jpg" data-title="Saleen S7 Twin Turbo">&lt;img src="saleen_tmb.jpg" alt="Saleen" title=""/>&lt;/a> 
+&lt;a href="haydensmall.jpg" data-large="hayden.jpg" data-title="Hayden Panettiere">&lt;img src="hayden_tmb.jpg" alt="Hayden" title=""/>&lt;/a> 
+&lt;a href="jaguarsmall.jpg" data-large="jaguar.jpg" data-title="Jaguar Type E">&lt;img src="jaguar_tmb.jpg" alt="Jaguar" title=""/>&lt;/a>
+&lt;/div>
+
+
+
+
+&lt;h3>Demo 4:&lt;/h3>
+
+&lt;div class="targetarea diffheight">&lt;img id="multizoom2" alt="zoomable" title="" src="angelinasmall.jpg"/>&lt;/div>
+&lt;div id="description2">Angelina Jolie&lt;/div>
+&lt;div class="multizoom2 thumbs">
+&lt;a href="angelinasmall.jpg" data-large="angelina.jpg" data-title="Angelina Jolie">&lt;img src="angelina_tmb.jpg" alt="Angelina" title=""/>&lt;/a>
+&lt;a href="saleensmall.jpg" data-large="saleen.jpg" data-title="Saleen S7 Twin Turbo">&lt;img src="saleen_tmb.jpg" alt="Saleen" title=""/>&lt;/a>
+&lt;a href="jaguarsmall.jpg" data-large="jaguar.jpg" data-title="Jaguar Type E">&lt;img src="jaguar_tmb.jpg" alt="Jaguar" title=""/>&lt;/a>
+&lt;a href="listenmusic.jpg" data-title="Relaxing Music" data-dims="300, 225">&lt;img src="listen_tmb.jpg" alt="Relaxing Music" title=""/>&lt;/a>
+&lt;/div>
+</textarea>
+          </div>
+        </form>
+        <p>Now that you have the script installed on your page, it's time to learn 
+	how to set everything up to your liking. In general you can have two types 
+	of featured image zooms- 1) single image zoom where it's just a standalone 
+	image with zoom capability, or 2) multi-image zoom where a series of small 
+	thumbnails each load up a midsized image when clicked on, with the midsized 
+	image having the zoom capability. Lets see how you would set these up.</p>
+        <h3 align="left">
+          <u>Set Up information for Single Image Zoom</u>
+        </h3>
+        <p align="left">
+          To set up Featured Image Zoomer on a 
+          <b>single image</b>,
+          first, 
+define the "zoomable" or smaller version of the image as regular HTML markup 
+on the page, for example:
+        </p>
+        <p class="codehighlight" align="left">
+          &lt;img 
+          <font color="#FF0000">id="image1"</font>
+           
+src="haydensmall.jpg" 
+          <font color="#FF0000">style="width:300px; height:200px"</font>
+           
+/>
+        </p>
+        <p align="left">Notice the code in red. Your zoomable image should:</p>
+        <ul>
+          <li>
+            <p align="left">Carry an arbitrary but 
+unique ID value</p>
+          </li>
+          <li>
+            <p align="left">
+              Have 
+              <b>explicit dimensions</b>
+               defined. The dimensions 
+setting ensures the script properly resizes the magnified image relative to the 
+original image at all times. You can set it using inline CSS like above, or via 
+	the 
+              <a href="#width">width/height</a>
+               options inside the on page addimagezoom script code.
+            </p>
+          </li>
+        </ul>
+        <p align="left">
+          With the zoomable image defined on the page, to apply the zoom 
+effect to it, call the initialization function 
+          <code>addimagezoom()</code>
+           
+inside the HEAD section of your page with the desired options that are 
+applicable to Single image zooms (multi-zoom images support additional options):
+        </p>
+        <p class="codehighlight" align="left">
+          jQuery(document).ready(function($){
+          <br>
+          
+&nbsp;$('
+          <font color="#FF0000">#image1</font>
+          ').addimagezoom({
+          <br>
+          
+&nbsp;&nbsp; zoomrange: [3, 10],
+          <br>
+          
+&nbsp;&nbsp; magnifiersize: [300,300],
+          <br>
+          <b>&nbsp;// additional options</b>
+          <br>
+          
+&nbsp;})
+          <br>
+          
+})
+        </p>
+        <p align="left">
+          The code in red should be a
+
+          <a target="_blank" href="http://docs.jquery.com/Selectors">jQuery selector</a>
+           
+that selects the element(s) you want the zoom effect to be added to, in this 
+case, the element with 
+          <code>ID="image1"</code>
+          . 
+          <b>options</b>
+           if defined 
+should be an empty object containing one or more of the 
+          <a href="#options">
+supported options</a>
+          , each separated by a comma.
+        </p>
+        <h3 align="left">
+          <u>Set Up information for Multi-Zoom</u>
+        </h3>
+        <p align="left">A multi-zoom consists of two or more small thumbnail images that each 
+loads a midsized (zoomable) image inside a common area when clicked on. The magnified 
+image is only revealed when the user hovers over this midsized image. Multi-zooms 
+are great for showcasing product images or any set of related images.</p>
+        <p align="left">
+          Set up wise, the difference between a Multi-Zoom and a Single 
+Image Zoom lies mainly in the HTML markup, plus some of the 
+          <a href="#options">
+            <code>addimagezoom()</code>
+             
+options
+          </a>
+           you can define. For the markup, a multi-zoom should consist of something 
+like the following:
+        </p>
+        <div class="codehighlight" align="left">
+          <div style="background: #D1EFFF">
+            
+		&lt;div class="targetarea" style="border:1px solid #eee">
+            <br>
+            
+&lt;img 
+            <span style="color:red">
+              id="<b>multizoom1</b>"
+            </span>
+             alt="zoomable" title="" src="millasmall.jpg"/>
+            <br>
+            
+&lt;/div>
+          </div>
+          <div style="background: #BFD9AD">
+            &lt;div 
+            <span style="color:red">id="description"</span>
+            >Milla Jojovitch&lt;/div>
+          </div>
+          <div style="background: lightyellow">
+            
+		&lt;div class="<span style="color:red; font-weight:700;">multizoom1
+             thumbs</span>">
+            <br>
+            
+&lt;a 
+            <span style="color:red">href="millasmall.jpg" data-large="milla.jpg" data-title="Milla Jojovitch"</span>
+            >&lt;img src="milla_tmb.jpg" alt="Milla" title=""/>&lt;/a> 
+            <br>
+            
+&lt;a 
+            <font color="#FF0000">href="saleensmall.jpg" data-lens="false" data-magsize="150,150" data-large="saleen.jpg" 
+data-title="Saleen S7 Twin Turbo"</font>
+            >&lt;img src="saleen_tmb.jpg" alt="Saleen" 
+title=""/>&lt;/a> 
+            <br>
+            
+"
+            <br>
+            
+"
+            <br>
+            
+"
+            <br>
+            
+&lt;/div>
+          </div>
+        </div>
+        <p align="left">Logically the markup for a mult-zoom should consist of 3 parts:</p>
+        <ol class="multizoomlist">
+          <li>
+            <p align="left">
+              A "targetarea" DIV that houses the "midsized" preview image, 
+	loaded when the user clicks on a thumbnail image. The contained image should 
+	be given a unique ID (ie: "
+              <code>multizoom1</code>
+              "), and its 
+              <code>src</code>
+               
+				property set to the midsized image for the first thumbnail image 
+				(ie: &quot;millasmall.jpg&quot;). Everything 
+	else is optional, including the CSS class "
+              <code>targetarea</code>
+              ".
+            </p>
+          </li>
+          <li>
+            <p align="left">
+              If you wish to display a description of each image 
+	when its thumbnail is clicked and its midsized image is loaded (see "<a href="#descArea"><code style="color:red">descArea</code></a>" 
+	option), define a DIV with an unique but arbitrary ID (ie: "<code>description</code>") 
+	to house it on the page. The script uses the contents of each thumbnail 
+	image's link's "<code style="color:red">data-title</code>" attribute as the 
+	description. If you don't wish to display a description, simply do not 
+	define this DIV.
+            </p>
+          </li>
+          <li>
+            <p align="left">
+              Finally, a "thumbs" DIV that houses the thumbnail 
+	image links. This DIV should carry a CSS class that 
+              <b>reflects the ID of the 
+	midsized (zoomable) image element above it and the class name of "thumbs", in this case</b>
+              , "
+              <b>
+                <code>multizoom1 thumbs</code>
+              </b>
+              ".&nbsp; 
+	In other words, whatever the midsized image's unique ID is set to, your 
+	thumbnails' DIV should carry a CSS class of the same value and the class of "thumbs". 
+	The ID as class and "thumbs" class can also be used for styling. And you can add 
+	additional CSS classes to this DIV to style it further.
+            </p>
+            <p>
+	Within the "thumbs" DIV is where you define each thumbnail link. Each 
+	thumbnail link should consist of:
+            </p>
+            <ul>
+              <li>
+                <p align="left">
+                  &nbsp;A hyperlinked image (&lt;a> element with an &lt;img> 
+		inside it). 
+                  <br>
+                  
+		Within the &lt;a> element itself, it should carry at least 2 of the following 3 
+		attributes: "
+                  <code style="color:red">href</code> ", it needs the href under all circumstances, it's the URL of the midsized image. 
+                  and needs to be set to the path to the midsized version of the thumbnail image (ie: "
+                  <code>millasmall.jpg</code>
+                  "),
+                  and in addition one of the following "
+                  <code style="color:red">data-large</code> " or " <code style="color:red">data-dims</code>
+                  ". 
+		The first one is the 
+		path to the full blown large image used as the magnified version (data-large). 
+		Or if the midsized image is a scaled down version of the larger image, use 
+		instead data-dims to indicate those scaled down dimensions. See additional 
+		supported attributes below.
+                </p>
+              </li>
+              <li>
+                <p align="left">
+                  The inner &lt;img> element should simply have its
+                  <code> src</code>
+                   
+		attribute point to the path and filename of the thumbnail image itself.
+                </p>
+              </li>
+            </ul>
+          </li>
+        </ol>
+        <p align="left">
+          For 3) above, inside each thumbnail link, you've already seen 
+that you can and should insert at least an "
+          <code style="color:red">href</code>
+          " 
+attribute and at least one of either a "
+          <code style="color:red">data-large</code>
+          " or " <code style="color:red">data-dims</code>
+                  " attribute. The following 
+lists all of the supported attributes you can add inside the thumbnail link's &lt;a> 
+element. Each one sets/overrides a particular setting for that thumbnail 
+image:
+        </p>
+        <table class="codehighlight" border="0" width="100%" cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td valign="top" width="50%">
+                <ul>
+                  <li>href="path_to_midsized_image"</li>
+                  <li>data-large="path_to_fullblown_large_image"</li>
+                  <li>data-zoomrange="2, 10"</li>
+                  <li>data-magsize="150, 150"</li>
+                </ul>
+              </td>
+              <td valign="top" width="50%">
+                <ul>
+                  <li>data-dims="300, 250"</li>
+                  <li>data-title="Some description for this image"</li>
+                  <li>data-lens=true/false</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ode>
+          <p>
+            Save for 
+            <code style="color:red">href</code>
+            , 
+            <code style="color:red">
+	data-large</code>
+            , 
+            <code style="color:red">data-dims</code>
+            , and
+	
+            <code style="color:red">data-title</code>
+            , the rest of the above attributes 
+	simple mirror the equivalent property found in 
+            <a href="#options">
+              options of
+	
+              <code>addimagezoom()</code>
+            </a>
+            . These attributes let you override the 
+	setting of a particular option for the given thumbnail link. The
+	
+            <code style="color:red">href</code>
+             attribute as mentioned should be set to 
+	the path of the midsized image that's shown inside the container above the 
+	thumbnails. The 
+            <code style="color:red">data-large</code>
+             attribute should 
+	point to the path of the full blown large image shown when the mouse moves 
+	over the midsized image. 
+            <code style="color:red">data-dims</code>
+             lets you specify explicit 
+	dimensions for the midsized image, instead of letting its natural 
+	dimensions rule the roost. And finally, 
+            <code style="color:red">data-title</code>
+             
+	should be defined and set to the description for the given thumbnail's image when 
+	the&nbsp; 
+            <code style="color:red">
+              <a href="#descArea">descArea</a>
+            </code>
+             
+	option below is defined (to show a description of each thumbnail's image).
+          </p>
+          <p>The following thumbnail link for example makes use of several of the 
+aforementioned attributes:</p>
+          <p class="codehighlight">
+            &lt;a 
+            <font color="#FF0000">href="saleensmall.jpg" data-dims="300, 
+225" data-magsize="150,150" data-large="saleen.jpg" 
+data-title="Saleen S7 Twin Turbo"</font>
+            >&lt;img src="saleen_tmb.jpg" alt="Saleen" 
+title=""/>&lt;/a> 
+          </p>
+          <p>
+            Finally, just like in the Single Image zoom setup, in the HEAD section of 
+your page, you should call the initialization function 
+            <code>addimagezoom()</code>
+             
+with the desired options that are 
+applicable to Multi image zooms:
+          </p>
+          <p class="codehighlight" align="left">
+            jQuery(document).ready(function($){
+            <br>
+            
+&nbsp;$('
+            <font color="#FF0000">#image1</font>
+            ').addimagezoom({
+            <br>
+            
+&nbsp;&nbsp; zoomrange: [3, 10],
+            <br>
+            
+&nbsp;&nbsp; magnifiersize: [300,300],
+            <br>
+            <b>&nbsp;// additional options</b>
+            <br>
+            
+&nbsp;})
+            <br>
+            
+})
+          </p>
+          <p align="left">
+            Without further adieu then, below lists the options you can pass 
+into 
+            <code>addimagezoom()</code>
+            . Separate each with a comma:
+          </p>
+          <h5 style="font-size:110%;">
+            <a name="options"></a>
+            <img border="0" src="http://dynamicdrive.com/ddincludes/arrow2.gif" width="8" height="10">
+             addimagezoom() options 
+for Single and Multi-zoom Images set up. 
+            <span style="background-color: #DFFCFF">
+BLUE</span>
+             options are best used only for Single image zooms,
+
+            <span style="background-color: #FFFF80">YELLOW</span>
+             are best only used for Mult-zooms. 
+          </h5><div>Definitions: <b>zoomable</b> - the image you move the mouse over in a single zoom; <b>midsized</b> - the same image, the one you move your mouse over in a multi-zoom.</div>
+          <table border="1" width="95%" cellspacing="0" cellpadding="2">
+            <tbody>
+              <tr>
+                <td width="20%" bgcolor="#D8EA99" valign="top">
+                  <b>Property</b>
+                </td>
+                <td width="15%" bgcolor="#D8EA99" valign="top">
+                  <b>Default</b>
+                </td>
+                <td width="65%" bgcolor="#D8EA99" valign="top">
+                  <b>Description</b>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">
+                  curshade
+                  <p>&nbsp;</p>
+                </td>
+                <td width="15%" valign="top">false</td>
+                <td width="65%" valign="top">
+                  Boolean that when set to 
+                  <code>true</code>
+                   
+		shows a magnifying lens on top of the zoomable/midsized image while the mouse is 
+		over it. Default is 
+                  <code>false</code>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">
+                  cursorshadecolor
+                  <p>&nbsp;</p>
+                </td>
+                <td width="15%" valign="top">"#fff"</td>
+                <td width="65%" valign="top">HTML color string that sets the background 
+		color of the magnifying lens. </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">
+                  cursorshadeopacity
+                  <p>&nbsp;</p>
+                </td>
+                <td width="15%" valign="top">0.3</td>
+                <td width="65%" valign="top">Decimal value that sets the degree of opacity 
+		of the lens, where 1 is fully opaque (as if no opacity is applied), and 
+		0.1 is almost transparent.</td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">cursorshadeborder</td>
+                <td width="15%" valign="top">"1px solid black"</td>
+                <td width="65%" valign="top">CSS string value that sets the style of the 
+		border of the lens.</td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top" bgcolor="#FFFFAA">
+                  <a name="descArea"></a>
+                  descArea
+                </td>
+                <td width="15%" valign="top">none</td>
+                <td width="65%" valign="top">
+                  <b>Mostly just for multi-image zooms. </b>
+                  
+		Specifies the jQuery id selector for the description/caption element 
+		that will show the 
+                  <code style="color:red">
+		data-title</code>
+                   attribute of the active thumbnail image link. It's not required 
+		unless you want the description/caption feature:
+        
+                  <p class="codehighlight">descArea: '#description' // description 
+		selector (optional - but required if descriptions are used) </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top" bgcolor="#FFFFAA">descpos</td>
+                <td width="15%" valign="top">false</td>
+                <td width="65%" valign="top">
+                  <b>Mostly just for 
+		multi-image zooms. </b>
+                  (true/false) If set to true and the description 
+		is used and placed below the zoomable image, the description position 
+		follows image position as a set (set in the stylesheet or inline as top 
+		margin) distance:
+        
+                  <p class="codehighlight">descpos: true // if set to true - description position follows 
+image position at a set distance - new </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">disablewheel</td>
+                <td width="15%" valign="top">false</td>
+                <td width="65%" valign="top">
+                  (true/false) Useful only without variable 
+		zoom (
+                  <code style="color:red">zoomrange</code>
+                   property not set). If set 
+		to true mousewheel will not shift image position while mouse is over 
+		image:
+		
+                  <p class="codehighlight">disablewheel: true // even without variable zoom, mousewheel will 
+not shift image position while mouse is over image (optional) - new </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top" bgcolor="#FFFFAA">imagevertcenter</td>
+                <td width="15%" valign="top">false</td>
+                <td width="65%" valign="top">
+                  <b>Mostly just for 
+		multi-image zooms. </b>
+                  (true/false) If set to true each "midsized" image 
+		centers vertically within its container:
+        
+                  <p class="codehighlight">imagevertcenter: true // zoomable image centers vertically in its container 
+(optional) - new</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">magvertcenter</td>
+                <td width="15%" valign="top">false</td>
+                <td width="65%" valign="top">
+                  (true/false) If set to true the magnified area 
+		centers vertically in relation to the zoomable/midsized image:
+        
+                  <p class="codehighlight">magvertcenter: true // magnified area centers vertically in relation to the 
+zoomable image (optional) -new </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top" bgcolor="#DFFCFF">largeimage</td>
+                <td width="15%" valign="top">undefined (original image used as magnified 
+		image).</td>
+                <td width="65%" valign="top">
+                  <b>Only applicable in single image zooms</b>
+                  , 
+		this option specifies the full path or URL to the 
+		magnified image. This should be a larger, higher resolution version of 
+		the original image, for example:
+                  <p class="codehighlight">
+                    $('#image1').addimagezoom({
+                    <br>
+                    
+&nbsp;zoomrange: [3, 10],
+                    <br>
+                    <font color="#FF0000">largeimage: 'myimages/haydenlarge.jpg'</font>
+                    <br>
+                    
+		})
+                  </p>
+                  <p>
+                    If you omit the 
+                    <code>zoomrange</code>
+                     option, the large image will 
+		not be resized (to a power of the original image). You would do this 
+		when the magnified image is already at the magnification level you want:
+                  </p>
+                  <p class="codehighlight">
+                    $('#image1').addimagezoom({
+                    <br>
+                    <font color="#FF0000">largeimage: 'http://mysite.com/images/car.jpg'</font>
+                    <br>
+                    
+		})
+                  </p>
+                  <p>
+                    Notice that I left out the "
+                    <code>zoomrange</code>
+                    " option, which 
+		causes the natural dimensions of the large image to be used, with no 
+		resizing. The default value for 
+                    <code style="color:red">largeimage</code>
+                     is 
+                    <b>
+                      <i>undefined</i>
+                    </b>
+                    , 
+		which causes the script to simply use the original image as the 
+		magnified image as well. In this case you'll want to make sure 
+                    <code>
+		zoomrange</code>
+                     is defined so the magnified image is enlarged in some 
+		way:
+                  </p>
+                  <p class="codehighlight">
+                    $('#image1').addimagezoom({
+                    <br>
+                    
+&nbsp;zoomrange: [5, 5]
+                    <br>
+                    
+		})
+                  </p>
+                  <p>
+                    <b>In multi-zooms</b>, since there are multiple enlarged images involved, 
+		they are specified inline in the HTML markup itself using the
+		
+                    <code style="color:red">data-large</code>
+                     attribute for each thumbnail image link. If not specified 
+                     for a thumbnail image link, it will use the href of the thumbnail 
+                     image link.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">magnifierpos</td>
+                <td width="15%" valign="top">"right"</td>
+                <td width="65%" valign="top">
+                  Sets the position of the magnifying area 
+		relative to the original image. Enter "
+                  <code>right</code>
+                  " or "
+                  <code>left</code>
+                  ". 
+		Default is "
+                  <code>right</code>
+                  ".
+                  <p><b>Note</b>: If there's not enough room for it in the window in the desired direction, 
+	             it will automatically shift to the other direction.
+	          </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">magnifiersize</td>
+                <td width="15%" valign="top">[200, 200]</td>
+                <td width="65%" valign="top">
+                  Sets the magnifying area's dimensions in 
+		pixels. Default is 
+                  <code>[200, 200]</code>
+                  , or 200px wide by 200px tall.
+                  <p>
+                    <b>In multi-image zoom setups</b>, 
+                    this option can be overridden and 
+		set separately on each thumbnail image link using the 
+                    <code style="color:red">
+		data-magsize</code>
+                     attribute within the HTML markup:
+                  </p>
+                  <p class="codehighlight">
+                    
+		&lt;a href="angelinasmall.jpg" 
+                    <b>
+                      <span style="color:red">data-magsize="150, 
+		150"</span>
+                    </b>
+                     data-large="angelina.jpg" data-title="Angelina Jolie">&lt;img 
+		src="angelina_tmb.jpg" alt="Angelina" title=""/>&lt;/a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top" bgcolor="#DFFCFF">
+                  <a name="width"></a>
+                  width
+                </td>
+                <td width="15%" valign="top">undefined (script determines width of the 
+		zoomable/midsized image)</td>
+                <td width="65%" valign="top">
+                  <b>Mostly just for single image zooms</b>, this 
+		option lets you set the width of the zoomable (what would be midsized in a multi-zoom) image via scripting 
+		instead of via inline or external CSS.
+                  <p class="codehighlight">width: 
+		150,</p>
+		  <p><b>For multi-zoom</b>, this should be (if used at all) overridden/substituted for by the first numeric value within the 
+		  <code style="color:red">data-dims</code>
+                     attribute within the HTML markup of the thumbnail image link:
+                  </p>
+                  <p class="codehighlight">
+                    
+		&lt;a href="angelinasmall.jpg" 
+                    <b>
+                      <span style="color:red">data-dims="<u>250</u>, 
+		179"</span>
+                    </b>
+                     data-large="angelina.jpg" data-title="Angelina Jolie">&lt;img 
+		src="angelina_tmb.jpg" alt="Angelina" title=""/>&lt;/a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top" bgcolor="#DFFCFF">height</td>
+                <td width="15%" valign="top">undefined (script determines height of the 
+		zoomable/midsized image)</td>
+                <td width="65%" valign="top">
+                  <b>Mostly just for single image zooms</b>, this 
+		option lets you set the height of the zoomable (what would be midsized in a multi-zoom) image via scripting 
+		instead of via inline or external CSS.
+                  <p class="codehighlight">height: 
+		200,</p>
+                  <p><b>For multi-zoom</b>, this should be (if used at all) overridden/substituted for by the second numeric value within the 
+		  		<code style="color:red">data-dims</code>
+                     attribute within the HTML markup of the thumbnail image link:
+                  </p>
+                  <p class="codehighlight">
+                    
+		&lt;a href="angelinasmall.jpg" 
+                    <b>
+                      <span style="color:red">data-dims="250, 
+		<u>179</u>"</span>
+                    </b>
+                     data-large="angelina.jpg" data-title="Angelina Jolie">&lt;img 
+		src="angelina_tmb.jpg" alt="Angelina" title=""/>&lt;/a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">zoomrange</td>
+                <td width="15%" valign="top">undefined (no resizing of magnified image).</td>
+                <td width="65%" valign="top">
+                  Sets the zoom level of the magnified image 
+		relative to the original image. The value should be in the form [x, y], 
+		where x and y are integers that define the lower and upper bounds of the 
+		zoom level. For example:
+                  <ul>
+                    <li>
+                      <code>[3, 3]</code>
+                       //sets the zoom level to 3, with no ability to 
+		toggle the zoom level
+                    </li>
+                    <li>
+                      <code>[2, 10]</code>
+                       //sets the initial zoom level to 2, with 
+		ability to increase up to 10 by using the mouse wheel.
+                    </li>
+                  </ul>
+                  <p>
+                    The default value for this option is 
+                    <b>
+                      <i>undefined</i>
+                    </b>
+                    , which 
+		means the script will simply display the magnified image in its original 
+		dimensions with no resizing. The 
+                    <code style="color:red">largeimage</code>
+                     option 
+		above 
+		lets you define the large image that should be used as the magnified 
+		image.
+                  </p>
+                  <p>
+                    <b>In multi-image zoom setups</b>, this option can be overridden and 
+		set separately on any or each of its thumbnail image links using the 
+                    <code style="color:red">
+		data-</code>
+                    <code>
+                      <span style="color: #FF0000; background-color: #EFEFEF">zoomrange</span>
+                    </code>
+                     attribute within the HTML markup:
+                  </p>
+                  <p class="codehighlight">
+                    
+		&lt;a href="angelinasmall.jpg" 
+                    <b>
+                      <span style="color:red">data-zoomrange="2, 
+		10"</span>
+                    </b>
+                     data-large="angelina.jpg" data-title="Angelina Jolie">&lt;img 
+		src="angelina_tmb.jpg" alt="Angelina" title=""/>&lt;/a>
+                  </p>
+                  <p>
+                     If not included in this way for any given thumbnail image link, it will 
+                     default to whatever the zoomrange setting is for this multi-zoom. If that's not 
+                     set, the larger magnified image will be shown in its native dimensions. For your information, 
+                     this larger magnified image comes from the data-large attribute of the thumbnail image link, or if that's 
+                     not set, the href of the thumbnail image link,
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">initzoomablefade</td>
+                <td width="15%" valign="top">true</td>
+                <td width="65%" valign="top">
+                  Sets whether or not the zoomable/midsized image should fade 
+		in automatically when the page loads. Defaults to true.
+                  <p class="codehighlight">initzoomablefade: false,</p>
+                  <p>
+                    
+		See also 
+                    <code style="color:red">
+                      <a href="#zoomablefade">zoomablefade</a>
+                    </code>
+                     
+		option. If zoomablefade is set to false, this will also be false. 
+		<p><b>For multi-zoom</b>, if zoomablefade is true and this is false, only the first midsized image will not fade in.</p>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">
+                  <a name="zoomablefade"></a>
+                  zoomablefade
+                </td>
+                <td width="15%" valign="top">true</td>
+                <td width="65%" valign="top">
+                   Sets whether or not the midsized image within a Featured Image 
+		Zoomer should fade in as the page loads and, if this is a multi-zoom, 
+		when the user switches between midsized images using the thumbnail links. Defaults 
+		to true.
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">speed</td>
+                <td width="15%" valign="top">600</td>
+                <td width="65%" valign="top">
+                  Sets the duration of fade in for midsized 
+		images (in milliseconds) when zoomablefade is set to true: 
+                  <p class="codehighlight">speed: 
+		1500,</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="20%" valign="top">zIndex</td>
+                <td width="15%" valign="top">script determines optimal z-index value to 
+		use</td>
+                <td width="65%" valign="top">
+                  In most cases the script will determine the 
+		optimal z-index to use here, so this property should only be used if 
+		there are z-index stacking problems. If there are, use it to set the 
+		z-index for created elements. It should be at least as high as the 
+		highest z-index of the zoomable (midsized) image and, if any its positioned 
+		parents. Example:
+		
+                  <p class="codehighlight">zIndex: 4 </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+<ode>
+    <p>
+    
+<div style="border-top:1px dashed gray">
+
+</div></td>
+  </tr>
+</table>
+
+
+<div id="footer">
+<a href="#top" onClick="dd_scrolltotop(); return false"><img src="http://www.dynamicdrive.com/ddincludes/jumptop.png" style="position:absolute;right:5px; bottom: 7px; border-width:0" title="Jump to Top" /></a>
+<div id="subfooter">
+<div id="subfooter-left"><a href="http://pipes.yahoo.com/pipes/pipe.run?_id=a5e67ec6024feb24f1f5a78ee33fe991&_render=rss"><img src="http://www.dynamicdrive.com/ddincludes/rss.png" title="New Content- RSS feed" /></a> <a href="http://twitter.com/ddrivegeorge"><img src="http://www.dynamicdrive.com/ddincludes/twitter-2.png" title="Dynamic Drive Twitter Account" /></a></div> 
+<div id="subfooter-center"><div class="drop-shadow curled">
+<div style="margin:auto; text-align:center">
+
+Copyright 2012 (c) Dynamic Drive. All rights reserved. <a href="http://www.dynamicdrive.com/notice.htm">Please see TOS</a> before using any of our scripts.
+
+</div>
+</div></div>
+<div id="subfooter-right">
+
+</div>
+</div>
+</div>
+</body>
+
+</html>

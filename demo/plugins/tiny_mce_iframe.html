@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+
+<style type="text/css">
+.aBox{width:50px;height:50px;border:1px solid #ccc;}
+</style>
+</head>
+<body>
+<script>
+jQuery(function(){
+	require(['plugins/tiny_mce3.5.7/jscripts/tiny_mce'],function(){
+		document.domain = "tianya.cn";
+		tinyMCE.init({
+			// General options
+			mode : "exact",
+			elements: "tyArea",
+			theme : "advanced",
+			language:"zh-cn",
+			
+			plugins : "table,media,preview,inlinepopups,paste,fullscreen",
+			theme_advanced_buttons1 : "bold,italic,underline,justifyleft,justifycenter,justifyright,bullist,numlist,|,outdent,indent,fontselect,fontsizeselect,forecolor,backcolor,removeformat,link,unlink,table,fullscreen,preview",
+			
+			theme_advanced_buttons2:"undo,redo,hr,media,inlinepopups,pasteword,code",
+			
+			table_default_border: 1,
+			relative_urls : false,
+	        remove_script_host : false,
+	        
+			//autoresize_min_height:350,
+			//autoresize_max_height:1000,
+			theme_advanced_fonts:'宋体=SimSun;黑体=SimHei;隶书=LiSu;楷体=KaiTi_GB2312;微软雅黑=Microsoft YaHei;' +  
+				'Georgia=Georgia;Times New Roman=Times New Roman;Impact=Impact;Courier New=Courier New;' +
+				'Arial=Arial;Verdana=Verdana;Tahoma=Tahoma;',
+			font_size_style_values:"8px,10px,12px,14px,18px,24px,36px",
+			theme_advanced_font_sizes : "极小(8px)=8px,较小(10px)=10px,小(12px)=12px,普通(14px)=14px,大(18px)=18px,较大(24px)=24px,极大(36px)=36px"
+			,ed_custom_iframe: true
+		});
+		
+	});
+	
+});
+</script>
+<h1>Uploadify Demo</h1>
+<form id="idform" target="_blank" target="/test.html">
+	<div id="queue"></div>
+	<!-- input id="file_upload" name="file_upload" type="file" multiple="true" -->
+	<div style="position:relative;">
+		<div id="file_upload"></div>
+	</div>
+
+<h3>测试</h3>
+<div style="margin-left:300px;">
+<textarea id="tyArea" name="txt" style="width:400px;height:600px;" >
+abc
+</textarea></div>
+
+</form>
+
+<div style="margin-left:300px;">
+	<textarea id="tyArea2" name="txt" style="width:400px;height:600px;" >
+abc
+</textarea>
+</div>
+
+<script>
+function submitFn(){
+	document.getElementById("idform").submit();
+	
+}
+</script>	
+<input id="set" type="button" value="提交" onclick="submitFn()"/>
+</body>
+</html>

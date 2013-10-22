@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TinyMCE" default="build" basedir=".">
+	<!-- Path properties -->
+	<property description="Build directory" name="build_dir" location="jscripts" />
+	
+	<property name="lite-editor-native" location="../../lite/src/editor/tiny_mce" />
+	
+	<!-- Setup classpath for js-build-tools ant tasks -->
+	<path id="tasks.classpath">
+		<pathelement location="."/>
+
+		<fileset dir="tools/ant">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+
+	<!-- Register new js-build-tools ant tasks -->
+	<taskdef name="preprocess" classname="com.moxiecode.ant.tasks.PreProcessTask" classpathref="tasks.classpath" loaderref="tasks.classpath.loader" />
+	<taskdef name="yuicompress" classname="com.moxiecode.ant.tasks.YuiCompressTask" classpathref="tasks.classpath" loaderref="tasks.classpath.loader" />
+	<taskdef name="moxiedoc" classname="com.moxiecode.ant.tasks.MoxieDocTask" classpathref="tasks.classpath" loaderref="tasks.classpath.loader" />
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="tasks.classpath" loaderref="tasks.classpath.loader" />
+
+	
+	<target name="lite-editor-clean">
+		<delete>
+			<fileset dir="${lite-editor-native}"/>
+		</delete>
+	</target>
+
+	<!-- copy至Lite目录 -->
+	<target name="copyToLite">
+		<copy todir="${lite-editor-native}" >
+			<fileset dir="${build_dir}/" includes="**/*.*"/>
+		</copy>
+	</target>
+	
+	<!-- 压缩插件 -->
+	<target name="minify-js">
+		<for param="file">
+			<path>
+				<fileset dir="${build_dir}/plugins/" includes="*/editor_plugin_src.js" />
+			</path>
+			<sequential>
+				<propertyregex property="file.compressed" input="@{file}" regexp="_src.js$" replace=".js" override="yes" />
+				<yuicompress infile="@{file}" outfile="${file.compressed}" />
+			</sequential>
+		</for>
+	</target>
+	
+	<!-- 压缩插件 -->
+	<target name="build" depends="lite-editor-clean,minify-js,copyToLite" description="Builds ty plugins">
+		
+	</target>
+
+</project>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+
+<style type="text/css">
+.aBox{width:50px;height:50px;border:1px solid #ccc;}
+
+.uploadBtn{display:block;width:80px;height:30px;line-height:30px;text-decoration:none;}
+#file_uploadUploader{position:absolute;top:0;left:0;
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+opacity:0;}
+</style>
+</head>
+<body>
+<script>
+jQuery(function(){
+	require(['plugins/jquery/uploadify/uploadify'],function(){
+        jQuery('#file_upload').uploadify({
+            auto: false,
+            queueID: "queue", 
+            width: 80,
+            height: 30,
+            multi:true,
+            uploader: 'http://shawn.tianya.cn:5678/src/plugins/jquery/uploadify/uploadify_alpha.swf',
+            script: 'upload.php'      // 上传接口
+        });
+	});
+	
+});
+</script>
+<h1>Uploadify Demo</h1>
+<form>
+	
+	<div style="position:relative;">
+		<div id="file_upload"></div>
+		<a class="uploadBtn" href="javascript:;">上传文件</a>
+	</div>
+	<div id="queue"></div>
+</form>
+	
+<h3>测试</h3>
+<textarea id="tyArea" style="width:400px;height:200px;"></textarea>
+<a href="#"  id="testa">链接</a>
+<div class="aBox"></div>
+<input id="inputName" type="input" value="shawn1" />
+<input id="inputValue" type="input" value="100" />
+<input id="set" type="button" value="设置"/>
+<input id="read" type="button" value="读取"/>
+<input id="del" type="button" value="删除"/>
+<div style="border:1px solid #ccc;width:800px;height:160px;">
+<div id="bBox" ></div>
+</div>
+<textarea id="output" style="width:600px;"></textarea><input style="width:50px" id="box" type="input" value=""/>
+</body>
+</html>

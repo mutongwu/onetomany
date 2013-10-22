@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<style type="text/css">
+*{margin:0;padding:0;}
+body{width:500px;}
+</style>
+</head>
+<body>
+<div id="some"><h1>wwwwww</h1> 
+<script type="text/javascript">
+var    s  =  document.documentMode + "<br />"  + "使用documentElement";  
+s+="<br />documentElement.clientWidth ："+document.documentElement.clientWidth;  
+s+="<br />documentElement.clientHeight："+document.documentElement.clientHeight;  
+
+s+="<br />documentElement.offsetWidth："+document.documentElement.offsetWidth;  
+s+="<br />documentElement.offsetHeight："+document.documentElement.offsetHeight;
+
+s+="<br />documentElement.scrollWidth ："+document.documentElement.scrollWidth;  
+s+="<br />documentElement.scrollHeight："+document.documentElement.scrollHeight;  
+
+s+="<br />documentElement.scrollTop  ："+document.documentElement.scrollTop;  
+s+="<br />documentElement.scrollLeft  ："+document.documentElement.scrollLeft;
+	s+= "<br />使用body";
+s+="<br />body.clientWidth ："+document.body.clientWidth;  
+s+="<br />body.clientHeight："+document.body.clientHeight;  
+
+s+="<br />body.offsetWidth："+document.body.offsetWidth;  
+s+="<br />body.offsetHeight："+document.body.offsetHeight;  
+
+s+="<br />body.scrollWidth ："+document.body.scrollWidth;  
+s+="<br />body.scrollHeight："+document.body.scrollHeight;  
+
+s+="<br />body.scrollTop  ："+document.body.scrollTop;  
+s+="<br />body.scrollLeft  ："+document.body.scrollLeft;
+
+s += "<br />documentElement.getBoundingClientRect().right " + document.documentElement.getBoundingClientRect().right;
+s += "<br />documentElement.getBoundingClientRect().bottom " + document.documentElement.getBoundingClientRect().bottom;
+s += "<br />documentElement.getBoundingClientRect().top " + document.documentElement.getBoundingClientRect().top;
+
+s += "<br />body.getBoundingClientRect().right " + document.body.getBoundingClientRect().right;
+s += "<br />body.getBoundingClientRect().bottom " + document.body.getBoundingClientRect().bottom;
+s += "<br />body.getBoundingClientRect().top " + document.body.getBoundingClientRect().top;
+
+document.write(s); 
+</script>
+</div>
+<div id="div_1">
+	<span>hello</span>
+	<style>body{color:#000;}</style>	
+	<span style="display:none">none</span>
+	<span style="visible:hidden">hidden</span>
+</div>
+</body>
+</html>

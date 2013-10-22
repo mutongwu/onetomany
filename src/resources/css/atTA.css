@@ -1,0 +1,41 @@
+.ui_atTA_listBox {
+    display: none;
+	border: 1px solid #ccc;
+	overflow:hidden;
+	position: absolute;
+	top: 0px;
+	left:0px;
+	background-color:#fff;
+	z-index:1024;
+	padding:2px;
+}
+.ui_atTA_listBox li {
+    width:180px;
+    padding:2px 0;
+    overflow:hidden;
+    line-height:22px;
+    height:22px;
+    overflow:hidden;
+}
+.ui_atTA_listBox  .ui_atTA_item{display:block;text-decoration:none;color:#000;}
+.ui_atTA_listBox .on{background-color:#ccc;}
+.ui_atTA_listBox .ui_atTA_input{display:none;width:176px;margin:2px 2px;padding:2px;}
+.ui_atTA_staticBox .ui_atTA_input{display:block;}
+
+.ui_atTA_setCommonCss {
+	font: 12px/1.5 "宋体";
+	word-wrap: break-word;
+	resize: none;
+	overflow-y: auto;
+	overflow-x:hidden;
+	padding:0 5px;
+	border: 1px solid #999; 
+}
+
+.ui_atTA_shadowBox {
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	visibility:hidden;
+}

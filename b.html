@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="/src/core/jquery.js"></script>
+
+</head>
+<body>
+<script>
+function fn1( value ){
+    console.log( value );
+}
+
+function fn2( value ){
+    fn1("fn2 says:" + value);
+    return false;
+}
+/*
+function cb(x) {
+	console.log(this.state())
+    console.log('progress' + x)
+}
+var deferred = $.Deferred()
+deferred.progress(cb).done(function(){
+	console.log(this.state())
+	console.log("done.")
+})
+setTimeout(function() {
+    deferred.notify([1,2,3]);
+    deferred.resolve();
+    deferred.notify([4,5,6]);
+}, 1000);
+
+
+var callbacks = jQuery.Callbacks( "memory" );
+callbacks.add( fn1 );
+callbacks.fire( "foo" ); //foo
+callbacks.add( fn2 );	//fn2 says: foo
+callbacks.fire( "bar" ); //bar ,fn2 says: bar
+callbacks.remove( fn2 );
+callbacks.fire( "foobar" );//foobar
+*/
+var deferred = $.Deferred();
+setTimeout(function() {
+    deferred.notify([1,2,3]);
+    deferred.resolve("foo");
+    deferred.notify([4,5,6]);
+}, 1000);
+deferred.done(fn1).done(fn1)
+//
+var callback = "setPicUrl"
+function closeFn(rnt){
+	//document.domain = 'tianya.cn';
+	//调用第三方 提供的js回调函数
+	if(rnt && rnt.data && rnt.data.photo && rnt.data.photo[0]){
+		if(window.opener){
+		    try{
+		        window.opener["setPicUrl"](rnt.data.photo[0].mediumurl); 
+		        window.onbeforeunload = null;
+		        window.opener = null; 
+		        window.open('','_self');
+		        window.close();
+		    }catch(e){window.close();}
+		}
+	}
+}
+</script>
+<input type="button" onclick="closeFn()" value="close"/>
+</body>
+</html>

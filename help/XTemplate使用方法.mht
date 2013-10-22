@@ -1,0 +1,1043 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0063)http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD>
+<META content="text/html; charset=utf-8" http-equiv="Content-Type"><TITLE>ExtJS  
+使用点滴 四 XTemplate使用方法 - FredTang - 博客园</TITLE><LINK rel="stylesheet" type="text/css" 
+href="XTemplate使用方法_files/common.css"><LINK id="MainCss" rel="stylesheet" type="text/css" 
+href="XTemplate使用方法_files/style.css"><LINK rel="stylesheet" type="text/css" 
+href="XTemplate使用方法_files/common2.css"><LINK rel="stylesheet" type="text/css" 
+href="XTemplate使用方法_files/shStyle.css"><LINK title="RSS" rel="alternate" type="application/rss+xml" 
+href="http://www.cnblogs.com/FredTang/rss"><LINK title="RSD" rel="EditURI" type="application/rsd+xml" 
+href="http://www.cnblogs.com/FredTang/rsd.xml"><LINK rel="wlwmanifest" type="application/wlwmanifest+xml" 
+href="http://www.cnblogs.com/FredTang/wlwmanifest.xml">
+<SCRIPT type="text/javascript" src="XTemplate使用方法_files/jquery.js"></SCRIPT>
+
+<SCRIPT type="text/javascript">
+var currentBlogApp = 'FredTang';
+</SCRIPT>
+
+<SCRIPT type="text/javascript" src="XTemplate使用方法_files/common.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="XTemplate使用方法_files/json2.js"></SCRIPT>
+
+<SCRIPT type="text/javascript" src="XTemplate使用方法_files/syntaxHighlighter.js"></SCRIPT>
+
+<META name="GENERATOR" content="MSHTML 9.00.8112.16434"></HEAD>
+<BODY><A name="top"></A><!--done-->
+<DIV id="home">
+<DIV id="header">
+<DIV id="blogTitle"><A id="lnkBlogLogo" 
+href="http://www.cnblogs.com/FredTang/"><IMG id="blogLogo" alt="Return Home" 
+src="XTemplate使用方法_files/logo.gif"></A><!--done-->
+<H1><A id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/FredTang/">FredTang</A></H1>
+<H2></H2></DIV><!--end: blogTitle 博客的标题和副标题 -->
+<DIV id="navigator"><!--done-->
+<UL id="navList">
+  <LI><A id="MyLinks1_HomeLink" class="menu" 
+  href="http://www.cnblogs.com/">CnBlogs</A></LI>
+  <LI><A id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/FredTang/">Home</A></LI>
+  <LI><A id="MyLinks1_NewPostLink" class="menu" href="http://www.cnblogs.com/FredTang/admin/EditPosts.aspx?opt=1" 
+  rel="nofollow">New Post</A></LI>
+  <LI><A accessKey="9" id="MyLinks1_ContactLink" class="menu" href="http://space.cnblogs.com/msg/send/FredTang" 
+  rel="nofollow">Contact</A></LI>
+  <LI><A id="MyLinks1_Admin" class="menu" href="http://www.cnblogs.com/FredTang/admin/EditPosts.aspx" 
+  rel="nofollow">Admin</A></LI>
+  <LI><A id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/FredTang/rss">Rss</A><A 
+  id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/FredTang/rss"><IMG 
+  alt="Rss" src="XTemplate使用方法_files/rss.gif"></A></LI></UL>
+<DIV class="blogStats"><!--done-->Posts - 22&nbsp; Articles - 0&nbsp; Comments - 
+0&nbsp;					</DIV><!--end: blogStats --></DIV><!--end: navigator 博客导航栏 --></DIV><!--end: header 头部 -->
+<DIV id="main">
+<DIV id="mainContent">
+<DIV class="forFlow"><!--done-->
+<DIV id="topics">
+<DIV class="post">
+<H1 class="postTitle"><A id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html">ExtJS 
+ 使用点滴 四 XTemplate使用方法</A></H1>
+<DIV class="clear"></DIV>
+<DIV class="postBody">
+<DIV id="cnblogs_post_body">
+<P>1：基本知识</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp; 
+XTemplate是Ext.Template扩展的新类，它支持高级功能的模板类，如自动数组输出、条件判断、子模板、基本数学运行、特殊内建的模板变量，直接执行代码和更多的功能</P>
+<DIV id="ext-gen1150" class="mdetail-params">
+<UL>
+  <LI id="ext-gen1149">Autofilling arrays using templates and sub-templates</LI>
+  <LI id="ext-gen1070">Conditional processing with basic comparison 
+  operators</LI>
+  <LI id="ext-gen1071">Basic math function support</LI>
+  <LI id="ext-gen1148">Execute arbitrary inline code with special built-in 
+  template variables</LI>
+  <LI id="ext-gen1072">Custom member functions</LI>
+  <LI id="ext-gen1073">Many special tags and built-in operators that aren't 
+  defined as part of the API, but are supported in the templates that can be 
+  created</LI></UL></DIV>
+<P> </P>
+<P>2：简单例子1</P>
+<P> </P>
+<DIV class="dp-highlighter bg_html">
+<DIV class="bar">
+<DIV class="tools"><STRONG>[html]</STRONG> <A class="ViewSource" title="view plain" 
+href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">view 
+plain</A><A class="CopyToClipboard" title="copy" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">copy</A><A 
+class="PrintSource" title="print" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">print</A><A 
+class="About" title="?" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">?</A></DIV></DIV>
+<OL class="dp-xml">
+  <LI class="alt"><SPAN class="tag">&lt;</SPAN><SPAN>%@ page </SPAN><SPAN class="attribute">language</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"java"</SPAN><SPAN> </SPAN><SPAN 
+  class="attribute">import</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"java.util.*"</SPAN><SPAN> </SPAN><SPAN class="attribute">pageEncoding</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"UTF-8"</SPAN><SPAN>%</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></LI>
+  <LI><SPAN class="tag">&lt;</SPAN><SPAN>%&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>String <SPAN class="attribute">path</SPAN><SPAN> = 
+  </SPAN><SPAN 
+  class="attribute-value">request</SPAN><SPAN>.getContextPath();&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>String <SPAN class="attribute">basePath</SPAN><SPAN> = </SPAN><SPAN 
+  class="attribute-value">request</SPAN><SPAN>.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>%<SPAN class="tag">&gt;</SPAN><SPAN>&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 
+  Transitional//EN"<SPAN class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">html</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">head</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">base</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">href</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"&lt;%=basePath%&gt;"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">title</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>xtemplate</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">title</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">meta</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">http-equiv</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"pragma"</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">content</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"no-cache"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">meta</SPAN><SPAN> </SPAN><SPAN 
+  class="attribute">http-equiv</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"cache-control"</SPAN><SPAN> </SPAN><SPAN class="attribute">content</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"no-cache"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">meta</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">http-equiv</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"expires"</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">content</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"0"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">meta</SPAN><SPAN> </SPAN><SPAN 
+  class="attribute">http-equiv</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"keywords"</SPAN><SPAN> </SPAN><SPAN 
+  class="attribute">content</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"keyword1,keyword2,keyword3"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">meta</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">http-equiv</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"description"</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">content</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"This 
+  is my page"</SPAN><SPAN class="tag">/&gt;</SPAN><SPAN>&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">script</SPAN><SPAN> </SPAN><SPAN 
+  class="attribute">type</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"text/javascript"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ext.onReady(function() {&nbsp; 
+  </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //数据源&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var <SPAN class="attribute">data</SPAN><SPAN> 
+  = {&nbsp; </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  name: '博客园',&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  read: [{&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  book: '开发成功之路---JSP',&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  date: '2007-7-7'&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  }, {&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  book: '大话设计模式',&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  date: '2006-6-6'&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  }]&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //呈现组件&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var <SPAN class="attribute">mypanel</SPAN><SPAN> 
+  = </SPAN><SPAN class="attribute-value">new</SPAN><SPAN> Ext.Panel({&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  id: "mypanel",&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  width: 300,&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  frame: true,&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  height: 100,&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  title: "XTemplate简单示例",&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  renderTo: Ext.getBody()&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //创建模板&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var <SPAN class="attribute">tp1</SPAN><SPAN> 
+  = </SPAN><SPAN class="attribute-value">new</SPAN><SPAN> Ext.XTemplate(&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">table</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">width</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"100%"</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">cellpadding</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"0"</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">cellspacing</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"0"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">tr</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;</SPAN><SPAN class="tag-name">td</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>编号</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">td</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;</SPAN><SPAN class="tag-name">td</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>书名</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">td</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;</SPAN><SPAN class="tag-name">td</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>日期</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">td</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">tr</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">span</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">style</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"color: 
+  rgb(255, 0, 0);"</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>'</SPAN><SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">tpl</SPAN><SPAN> </SPAN><SPAN 
+  class="attribute">for</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"read"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">span</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">tr</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>',&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">span</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">style</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"color: 
+  rgb(255, 0, 0);"</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>'</SPAN><SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">td</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>{#}</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">td</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">td</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>{book}</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">td</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;</SPAN><SPAN class="tag-name">td</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>{date}</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">td</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">tr</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>'</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">span</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>,&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">span</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">style</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"color: 
+  rgb(255, 0, 0);"</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>'</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">tpl</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">table</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>'</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">span</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //重写绑定模板&nbsp; 
+  </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  tp1.overwrite(mypanel.body, data);&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; });&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;/</SPAN><SPAN class="tag-name">script</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp; <SPAN class="tag">&lt;/</SPAN><SPAN class="tag-name">head</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">body</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp; <SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">body</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">html</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>&nbsp; 
+  </SPAN></LI></OL></DIV><PRE style="display: none;" class="html" name="code">&lt;%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%&gt;
+&lt;%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%&gt;
+
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;base href="&lt;%=basePath%&gt;"&gt;
+    
+    &lt;title&gt;xtemplate&lt;/title&gt;
+    
+	&lt;meta http-equiv="pragma" content="no-cache"&gt;
+	&lt;meta http-equiv="cache-control" content="no-cache"&gt;
+	&lt;meta http-equiv="expires" content="0"&gt;    
+	&lt;meta http-equiv="keywords" content="keyword1,keyword2,keyword3"&gt;
+	&lt;meta http-equiv="description" content="This is my page"/&gt;
+    
+        
+    &lt;script type="text/javascript"&gt;
+      Ext.onReady(function() {
+		//数据源
+		var data = {
+			name: '博客园',
+			read: [{
+				book: '开发成功之路---JSP',
+				date: '2007-7-7'
+			}, {
+				book: '大话设计模式',
+				date: '2006-6-6'
+			}]
+		};
+		
+		//呈现组件
+		var mypanel = new Ext.Panel({
+			id: "mypanel",
+			width: 300,
+			frame: true,
+			height: 100,
+			title: "XTemplate简单示例",
+			renderTo: Ext.getBody()
+		});
+		
+		//创建模板
+		var tp1 = new Ext.XTemplate(
+			'&lt;table width="100%" cellpadding="0" cellspacing="0"&gt;&lt;tr&gt;&lt;td&gt;编号&lt;/td&gt;&lt;td&gt;书名&lt;/td&gt;&lt;td&gt;日期&lt;/td&gt;&lt;/tr&gt;',
+			<SPAN style="color: rgb(255, 0, 0);">'&lt;tpl for="read"&gt;',</SPAN>
+			'&lt;tr&gt;',
+			<SPAN style="color: rgb(255, 0, 0);">'&lt;td&gt;{#}&lt;/td&gt;&lt;td&gt;{book}&lt;/td&gt;&lt;td&gt;{date}&lt;/td&gt;&lt;/tr&gt;'</SPAN>,
+			<SPAN style="color: rgb(255, 0, 0);">'&lt;/tpl&gt;&lt;/table&gt;'</SPAN>
+		);
+		
+		//重写绑定模板
+		tp1.overwrite(mypanel.body, data);
+     });
+     
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</PRE>
+<P><BR>程序效果：</P>
+<P><IMG alt="" src="XTemplate使用方法_files/0_1311822706Dm4l.png"></P>
+<P>上述代码中使用了标签tpl和操作符for，可以自由切换for所指定的对象作用域来访问声明于模板中的对象，特殊变量#表示当前数组索引+1（由1开始，不是0）</P>
+<P>Ext.XTemplate类常用的方法如下：</P>
+<P>&nbsp; applay(): 返回值为void，applyTemplate的简写形式</P>
+<P>&nbsp; compile(): 返回值为Function，把模板编译成一个函数</P>
+<P>&nbsp; form(String/HTMLElement el): 
+返回值为Ext.Template，从某个元素的value或innerHTML中创建模板</P>
+<P>&nbsp; applyTemplate(Object/Array values): 返回值为String, 
+返回HTML片段，这块片段是由数据填充模板之后而成</P>
+<P> </P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<SPAN style="font-size: 24px;">其特性</SPAN></P>
+<P>1：<STRONG><U id="ext-gen1175">Auto filling of arrays</U></STRONG> </P>
+<DIV id="ext-gen1102" class="sub-desc">
+<P id="ext-gen1143">The <STRONG><TT>tpl</TT></STRONG> tag and the <STRONG><TT 
+id="ext-gen1182">for</TT></STRONG> operator are used to process the provided 
+data object: </P>
+<UL>
+  <LI id="ext-gen1169">If the value specified in <TT>for</TT> is an array, it 
+  will auto-fill, repeating the template block inside the <TT>tpl</TT> tag for 
+  each item in the array.</LI>
+  <LI id="ext-gen1142">If <TT>for="."</TT> is specified, the data object 
+  provided is examined.</LI>
+  <LI id="ext-gen1103">While processing an array, the special variable <TT id="ext-gen1183">{#}</TT> 
+  will provide the current array index + 1 (starts at 1, not 0)</LI></UL></DIV>
+<P>程序代码：</P>
+<DIV class="dp-highlighter bg_html">
+<DIV class="bar">
+<DIV class="tools"><STRONG>[html]</STRONG> <A class="ViewSource" title="view plain" 
+href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">view 
+plain</A><A class="CopyToClipboard" title="copy" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">copy</A><A 
+class="PrintSource" title="print" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">print</A><A 
+class="About" title="?" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">?</A></DIV></DIV>
+<OL class="dp-xml">
+  <LI class="alt"><SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">script</SPAN><SPAN> </SPAN><SPAN 
+  class="attribute">type</SPAN><SPAN>=</SPAN><SPAN 
+  class="attribute-value">"text/javascript"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ext.onReady(function() {&nbsp; 
+  </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //数据源&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var <SPAN class="attribute">data</SPAN><SPAN> 
+  = {&nbsp; </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  name: 'Tommy Maintz',&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  title: 'Lead Developer',&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  company: 'Sencha Inc.',&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  email: 'tommy@sencha.com',&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  address: '5 Cups Drive',&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  city: 'Palo Alto',&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  state: 'CA',&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  zip: '44102',&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  drinks: ['Coffee', 'Soda', 'Water'],&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  kids: [{&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  name: 'Joshua',&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  age:3&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  },{&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  name: 'Matthew',&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  age:2&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  },{&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  name: 'Solomon',&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  age:0&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  }]&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  };&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //呈现组件&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var <SPAN class="attribute">mypanel</SPAN><SPAN> 
+  = </SPAN><SPAN class="attribute-value">new</SPAN><SPAN> Ext.Panel({&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  id: "mypanel",&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  width: 300,&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  frame: true,&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  height: 100,&nbsp; </SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  title: "XTemplate简单示例",&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  renderTo: Ext.getBody()&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; });&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //创建模板&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var <SPAN class="attribute">tpl</SPAN><SPAN> 
+  = </SPAN><SPAN class="attribute-value">new</SPAN><SPAN> Ext.XTemplate(&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>Kids: ',&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">tpl</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">for</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"."</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // process 
+  the data.kids node&nbsp; </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>{#}. {name}</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; // use current array index to 
+  autonumber&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;/</SPAN><SPAN class="tag-name">tpl</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>'&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  //重写绑定模板&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  tpl.overwrite(mypanel.body, data.kids); // pass the kids property of the data 
+  object&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp; });&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="tag">&lt;/</SPAN><SPAN class="tag-name">script</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp; <SPAN class="tag">&lt;/</SPAN><SPAN class="tag-name">head</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp; <SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">body</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp; <SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">body</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>&nbsp; 
+  </SPAN></SPAN></LI></OL></DIV><PRE style="display: none;" class="html" name="code">&lt;script type="text/javascript"&gt;
+      Ext.onReady(function() {
+		//数据源
+		var data = {
+			name: 'Tommy Maintz',
+			title: 'Lead Developer',
+			company: 'Sencha Inc.',
+			email: 'tommy@sencha.com',
+			address: '5 Cups Drive',
+			city: 'Palo Alto',
+			state: 'CA',
+			zip: '44102',
+			drinks: ['Coffee', 'Soda', 'Water'],
+			kids: [{
+			        name: 'Joshua',
+			        age:3
+			    },{
+			        name: 'Matthew',
+			        age:2
+			    },{
+			        name: 'Solomon',
+			        age:0
+			}]
+			};
+
+		
+		//呈现组件
+		var mypanel = new Ext.Panel({
+			id: "mypanel",
+			width: 300,
+			frame: true,
+			height: 100,
+			title: "XTemplate简单示例",
+			renderTo: Ext.getBody()
+		});
+		
+		//创建模板
+		var tpl = new Ext.XTemplate(
+		    '&lt;p&gt;Kids: ',
+		    '&lt;tpl for="."&gt;',       // process the data.kids node
+		        '&lt;p&gt;{#}. {name}&lt;/p&gt;',  // use current array index to autonumber
+		    '&lt;/tpl&gt;&lt;/p&gt;'
+		);
+		
+		//重写绑定模板
+		tpl.overwrite(mypanel.body, data.kids); // pass the kids property of the data object
+		
+     });
+     
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+  &lt;/body&gt;</PRE>
+<P><BR>程序效果：</P>
+<P><IMG alt="" src="XTemplate使用方法_files/0_13118236432GIj.png"></P>
+<P> </P>
+<P>2： 修改tp1的内容&nbsp; An example illustrating how the <STRONG><TT id="ext-gen1225">for</TT></STRONG> 
+property can be leveraged to access specified members of the provided data 
+object to populate the template:</P>
+<DIV class="dp-highlighter bg_html">
+<DIV class="bar">
+<DIV class="tools"><STRONG>[html]</STRONG> <A class="ViewSource" title="view plain" 
+href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">view 
+plain</A><A class="CopyToClipboard" title="copy" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">copy</A><A 
+class="PrintSource" title="print" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">print</A><A 
+class="About" title="?" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">?</A></DIV></DIV>
+<OL class="dp-xml">
+  <LI class="alt"><SPAN>var </SPAN><SPAN class="attribute">tpl</SPAN><SPAN> = 
+  </SPAN><SPAN class="attribute-value">new</SPAN><SPAN> Ext.XTemplate(&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>Name: {name}</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>Title: {title}</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>Company: {company}</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>Kids: ',&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">tpl</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">for</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"kids"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp;&nbsp;&nbsp;&nbsp; // interrogate the 
+  kids property within the data&nbsp; </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>{name}</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">p</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>',&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;/</SPAN><SPAN class="tag-name">tpl</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>'&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );&nbsp; 
+  </SPAN></LI></OL></DIV><PRE style="display: none;" class="html" name="code">var tpl = new Ext.XTemplate(
+		    '&lt;p&gt;Name: {name}&lt;/p&gt;',
+		    '&lt;p&gt;Title: {title}&lt;/p&gt;',
+		    '&lt;p&gt;Company: {company}&lt;/p&gt;',
+		    '&lt;p&gt;Kids: ',
+		    '&lt;tpl for="kids"&gt;',     // interrogate the kids property within the data
+		        '&lt;p&gt;{name}&lt;/p&gt;',
+		    '&lt;/tpl&gt;&lt;/p&gt;'
+		);</PRE>
+<P><BR>程序效果：</P>
+<P><IMG alt="" src="XTemplate使用方法_files/0_1311823968L33a.png"></P>
+<P> </P>
+<P>3：修改tp1的内容， Flat arrays that contain values (and not objects) can be 
+auto-rendered using the special <STRONG><TT>{.}</TT></STRONG> variable inside a 
+loop. This variable will represent the value of the array at the current 
+index:</P>
+<P> </P>
+<DIV class="dp-highlighter bg_html">
+<DIV class="bar">
+<DIV class="tools"><STRONG>[html]</STRONG> <A class="ViewSource" title="view plain" 
+href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">view 
+plain</A><A class="CopyToClipboard" title="copy" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">copy</A><A 
+class="PrintSource" title="print" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">print</A><A 
+class="About" title="?" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">?</A></DIV></DIV>
+<OL class="dp-xml">
+  <LI class="alt"><SPAN>var </SPAN><SPAN class="attribute">tpl</SPAN><SPAN> = 
+  </SPAN><SPAN class="attribute-value">new</SPAN><SPAN> Ext.XTemplate(&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>{name}\'s favorite beverages:</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">p</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>',&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">tpl</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">for</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"drinks"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">div</SPAN><SPAN class="tag">&gt;</SPAN><SPAN> 
+  - {.}</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">div</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>',&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;/</SPAN><SPAN class="tag-name">tpl</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>'&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );&nbsp; 
+</SPAN></LI></OL></DIV><PRE style="display: none;" class="html" name="code">var tpl = new Ext.XTemplate(
+		    '&lt;p&gt;{name}\'s favorite beverages:&lt;/p&gt;',
+		    '&lt;tpl for="drinks"&gt;',
+		        '&lt;div&gt; - {.}&lt;/div&gt;',
+		    '&lt;/tpl&gt;'
+		);</PRE>
+<P><BR>程序效果：</P>
+<P><IMG alt="" src="XTemplate使用方法_files/0_1311824368ex2w.png"></P>
+<P> </P>
+<P>4： 修改tp1的内容，When processing a sub-template, for example while looping through 
+a child array, you can access the parent object's members via the <STRONG><TT 
+id="ext-gen1302">parent</TT></STRONG> object:</P>
+<P> </P>
+<DIV class="dp-highlighter bg_html">
+<DIV class="bar">
+<DIV class="tools"><STRONG>[html]</STRONG> <A class="ViewSource" title="view plain" 
+href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">view 
+plain</A><A class="CopyToClipboard" title="copy" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">copy</A><A 
+class="PrintSource" title="print" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">print</A><A 
+class="About" title="?" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">?</A></DIV></DIV>
+<OL class="dp-xml">
+  <LI class="alt"><SPAN>var </SPAN><SPAN class="attribute">tpl</SPAN><SPAN> = 
+  </SPAN><SPAN class="attribute-value">new</SPAN><SPAN> Ext.XTemplate(&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>Name: {name}</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; '<SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">p</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>Kids: ',&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">tpl</SPAN><SPAN> 
+  </SPAN><SPAN class="attribute">for</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"kids"</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '<SPAN class="tag">&lt;</SPAN><SPAN 
+  class="tag-name">tpl</SPAN><SPAN> </SPAN><SPAN 
+  class="attribute">if</SPAN><SPAN>=</SPAN><SPAN class="attribute-value">"age 
+  &gt; 1"</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>{name}</SPAN><SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">p</SPAN><SPAN class="tag">&gt;</SPAN><SPAN>',&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  '<SPAN class="tag">&lt;</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>Dad: {parent.name}</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '<SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">tpl</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>',&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; '<SPAN class="tag">&lt;/</SPAN><SPAN 
+  class="tag-name">tpl</SPAN><SPAN class="tag">&gt;</SPAN><SPAN 
+  class="tag">&lt;/</SPAN><SPAN class="tag-name">p</SPAN><SPAN 
+  class="tag">&gt;</SPAN><SPAN>'&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>);&nbsp; </SPAN></LI></OL></DIV><PRE style="display: none;" class="html" name="code">var tpl = new Ext.XTemplate(
+    '&lt;p&gt;Name: {name}&lt;/p&gt;',
+    '&lt;p&gt;Kids: ',
+    '&lt;tpl for="kids"&gt;',
+        '&lt;tpl if="age &gt; 1"&gt;',
+            '&lt;p&gt;{name}&lt;/p&gt;',
+            '&lt;p&gt;Dad: {parent.name}&lt;/p&gt;',
+        '&lt;/tpl&gt;',
+    '&lt;/tpl&gt;&lt;/p&gt;'
+);
+</PRE>
+<P><BR>程序效果：</P>
+<P><IMG alt="" src="XTemplate使用方法_files/0_1311824564OjC6.png"></P>
+<P> </P>
+<P>5：修改tp1的内容&nbsp; The following basic math operators may be applied directly 
+on numeric data values （+ - * /)</P>
+<P> </P><PRE id="ext-gen1120" class="prettyprint" name="code"><CODE><SPAN id="ext-gen1383" class="kwd">var</SPAN><SPAN id="ext-gen1382" class="pln"> tpl </SPAN><SPAN class="pun">=</SPAN><SPAN class="pln"> </SPAN><SPAN id="ext-gen1381" class="kwd">new</SPAN><SPAN id="ext-gen1380" class="pln"> </SPAN><SPAN id="ext-gen1379" class="typ">Ext</SPAN><SPAN class="pun">.</SPAN><SPAN id="ext-gen1390" class="typ">XTemplate</SPAN><SPAN id="ext-gen1389" class="pun">(</SPAN><SPAN id="ext-gen1393" class="pln">
+    </SPAN><SPAN id="ext-gen1378" class="str">'&lt;p&gt;Name: {name}&lt;/p&gt;'</SPAN><SPAN id="ext-gen1377" class="pun">,</SPAN><SPAN id="ext-gen1394" class="pln">
+    </SPAN><SPAN id="ext-gen1392" class="str">'&lt;p&gt;Kids: '</SPAN><SPAN id="ext-gen1391" class="pun">,</SPAN><SPAN id="ext-gen1395" class="pln">
+    </SPAN><SPAN class="str">'&lt;tpl for="kids"&gt;'</SPAN><SPAN class="pun">,</SPAN><SPAN id="ext-gen1396" class="pln">
+        </SPAN><SPAN class="str">'&lt;tpl if="age &amp;gt; 1"&gt;'</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln">  </SPAN><SPAN id="ext-gen1388" class="com">// &lt;-- Note that the &gt; is encoded</SPAN><SPAN id="ext-gen1397" class="pln">
+            </SPAN><SPAN class="str">'&lt;p&gt;{#}: {name}&lt;/p&gt;'</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln">  </SPAN><SPAN id="ext-gen1387" class="com">// &lt;-- Auto-number each item</SPAN><SPAN id="ext-gen1398" class="pln">
+            </SPAN><SPAN id="ext-gen1386" class="str">'&lt;p&gt;In 5 Years: {age+5}&lt;/p&gt;'</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln">  </SPAN><SPAN class="com">// &lt;-- Basic math</SPAN><SPAN id="ext-gen1399" class="pln">
+            </SPAN><SPAN id="ext-gen1410" class="str">'&lt;p&gt;Dad: {parent.name}&lt;/p&gt;'</SPAN><SPAN class="pun">,</SPAN><SPAN id="ext-gen1400" class="pln">
+        </SPAN><SPAN class="str">'&lt;/tpl&gt;'</SPAN><SPAN class="pun">,</SPAN><SPAN class="pln">
+    </SPAN><SPAN id="ext-gen1401" class="str">'&lt;/tpl&gt;&lt;/p&gt;'</SPAN><SPAN class="pln">
+</SPAN><SPAN class="pun">);</SPAN><SPAN class="pln">
+</SPAN></CODE></PRE>
+<P> </P>
+<P> </P>
+<P>程序效果图：</P>
+<P><IMG alt="" src="XTemplate使用方法_files/0_1311831791PX0s.png"></P>
+<P> </P>
+<P>6：修改tp1的内容&nbsp;&nbsp;&nbsp; This example demonstrates basic row striping 
+using an inline code block and the <TT id="ext-gen1456">xindex</TT> 
+variable:</P>
+<P><STRONG><U id="ext-gen1385">Execute arbitrary inline code with special 
+built-in template variables</U></STRONG> </P>
+<DIV id="ext-gen1124" class="sub-desc">
+<P id="ext-gen1138">Anything between <CODE id="ext-gen1419">{[ ... ]}</CODE> is 
+considered code to be executed in the scope of the template. There are some 
+special variables available in that code: </P>
+<UL>
+  <LI id="ext-gen1122"><STRONG><TT id="ext-gen1453">values</TT></STRONG>: The 
+  values in the current scope. If you are using scope changing sub-templates, 
+  you can change what <TT id="ext-gen1429">values</TT> is.</LI>
+  <LI id="ext-gen1137"><STRONG id="ext-gen1454"><TT>parent</TT></STRONG>: The 
+  scope (values) of the ancestor template.</LI>
+  <LI id="ext-gen1411"><STRONG id="ext-gen1426"><TT>xindex</TT></STRONG>: If you 
+  are in a looping template, the index of the loop you are in (1-based).</LI>
+  <LI id="ext-gen1123"><STRONG><TT>xcount</TT></STRONG>: If you are in a looping 
+  template, the total length of the array you are looping.</LI></UL></DIV>
+<DIV class="dp-highlighter bg_javascript">
+<DIV class="bar">
+<DIV class="tools"><STRONG>[javascript]</STRONG> <A class="ViewSource" title="view plain" 
+href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">view 
+plain</A><A class="CopyToClipboard" title="copy" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">copy</A><A 
+class="PrintSource" title="print" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">print</A><A 
+class="About" title="?" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">?</A></DIV></DIV>
+<OL class="dp-c">
+  <LI class="alt"><SPAN class="keyword">var</SPAN><SPAN> tpl = </SPAN><SPAN 
+  class="keyword">new</SPAN><SPAN> Ext.XTemplate(&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;p&gt;Name: 
+  {name}&lt;/p&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; <SPAN 
+  class="string">'&lt;p&gt;Company: {[values.company.toUpperCase() + ", " + 
+  values.title]}&lt;/p&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;p&gt;Kids: 
+  '</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;tpl 
+  for="kids"&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+  class="string">'&lt;div class="{[xindex % 2 === 0 ? "even" : 
+  "odd"]}"&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN class="string">'{name}'</SPAN><SPAN>,&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+  class="string">'&lt;/div&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; <SPAN 
+  class="string">'&lt;/tpl&gt;&lt;/p&gt;'</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN> );&nbsp; </SPAN></LI></OL></DIV><PRE style="display: none;" class="javascript" name="code">var tpl = new Ext.XTemplate(
+    '&lt;p&gt;Name: {name}&lt;/p&gt;',
+    '&lt;p&gt;Company: {[values.company.toUpperCase() + ", " + values.title]}&lt;/p&gt;',
+    '&lt;p&gt;Kids: ',
+    '&lt;tpl for="kids"&gt;',
+        '&lt;div class="{[xindex % 2 === 0 ? "even" : "odd"]}"&gt;',
+        '{name}',
+        '&lt;/div&gt;',
+    '&lt;/tpl&gt;&lt;/p&gt;'
+ );
+</PRE>
+<P> </P>
+<P>CSS样式为：</P>
+<DIV class="dp-highlighter bg_css">
+<DIV class="bar">
+<DIV class="tools"><STRONG>[css]</STRONG> <A class="ViewSource" title="view plain" 
+href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">view 
+plain</A><A class="CopyToClipboard" title="copy" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">copy</A><A 
+class="PrintSource" title="print" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">print</A><A 
+class="About" title="?" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">?</A></DIV></DIV>
+<OL class="dp-css">
+  <LI class="alt"><SPAN>&lt;style type=</SPAN><SPAN 
+  class="string">"text/css"</SPAN><SPAN>&gt;&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .even {&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+  class="keyword">background-color</SPAN><SPAN>:</SPAN><SPAN 
+  class="value">white</SPAN><SPAN>;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .odd {&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+  class="keyword">background-color</SPAN><SPAN>: </SPAN><SPAN 
+  class="value">#ffffd9</SPAN><SPAN>;&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; &lt;/style&gt;&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></LI></OL></DIV><PRE style="display: none;" class="css" name="code">&lt;style type="text/css"&gt;
+	   .even {
+	     background-color:white;  
+	   }
+	   
+	   .odd {
+	     background-color: #ffffd9;
+	   }
+	&lt;/style&gt;
+    </PRE>
+<P> </P>
+<P>程序效果图：</P>
+<P><BR><IMG alt="" src="XTemplate使用方法_files/0_1311832394cruL.png"><BR>&nbsp; 
+可以看到偶数行和奇数行显示不同的颜色</P>
+<P> </P>
+<P>7：修改tp1的内容</P>
+<P><STRONG><U id="ext-gen1445">Template member functions</U></STRONG> </P>
+<P id="ext-gen1126" class="sub-desc">One or more member functions can be 
+specified in a configuration object passed into the XTemplate constructor for 
+more complex processing:</P>
+<DIV class="dp-highlighter bg_javascript">
+<DIV class="bar">
+<DIV class="tools"><STRONG>[javascript]</STRONG> <A class="ViewSource" title="view plain" 
+href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">view 
+plain</A><A class="CopyToClipboard" title="copy" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">copy</A><A 
+class="PrintSource" title="print" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">print</A><A 
+class="About" title="?" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">?</A></DIV></DIV>
+<OL class="dp-c">
+  <LI class="alt"><SPAN class="keyword">var</SPAN><SPAN> tpl = </SPAN><SPAN 
+  class="keyword">new</SPAN><SPAN> Ext.XTemplate(&nbsp; </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;p&gt;Name: 
+  {name}&lt;/p&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;p&gt;Kids: 
+  '</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;tpl 
+  for="kids"&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;tpl 
+  if="this.isGirl(name)"&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <SPAN class="string">'&lt;p&gt;Girl: {name} - 
+  {age}&lt;/p&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;/tpl&gt;'</SPAN><SPAN>,&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN class="comment">// 
+  use opposite if statement to simulate 'else' processing:</SPAN><SPAN>&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;tpl 
+  if="this.isGirl(name) == false"&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <SPAN class="string">'&lt;p&gt;Boy: {name} - 
+  {age}&lt;/p&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN class="string">'&lt;/tpl&gt;'</SPAN><SPAN>,&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+  class="string">'&lt;tpl if="this.isBaby(age)"&gt;'</SPAN><SPAN>,&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <SPAN class="string">'&lt;p&gt;{name} is a 
+  baby!&lt;/p&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+  class="string">'&lt;/tpl&gt;'</SPAN><SPAN>,&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp; <SPAN 
+  class="string">'&lt;/tpl&gt;&lt;/p&gt;'</SPAN><SPAN>,&nbsp; 
+</SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; {&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN class="comment">// 
+  XTemplate configuration:</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; compiled: <SPAN class="keyword">true</SPAN><SPAN>,&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN class="comment">// 
+  member functions:</SPAN><SPAN>&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isGirl: <SPAN class="keyword">function</SPAN><SPAN>(name){&nbsp; 
+  </SPAN></SPAN></LI>
+  <LI 
+  class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <SPAN class="keyword">return</SPAN><SPAN> name == </SPAN><SPAN 
+  class="string">'Sara Grace'</SPAN><SPAN>;&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isBaby: <SPAN 
+  class="keyword">function</SPAN><SPAN>(age){&nbsp; </SPAN></SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+  class="keyword">return</SPAN><SPAN> age &lt; 1;&nbsp; </SPAN></SPAN></LI>
+  <LI class="alt"><SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp; 
+  </SPAN></LI>
+  <LI><SPAN>&nbsp;&nbsp;&nbsp; }&nbsp; </SPAN></LI>
+  <LI class="alt"><SPAN>);&nbsp; </SPAN></LI></OL></DIV><PRE style="display: none;" class="javascript" name="code">var tpl = new Ext.XTemplate(
+    '&lt;p&gt;Name: {name}&lt;/p&gt;',
+    '&lt;p&gt;Kids: ',
+    '&lt;tpl for="kids"&gt;',
+        '&lt;tpl if="this.isGirl(name)"&gt;',
+            '&lt;p&gt;Girl: {name} - {age}&lt;/p&gt;',
+        '&lt;/tpl&gt;',
+         // use opposite if statement to simulate 'else' processing:
+        '&lt;tpl if="this.isGirl(name) == false"&gt;',
+            '&lt;p&gt;Boy: {name} - {age}&lt;/p&gt;',
+        '&lt;/tpl&gt;',
+        '&lt;tpl if="this.isBaby(age)"&gt;',
+            '&lt;p&gt;{name} is a baby!&lt;/p&gt;',
+        '&lt;/tpl&gt;',
+    '&lt;/tpl&gt;&lt;/p&gt;',
+    {
+        // XTemplate configuration:
+        compiled: true,
+        // member functions:
+        isGirl: function(name){
+           return name == 'Sara Grace';
+        },
+        isBaby: function(age){
+           return age &lt; 1;
+        }
+    }
+);
+</PRE>
+<P><BR>程序效果为：</P>
+<P> </P>
+<P><IMG alt="" src="XTemplate使用方法_files/0_13118328323scw.png"></P>
+<P> </P></DIV>
+<DIV id="MySignature"></DIV>
+<SCRIPT type="text/javascript">
+var isLogined = false;
+var cb_blogId = 64747;
+var cb_entryId = 2629991;
+var cb_blogApp = currentBlogApp;
+var cb_blogUserGuid = "1ecc3f79-67f1-de11-ba8f-001cf0cd104b";
+var cb_entryCreatedDate = '2012/8/9 11:44:00';
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+</SCRIPT>
+
+<DIV id="blog_post_info_block">
+<DIV id="blog_post_info"></DIV>
+<DIV class="clear"></DIV>
+<DIV id="post_next_prev"></DIV></DIV>
+<SCRIPT type="text/javascript">
+    //SyntaxHighlighter.config.strings.expandSource = '<span><img src="http://static.cnblogs.com/images/expand-code.gif" alt="" class="expand-code-icon"/>View Code</span>';
+    $(function () {             
+        fixPostBodyFormat();
+        loadAdUnderPost();
+        loadBlogSignature();
+        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);        
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);        
+    });
+</SCRIPT>
+</DIV>
+<DIV class="postDesc">posted @ <SPAN id="post-date">2012-08-09 11:44</SPAN> <A 
+href="http://www.cnblogs.com/FredTang/">FredTang</A> Views(30) Comments(<SPAN 
+id="post-comment-count">0</SPAN>)  <A href="http://www.cnblogs.com/FredTang/admin/EditPosts.aspx?postid=2629991" 
+rel="nofollow">Edit</A> <A onclick="AddToWz(2629991);return false;" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">收藏</A></DIV></DIV><IMG 
+alt="" src="XTemplate使用方法_files/2629991.jpg" width="1" height="1"></DIV>
+<DIV id="blog-comments-placeholder"></DIV>
+<SCRIPT type="text/javascript">var commentManager = new blogCommentManager();commentManager.loadComments();</SCRIPT>
+
+<DIV id="comment_form" class="commentform">
+<DIV id="divCommentShow"></DIV>
+<DIV id="comment_nav"><SPAN id="span_refresh_tips"></SPAN><A id="lnk_RefreshComments" 
+onclick="return RefreshCommentList();" href="javascript:void(0);">刷新评论</A><A 
+onclick="return RefreshPage();" href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#">刷新页面</A><A 
+href="http://www.cnblogs.com/FredTang/archive/2012/08/09/2629991.html#top">返回顶部</A></DIV>
+<DIV id="comment_form_container"></DIV>
+<SCRIPT type="text/javascript">if (typeof commentManager === 'undefined') {
+        commentManager = new blogCommentManager();
+    }
+    commentManager.loadCommentForm();   
+</SCRIPT>
+
+<DIV class="ad_text_commentbox"><A href="http://q.cnblogs.com/" 
+target="_blank">程序员问答社区，解决您的技术难题</A></DIV>
+<DIV id="site_nav_under"><A title="程序员的网上家园" href="http://www.cnblogs.com/" 
+target="_blank">博客园首页</A><A title="程序员问答社区" href="http://q.cnblogs.com/" target="_blank">博问</A><A 
+title="IT新闻" href="http://news.cnblogs.com/" target="_blank">新闻</A><A href="http://home.cnblogs.com/ing/" 
+target="_blank">闪存</A><A href="http://job.cnblogs.com/" 
+target="_blank">程序员招聘</A><A href="http://kb.cnblogs.com/" 
+target="_blank">知识库</A></DIV>
+<DIV id="ad_under_post_holder"></DIV>
+<DIV id="HistoryToday" class="c_ad_block"></DIV>
+</DIV></DIV><!--end: forFlow --></DIV><!--end: mainContent 主体内容容器-->
+<DIV id="sideBar">
+<DIV id="sideBarMain"><!--done-->
+<DIV class="newsItem">
+<H3 class="catListTitle">公告</H3>
+<DIV id="blog-news"></DIV></DIV>
+<DIV id="calendar"></DIV>
+<DIV id="leftcontentcontainer">
+<DIV id="blog-sidecolumn"></DIV></DIV></DIV><!--end: sideBarMain --></DIV><!--end: sideBar 侧边栏容器 -->
+<DIV class="clear"></DIV></DIV><!--end: main -->
+<DIV class="clear"></DIV>
+<DIV id="footer"><!--done-->Copyright ©2012 FredTang	</DIV><!--end: footer -->
+</DIV><!--end: home 自定义的最大容器 -->
+<SCRIPT type="text/javascript" src="XTemplate使用方法_files/google-analytics.js"></SCRIPT>
+</BODY></HTML>

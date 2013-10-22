@@ -1,0 +1,7 @@
+/*页码组件样式表*/
+.ui_pageBar{margin:10px 0;}
+.ui_pageBar .ui_pageBar_total li{float:left;display:inline;}
+.ui_pageBar .ui_pageBar_pages{float:right}
+.ui_pageBar .ui_pageBar_pages li{float:left;display:inline;margin:0 2px;}
+.ui_pageBar .ui_pageBar_pages li a{display:inline-block;font-size:14px;line-height:20px;padding:0 5px;border:1px solid #ccc;}
+.ui_pageBar .ui_pageBar_pages li a:hover,.ui_pageBar .ui_pageBar_pages li.on a{text-decoration:none;background-color: #0B59B2;color:#fff;}

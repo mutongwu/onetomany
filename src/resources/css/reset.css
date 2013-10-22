@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* -------------------------------------------------
+ * reset
+ * -------------------------------------------------
+*/
+html{
+    height:100%;
+	-webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+body{
+	margin:0;
+	padding:0;
+	font:12px/1.5 Helvetica, Arial, sans-serif;
+	background-color:#fff;
+	min-height:100%;
+	height:auto !important;
+	height:100%;
+	/*text-align:center;*/
+	color:#404040;
+}
+h1,h2,h3,h4,h5,h6,p,figure{
+    margin:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+input, select, label {
+	vertical-align:middle;
+}
+img{
+	border: none;
+	vertical-align:middle;
+}
+a {
+	text-decoration:none;
+	color:#3774cc;
+}
+a:hover{
+    color:#3774cc;
+}
+blockquote,form,fieldset{
+    margin:0 0 18px 0;
+}
+/* hn */
+h1{
+	font-size:18px;
+	line-height:36px;
+}
+h2{
+	font-size:16px;
+	line-height:30px;
+}
+h3{
+	font-size:14px;
+	line-height:24px;
+}
+h4,h5,h6{
+	font-size:12px;
+}
+/* ul ol dl */
+ul,li{
+    margin: 0;
+	padding:0;
+}
+ol{
+    margin: 0 0 18px 0;
+	padding:0;
+}
+ul.has-style li,ol li{
+	margin-left:25px;
+}
+ol li{
+	list-style:decimal;
+}
+ul.nostyle{
+	list-style: none outside none;
+	margin-bottom:0;
+}
+ul.inline-style{
+	list-style: none outside none;
+	margin-bottom:0;
+}
+ul.inline-style li{
+	float:left;
+	display:inline;
+}
+dl{
+    margin-bottom: 18px;
+}
+dt{
+    font-weight: bold;
+}
+dd{
+    margin:0 0 0 9px;
+	padding:0;
+}
+/* html5 */
+article, aside, dialog, figure, footer, header, 
+hgroup, nav, section { 
+	display:block;
+}
+/* clearfix */
+.clearfix:before, .clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after{
+	clear:both;
+	overflow:hidden;
+}
+.clearfix{
+    zoom:1;
+}
+
+/*定位*/
+.tl{text-align:left;}
+.tc{text-align:center;}
+.tr{text-align:right;}
+.bc{margin-left:0;margin-right:0;}
+.fl{float:left;display:inline;}
+.fr{float:right;display:inline;}
+.cb{clear:both;}
+.cl{clear:left;}
+.cr{clear:right;}
+.vm{vertical-align:middle;}
+.pr{position:relative;}
+.pa{position:absolute;}
+.zoom{zoom:1;}
+.hidden{visibility:hidden;}
+.none{display:none;}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="/src/core/jquery.js"></script>
+
+</head>
+<body>
+<script>
+function fn1( value ){
+    console.log( value );
+}
+
+function fn2( value ){
+    fn1("fn2 says:" + value);
+    return false;
+}
+/*
+function cb(x) {
+	console.log(this.state())
+    console.log('progress' + x)
+}
+var deferred = $.Deferred()
+deferred.progress(cb).done(function(){
+	console.log(this.state())
+	console.log("done.")
+})
+setTimeout(function() {
+    deferred.notify([1,2,3]);
+    deferred.resolve();
+    deferred.notify([4,5,6]);
+}, 1000);
+
+
+var callbacks = jQuery.Callbacks( "memory" );
+callbacks.add( fn1 );
+callbacks.fire( "foo" ); //foo
+callbacks.add( fn2 );	//fn2 says: foo
+callbacks.fire( "bar" ); //bar ,fn2 says: bar
+callbacks.remove( fn2 );
+callbacks.fire( "foobar" );//foobar
+
+var deferred = $.Deferred();
+setTimeout(function() {
+    deferred.notify([1,2,3]);
+    deferred.resolve("foo");
+    deferred.notify([4,5,6]);
+}, 1000);
+deferred.done(fn1).done(fn1)
+//*/
+var $ = jQuery;
+var promise = $.Deferred().resolve('manchu',2),
+	filter = promise.pipe(function(x){
+		console.log("pipe" + x)
+		console.log("pipe" + arguments)
+		return x;
+	})
+$.when('foo', filter).done(function(x){
+	console.log(x)
+	console.log(arguments)
+})
+function setPicUrl(url){
+	document.getElementById("url").value = url;
+	
+}
+
+
+function openFn(){
+	
+	var width = 670,height=430;
+    var upload_url = 'http://shawn.tianya.cn:5678/b.html';
+    var dialogLeft = (screen.availWidth/2) - (parseInt(width)/2) + "px";
+    var dialogTop = (screen.availHeight/2) - (parseInt(height)/2) + "px";
+    params = ["height=" + height+"px",
+		  "width=" + width+"px",
+		  "top=" + dialogTop,
+		  "left=" + dialogLeft,
+		  "toolbar=no",
+		  "menubar=no",
+		  "scrollbars=no", 
+		  "resizable='yes'",
+		  "status=no"];
+	var uploadWin = window.open(upload_url,'uploadWin',params.join(","));
+}
+function checkFile(btn){
+	if(btn.getAttribute("loading") == 1){
+		return false;
+	}
+	btn.value="图片上传中...";
+	btn.setAttribute("loading",1);
+	
+	if(form1.upfile.value.length>0){
+		var fileExt=form1.upfile.value.substring(form1.upfile.value.length-4,form1.upfile.value.length)
+		fileExt=fileExt.toLowerCase()
+		if (!(fileExt=='.jpg' || fileExt=='.gif')){
+			alert("相片必须为*.jpg或*.gif文件 ！");
+			form1.upfile.focus();
+			return false;
+		}
+	}else{
+		alert("请选择上传文件！");
+		return false;
+
+	}
+	return true;
+}
+
+</script>
+<input type="text" id="url"/>
+<input type="button"  onclick="openFn()" value="open"/>
+<form method="POST" target="uploadPicIframe"  enctype="multipart/form-data"  action="http://photo.tianya.cn/photo?act=uploadphoto&app=blog&serverapp=blog&idWriter=1072935&key=177f9d4252ebe22ad1ef0c79824bbda8&watermark=0">
+	<input type="file" name="upfile" />
+	<input type="submit" onclick="return checkFile(this)">
+</form>
+<iframe style="display:none"id="uploadPicIframe"  src="about:blank" name="uploadPicIframe"></iframe>
+<script>
+
+function uploadedFn(){
+	document.domain = "tianya.cn"
+	var iframe  = document.getElementById("uploadPicIframe");
+	var	html = "";
+	try{
+		html = (iframe.contentWindow || iframe.contentDocument.parentWindow).document.body.innerHTML ;
+	}catch(e){
+		console.log(html)
+	}
+	try{
+		var json = html ? eval("(" + html + ")") : false;
+		console.log(json)
+		if(json){
+			if(json.data && json.data.photo && json.data.photo[0]){
+				//alert(json.data.photo[0])
+				if(window.opener){
+				    try{
+				        window.opener["setPicUrl"](json.data.photo[0].mediumurl); 
+				        window.onbeforeunload = null;
+				        window.opener = null; 
+				        window.open('','_self');
+				        window.close();
+				    }catch(e){window.close();}
+				}
+			}else if(json.error){
+				alert(json.error || "上传失败。");
+			}
+		}
+	}catch(e){
+		alert("上传失败。请刷新页面重新尝试。");
+	}
+}
+/*
+var iframe = document.getElementById("uploadPicIframe");
+if(iframe.attachEvent){
+	iframe.attachEvent("onload",uploadedFn);
+}else{
+	iframe.onload = uploadedFn
+}
+*/
+</script>
+</body>
+</html>

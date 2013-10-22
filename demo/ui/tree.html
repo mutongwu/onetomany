@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<div style="width:800px;backgroud-color:#ccc;margin:50px auto 0; ">
+	<div id="myTree" style="width:300px;overflow:auto;border:1px solid #000;padding:10px;">
+	   <ul class="ui_tree">
+	       <li class="ui_tree_node ui_tree_folder">
+	           <a href="#">文件夹1</a>
+	           <ul class="ui_tree_node ui_tree_folder">
+	               <li class="ui_tree_node ui_tree_folder">
+		               <a href="#">文件夹1-1</a>
+		               <ul class="ui_tree_node ui_tree_folder">
+		                   <li class="ui_tree_node ui_tree_folder">
+		                       <div class="ui_tree_leaf"><a href="#">文件夹1-1叶子</a></div>
+		                   </li>
+		                   <li class="ui_tree_node ui_tree_folder">
+		                       <div class="ui_tree_leaf"><a href="#">文件夹1-1叶子2</a></div>
+		                   </li>
+		                   <li class="ui_tree_node ui_tree_folder">
+		                        <a href="#">文件夹1-3</a>
+                                <ul class="ui_tree_node ui_tree_folder">
+                                     <li class="ui_tree_node ui_tree_folder">
+			                               <div class="ui_tree_leaf"><a href="#">文件夹1-1-3叶子</a></div>
+			                           </li>
+			                           <li class="ui_tree_node ui_tree_folder">
+			                               <div class="ui_tree_leaf"><a href="#">文件夹1-1-3叶子2</a></div>
+			                           </li>
+                                </ul>
+                           </li>
+		               </ul>
+		           </li>
+		           <li class="ui_tree_node ui_tree_folder">
+		               <a href="#">文件夹1-2</a>
+		           </li>
+	           </ul>
+	           <ul class="ui_tree_node ui_tree_folder">
+	               <div class="ui_tree_leaf"><a href="#">文件夹1-叶子</a></div>
+	           </ul>
+	       </li>
+	       <li class="ui_tree_node ui_tree_folder">
+               <a href="#">文件夹2</a>
+           </li>
+           <li class="ui_tree_node ui_tree_folder">
+               <a href="#">文件夹3</a>
+               <ul class="ui_tree_node ui_tree_folder">
+                     <li class="ui_tree_node ui_tree_folder">
+                         <div class="ui_tree_leaf"><a href="#">文件夹3-1叶子</a></div>
+                     </li>
+                     <li class="ui_tree_node ui_tree_folder">
+                         <div class="ui_tree_leaf"><a href="#">文件夹2-2叶子2</a></div>
+                     </li>
+               </ul>
+           </li>
+           <li class="ui_tree_node ui_tree_folder">
+               <a href="#">文件夹4</a>
+           </li>
+	   </ul>
+	</div>
+</div>
+<script>
+	jQuery(function(){
+		require(['ui/Tree'],function(Tree){
+			
+			
+		});
+	});
+</script>
+</body>
+</html>

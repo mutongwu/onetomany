@@ -1,0 +1,25 @@
+/*日期输入控件*/
+.ui_datePicker_box{visibility:hidden;position:absolute;top:0;left:0;padding:0 1px;font-family:"宋体";border:1px solid #ccc;background-color:#fff;}
+.ui_datePicker_box td,.ui_datePicker_box th{cursor:pointer;}
+.ui_datePicker_names{background-color:#BDEBEE;}
+.ui_datePicker_hd .ui_datePicker_currMonth{margin-right:8px;} 
+.ui_datePicker_title{line-height:25px;}
+.ui_datePicker_title th:hover{text-decoration:underline;color:#f00;}
+.ui_datePicker_title th.ui_datePicker_curr{text-decoration:none;color:#000;}
+.ui_datePicker_td{width:20px;height:18px;line-height:18px;padding:2px;text-align:center;overflow:hidden;}
+.ui_datePicker_td:hover{background-color:#c0ebef;color:#00f;}
+.ui_datePicker_tr .curr{background-color:#A9E4E9;color:#00f;}
+.ui_datePicker_tr .weeken{color:#f00;}
+.ui_datePicker_tr .preMDay,.ui_datePicker_tr .nextMDay{color:#6A6AFF;}
+.ui_datePicker_tr .inValid,.ui_datePicker_tr .inValid:hover{background-color:transparent;color:#ccc;}
+
+.ui_datePicker_ft{text-align:right;}
+.ui_datePicker_ft td{}
+.ui_datePicker_ft td:hover{color:#f00;}
+.ui_datePicker_ft .set_clear,
+.ui_datePicker_ft .set_today,
+.ui_datePicker_ft .set_ok{display:inline-block;padding:0 3px;margin-bottom:1px;border:1px outset #ccc;background-color:#ddd;}	
+.ui_datePicker_timeBd {}
+.ui_datePicker_timeBd select{padding:1px;margin-left:2px;}
+.ui_datePicker_timeBd td{padding-left:5px;}
+.ui_datePicker_timeBd .time_sep{margin:0 2px;line-height:15px;}

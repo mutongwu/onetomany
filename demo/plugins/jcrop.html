@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+
+<style type="text/css">
+.display{position:absolute;top:10px;right:50px;width:180px;height:180px;border:1px solid green;overflow:hidden; }
+
+.size100{width:100px;height:100px;top:200px;}
+.size50{width:50px;height:50px;top:400px;}
+
+.showSize{right:400px;}
+</style>
+</head>
+<body>
+<script>
+jQuery(function(){
+	require(['plugins/jquery/jcrop/Jcrop'],function(){
+		var w =  jQuery("#CropTarget").width(),
+			h = jQuery("#CropTarget").height();
+		
+		var ratio = Math.max(w/400,1),
+		    cropW = 180;
+		
+		jQuery(".display:lt(3)").append('<img src="../images/Desert.jpg" />');
+		var jcrop_api;
+		$('#CropTarget').Jcrop({
+			aspectRatio: 1, //长宽比
+			setSelect:[0,0,cropW*ratio,cropW*ratio],//初始位置
+			boxWidth: 400,//图片裁剪的显示窗口大小。
+			minSize: [ 10, 10 ], //裁剪窗口最小值
+	        maxSize: [ cropW*ratio, cropW*ratio ],//裁剪窗口最大值
+			onChange: function(c){
+				jQuery(".showSize").html(
+					'<h2>' + "x:" + c.x + '</h2>' +
+					'<h2>' + "y:" + c.y + '</h2>' + 
+					'<h2>' + "x2:" + c.x2 + '</h2>' + 
+					'<h2>' + "y2:" + c.y2 + '</h2>' + 
+					'<h2>' + "w:" + c.w + '</h2>' + 
+					'<h2>' + "h:" + c.h + '</h2>'
+				);
+				jQuery(".size1 img").css({
+					marginLeft: - cropW*c.x/c.w,
+					marginTop: -cropW*c.y/c.h,
+					width: cropW*w/c.w,
+					height:cropW*h/c.h
+				});
+				
+				jQuery(".size100 img").css({
+                    marginLeft: - 100/180*cropW*c.x/c.w,
+                    marginTop: -100/180*cropW*c.y/c.h,
+                    width: 100/180*cropW*w/c.w,
+                    height:100/180*cropW*h/c.h
+                });
+				
+				jQuery(".size50 img").css({
+                    marginLeft: - 50/180*cropW*c.x/c.w,
+                    marginTop: -50/180*cropW*c.y/c.h,
+                    width: 50/180*cropW*w/c.w,
+                    height:50/180*cropW*h/c.h
+                });
+			}
+		},function(){
+		  jcrop_api = this;
+		});
+		
+		//jcrop_api.setSelect([0,0,180,180]); 
+	});
+	
+});
+</script>
+<h1>Jcrop Demo</h1>
+<div style="width:500px;height:500px;border:1px solid green;overflow:hidden;padding:10px;">
+	<img id="CropTarget" alt="" src="../images/Desert.jpg" />
+</div>
+<div class="display size1"></div>
+<div class="display size100"></div>
+<div class="display size50"></div>
+<div class="display showSize">
+	
+</div>
+</body>
+</html>

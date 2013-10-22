@@ -1,0 +1,33 @@
+#ui_flowLayerWrap{display:none;position:absolute;top:0;left:0;z-index:1000;}
+.ui_flowLayerBox{position:absolute;width:318px;
+padding:10px 15px 10px;background-color:#FFFFE9;
+border:1px solid #FFDE8E;}
+.ui_flowLayerBox .loading{text-align:center;padding:10px;}
+
+.arrowTipBox{
+	/* background-color: #FFFFE9; border: 1px solid #FFDE8E; padding: 10px 25px 10px 10px;
+ position: absolute; z-index: 100; font-size:12px;
+  -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; -moz-box-shadow:1px 1px 2px rgba(0,0,0,.2); -webkit-box-shadow:1px 1px 2px rgba(0,0,0,.2); box-shadow:1px 1px 2px rgba(0,0,0,.2);*/
+  }
+.arrowTipBox .closeIco {font-size:12px;font-family:Simsun;
+text-decoration:none;text-align:center;line-height:12px;font-weight:bold;
+position:absolute; top:8px; right:5px; display:block; width:12px; height:12px; overflow:hidden;color:#000; }
+.arrowTipBox .closeIco:hover {background-color:#f00;color:#fff;}
+
+.cntBox{width:100px;height:50px;}
+.arrowTipBox .arrow-direction{position: absolute; }
+.arrowTipBox .arrow-direction em,
+.arrowTipBox .arrow-direction span{ 
+height: 18px; width: 18px; font-size: 18px;line-height: 18px; 
+overflow: hidden;position: absolute;font-family: Simsun;font-weight:normal;font-style:normal; }
+
+.arrowTipBox .arrow-direction em{color: #FFDE8E;/*边框色*/}
+.arrowTipBox .arrow-direction span{color: #FFFFE9;/*背景色*/}
+.arrowTipBox .arrowTipBox-up{display:none;left: 50%; margin-left:-8px;top:-9px;_top:-8px;}
+.arrowTipBox .arrowTipBox-up span{ top:1px}
+.arrowTipBox .arrowTipBox-down{display:none;left: 50%; margin-left:-8px; bottom:8px; _bottom:6px;}
+.arrowTipBox .arrowTipBox-down span{ top:-1px}
+.arrowTipBox .arrowTipBox-right{display:none;top: 50%; margin-top:-8px; right:8px; _right:7px;}
+.arrowTipBox .arrowTipBox-right span{ left:-1px}
+.arrowTipBox .arrowTipBox-left{display:none;top: 50%; margin-top:-8px; left:-9px; }
+.arrowTipBox .arrowTipBox-left span{ left:1px}

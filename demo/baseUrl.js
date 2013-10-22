@@ -1,0 +1,1 @@
+requirejs.config({baseUrl: "http://shawn.tianya.cn:5678/src"});

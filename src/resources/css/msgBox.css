@@ -1,0 +1,24 @@
+/*消息弹出框*/
+.ui_msgBox_box{top:50%;left:50%;/*border:1px solid #ff0;*/border-radius:5px;}
+.ui_msgBox_cnt{text-align:left;padding:0 10px 0px;}
+.ui_msgBox_box .ui_msgBox_hd{position:relative;font-size:14px;line-height:28px;height:28px;text-align:left;font-weight:bold;}
+.ui_msgBox_hd .ui_ico_close{position:absolute;top:0px;right:0px;font-family:"宋体"}
+.ui_msgBox_hd .ui_ico_close:hover{color:#f00;}
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_info,
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_warn,
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_error,
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_confirm,
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_success{padding-left:40px;}
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_info{background:url(../images/info.png) no-repeat 0 0 ;}
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_warn{background:url(../images/warn.png) no-repeat 0 0 ;}
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_error{background:url(../images/error.png) no-repeat 0 0 ;}
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_confirm{background:url(../images/confirm.png) no-repeat 0 0 ;}
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_success{background:url(../images/success.png) no-repeat 0 0 ;}
+
+.ui_msgBox_hd .ui_msgBox_title{}
+.ui_msgBox_box .ui_msgBox_bd{min-width:120px;min-height:22px;_height:25px;padding:5px 0px;}
+.ui_msgBox_box .ui_msgBox_ft .btn{margin-right:8px;}
+.ui_msgBox_box .ui_msgBox_ft.tc .btn{margin-right:0;}
+.opacity_bg{background-image:url(../images/opacity.png);}
+
+.ui_msgBox_iframe{width:1px;height:1px;visibility:hidden;}
