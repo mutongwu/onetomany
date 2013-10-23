@@ -20,6 +20,7 @@
 	        return false;
 	    }
 	});
+    
     @example
      new MsgBox({
         el: jQuery('#output'),
