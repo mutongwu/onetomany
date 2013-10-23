@@ -105,7 +105,8 @@ define(['core/Base','core/Template','util/BomHelper','ui/Mask','ui/Button'],func
             //按钮对齐方式。tc：居中;tr:居右;tl:居左
             buttonAlign:'tr',
             
-
+            //是否可以拖动
+            draggable: false,
             
             //载入的iframe地址
             url: null,
@@ -141,6 +142,7 @@ define(['core/Base','core/Template','util/BomHelper','ui/Mask','ui/Button'],func
             this.showMask();
             this.resize();
             this.loadIframe();
+            this.setDraggable();
             this.bindEvents();
         },
         
@@ -196,6 +198,28 @@ define(['core/Base','core/Template','util/BomHelper','ui/Mask','ui/Button'],func
             }
         },
         
+        setDraggable: function(){
+            if(this.config.draggable){
+                var _this = this;
+                require(['util/DragDrop'],function(DragDrop){
+                    var preX = 0, preY = 0;
+                    new DragDrop({
+                        dragEl: _this.domEl,
+                        ondragstart: function(e,data){
+                            preX = data.x;
+                            preY = data.y;		
+                        },
+                        ondragend: function(e,data){
+                            _this.domEl.css({
+				                top: parseInt(_this.domEl.css("top"),10) + data.y - preY,
+				                left: parseInt(_this.domEl.css("left"),10) + data.x - preX
+				            });
+                        }
+                    });
+                });
+            }
+        },
+
         loadIframe: function(){
             var _this = this,
                 iframeEl = null;

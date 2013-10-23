@@ -5,10 +5,13 @@
  */
 define(['util/BomHelper'],function(BomHelper){
 	function DragDrop(cfg){
-	
-	    this.init(cfg);
+	    if(this instanceof DragDrop === false){
+	        return new DragDrop(cfg);
+	    }
+	    return this.init(cfg);
 	}
 	DragDrop.prototype = {
+	    constructor: DragDrop,
 	    posData:null,
 	    shadowEl: null,
 	    dropElDim: null,

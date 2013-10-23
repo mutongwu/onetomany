@@ -27,6 +27,7 @@
 <input type="button" id="get4" value="按钮自定义" />
 <input type="button" id="get5" value="自定义宽高" />
 <input type="button" id="get6" value="载入iframe" />
+<input type="button" id="get7" value="可拖动" />
 
 <p>https://github.com/beviz/jquery-caret-position-getter/blob/master/jquery.caretposition.js
 http://msdn.microsoft.com/en-us/library/ie/ms535872(v=vs.85).aspx
@@ -43,6 +44,8 @@ jQuery(function(){
 			new MsgBox({
 				title: "提示",
 			    body:'天涯问答邀您乐活双节：我问你答天天有礼！',
+			    
+			    //控制按钮居中
 			    buttonAlign:'tc'
 			});
 		});
@@ -113,8 +116,9 @@ jQuery(function(){
 		        	}
 		        }]
 		    });
-		})
+		});
 		
+		//自定义高度
 		jQuery("#get5").click(function(){
 			new MsgBox({
 				title: "提示",
@@ -132,8 +136,16 @@ jQuery(function(){
 				animate: true,
 				type: 'none',
 				onIframeLoad: function(){
-					alert('iframe loaded.')
+					alert('iframe loaded.');
 				}
+			});
+		});
+		
+		jQuery("#get7").click(function(){
+			new MsgBox({
+				title: "提示",
+				body: '数据载入中...',
+				draggable: true
 			});
 		});
 	});
