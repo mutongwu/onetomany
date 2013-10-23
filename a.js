@@ -1,6 +1,8 @@
 if(!window.console){
     window.console = {log: function(){}};
 }
+
+
 function AtSomeone(cfg){
     jQuery.extend(this,{
          //浮动数据窗口已显示标识
