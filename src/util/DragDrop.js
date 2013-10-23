@@ -1,5 +1,5 @@
 /**
- * @author shawnuw
+ * @author shawnwu
  * @date 2013-10-23
  * @description 元素拖拽支持
  */
