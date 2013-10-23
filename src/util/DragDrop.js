@@ -18,14 +18,7 @@ define(['util/BomHelper'],function(BomHelper){
 	    enter: false,
 	    activeEl: null,
 	    
-	    isNativeDD:(function(){
-	        var el = document.createElement("div");
-	        if("draggable" in el){
-	            return true;
-	        }else{
-	            return false;
-	        }
-	    })(),
+	    isNativeDD: BomHelper.isNative("div","draggable"),
 	    browser: {
 	        webkit:BomHelper.engine.webkit,
 	        safari: BomHelper.browser.safari,
