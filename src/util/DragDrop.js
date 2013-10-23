@@ -1,5 +1,7 @@
 /**
- * 
+ * @author shawnuw
+ * @date 2013-10-23
+ * @description 元素拖拽支持
  */
 define(['util/BomHelper'],function(BomHelper){
 	function DragDrop(cfg){
