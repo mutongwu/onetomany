@@ -113,7 +113,6 @@ define(['util/BomHelper'],function(BomHelper){
 	    },
 	    
 	    mousedown: function(e){
-	//        e.stopPropagation();
 	        this.activeEl = jQuery(e.target).closest("[draggable]");
 	        this.activeEl.addClass("dragActive");
 	        
