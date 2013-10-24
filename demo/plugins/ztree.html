@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+
+<style type="text/css">
+</style>
+</head>
+<body>
+<script>
+jQuery(function(){
+	var setting = {	
+		edit: {enable: false},
+		check: {enable: false}
+			
+	};
+
+	var zNodes =[
+		{ name:"父节点1 - 展开", open:true,
+			children: [
+				{ name:"父节点11 - 折叠",
+					children: [
+						{ name:"叶子节点111"},
+						{ name:"叶子节点112"},
+						{ name:"叶子节点113"},
+						{ name:"叶子节点114"}
+					]},
+				{ name:"父节点12 - 折叠",
+					children: [
+						{ name:"叶子节点121"},
+						{ name:"叶子节点122"},
+						{ name:"叶子节点123"},
+						{ name:"叶子节点124"}
+					]},
+				{ name:"父节点13 - 没有子节点", isParent:true}
+			]},
+		{ name:"父节点2 - 折叠",
+			children: [
+				{ name:"父节点21 - 展开", open:true,
+					children: [
+						{ name:"叶子节点211"},
+						{ name:"叶子节点212"},
+						{ name:"叶子节点213"},
+						{ name:"叶子节点214"}
+					]},
+				{ name:"父节点22 - 折叠",
+					children: [
+						{ name:"叶子节点221"},
+						{ name:"叶子节点222"},
+						{ name:"叶子节点223"},
+						{ name:"叶子节点224"}
+					]},
+				{ name:"父节点23 - 折叠",
+					children: [
+						{ name:"叶子节点231"},
+						{ name:"叶子节点232"},
+						{ name:"叶子节点233"},
+						{ name:"叶子节点234"}
+					]}
+			]},
+		{ name:"父节点3 - 没有子节点", isParent:true}
+
+	];
+	require(['plugins/jquery/zTree'],function(){
+		jQuery.fn.zTree.init($("#simpleTree"), setting, zNodes);
+		
+	});
+	
+	//加载checkbox插件
+	require(['plugins/jquery/zTree_excheck'],function(){
+		jQuery.fn.zTree.init($("#treeCheckbox"), {
+			check: {
+				enable: true
+			},
+			
+			async: {
+				enable: true,
+				url:"zTree.json",
+				autoParam:["id", "name=n", "level=lv"],
+				otherParam:{"otherParam":"zTreeAsyncTest"}
+			}
+		});
+		
+	});
+	
+	
+	//加载edit插件
+	require(['plugins/jquery/zTree_exedit'],function(){
+		jQuery.fn.zTree.init($("#treeEdit"), {
+			edit: {
+				enable: true
+			},
+			// check: {enable: false},
+			async: {
+				enable: true,
+				url:"zTree.json",
+				autoParam:["id", "name=n", "level=lv"],
+				otherParam:{"otherParam":"zTreeAsyncTest"}
+			}
+		});
+	});
+});
+</script>
+<h1>zTree Demo</h1>
+
+<div id="simpleTree"  class="ztree"> </div>
+
+<div id="name" style="height:50px;">
+  
+</div>
+
+<div id="treeCheckbox"  class="ztree"> </div>
+
+
+<div id="name2" style="height:50px;"> </div>
+	
+<div id="treeEdit"  class="ztree"> </div>
+
+</body>
+</html>
