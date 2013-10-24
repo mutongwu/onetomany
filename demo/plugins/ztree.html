@@ -76,7 +76,9 @@ jQuery(function(){
 			check: {
 				enable: true
 			},
-			
+			edit: {
+                enable: false
+            },
 			async: {
 				enable: true,
 				url:"zTree.json",
@@ -94,7 +96,7 @@ jQuery(function(){
 			edit: {
 				enable: true
 			},
-			// check: {enable: false},
+			check: {enable: false},
 			async: {
 				enable: true,
 				url:"zTree.json",
@@ -106,7 +108,9 @@ jQuery(function(){
 });
 </script>
 <h1>zTree Demo</h1>
-
+<h3>zTree该插件有个小bug：页面加载checkbox或edit扩展时候，所有的实例都需要 显式 声明edit、check的enable的配置：
+    定为true或者 false    
+</h3>
 <div id="simpleTree"  class="ztree"> </div>
 
 <div id="name" style="height:50px;">
