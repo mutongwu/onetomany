@@ -9,7 +9,7 @@ define(['core/Common','io/AjaxProxy'],function(Common){
     var $ = Common.jQuery;
     function SearchInput(cfg){
         $.extend(this,{
-            rsLayer: null,
+            domEl: null,
             preVal: null,
             val: null
         });
@@ -36,6 +36,18 @@ define(['core/Common','io/AjaxProxy'],function(Common){
             
             //返回值的数据属性
             dataProp: '',
+
+            //没有查询结果的提示
+            emptyTxt: '没有找到符合的结果',
+            
+            //查询结果数据条目的处理函数，返回值作为Li元素的html
+            itemTplFn: null,
+            
+            //鼠标点击结果项或者是回车触发事件
+            onItemSel: null,
+            
+            //鼠标滑过、上下光标选中结果项触发事件
+            onItemActive: null,
             
             //符合该正则表达的字符，都将被过滤
             maskReg: null,
@@ -44,7 +56,10 @@ define(['core/Common','io/AjaxProxy'],function(Common){
             maskFn: null,
             
             //启用简单的过滤：number/letter
-            simpleMask:''
+            simpleMask:'',
+                        
+            //上下光标在结果集移动的函数
+            onNavFn: null
         },
         initCfg: function(cfg){
             $.extend(this.config,this.defaultCfg,cfg);
@@ -62,9 +77,9 @@ define(['core/Common','io/AjaxProxy'],function(Common){
         },
         
         initDom: function(){
-            this.rsLayer = $('<ul class="ui-schInput-layer"></ul>');
+            this.domEl = $('<div class="ui-schInput-layer"></div>');
             var offset = this.config.el.offset();
-            this.rsLayer.css({
+            this.domEl.css({
                 "position":"absolute",
                 "display": "none",
                 "top": offset.top + this.config.el.height() + 2,
@@ -88,19 +103,48 @@ define(['core/Common','io/AjaxProxy'],function(Common){
         
         showRs: function(json){
             var data = this.config.dataProp ? json[this.config.dataProp] : json;
-            
+            var html = '<ul class="ui-schInput-box">',
+                fn = this.config.itemTplFn;
+            if(data && data.length){
+                $.each(data,function(i,item){
+                    html += '<li class="ui-schInput-item">' + (fn ? fn(item) : '') + '</li>';
+                });
+            }else{
+                html += '<li class="ui-schInput-empty">' + this.config.emptyTxt + '</li>';
+            }
+            html += '<ul>';
+            this.domEl.html(html).show();
+            html = null;
         },
         
         
-        navSearchRs: function(){            
+        navSearchRs: function(dir){
+            var items = this.domEl.find('.ui-schInput-item'),
+                size = items.size(),
+                idx = items.filter(".active").index();
+            if(size && this.domEl.is(':visible')){
+                idx = (idx + size + dir);
+                items.removeClass('active').eq(idx).addClass('active');
+                if(typeof _this.config.onItemActive === 'function'){
+                    _this.config.onItemActive.call(this,$(this),_this);
+                }
+            }          
         },
-        
+        onComplete:function(){
+            var actItem = this.domEl.find('.active');
+            if(typeof _this.config.onItemSel === 'function'){
+                this.config.onItemSel.call(this,this.config.el,actItem,this);
+            }
+            this.domEl.hide();
+        },
         bindEvents: function(){
             var _this = this;
             this.config.el.bind("keyup",function(e){
                 
                 if(e.which === 38 || e.which === 40){ //上下光标
                     _this.navSearchRs(e.which === 38 ? -1 : 1);
+                }else if(e.which === 13){ //回车
+                    _this.onComplete();
                 }else{
                     if(_this.config.simpleMask === 'number'){
                         this.value = this.value.replace(/[^\d]/,'');
@@ -120,6 +164,15 @@ define(['core/Common','io/AjaxProxy'],function(Common){
                     
                 }
                 
+            });
+            
+            this.domEl.delegate('.ui-schInput-item','mouseover',function(e){
+                $(this).addClass('active').siblings().removeClass('active');
+                if(typeof _this.config.onItemActive === 'function'){
+                    _this.config.onItemActive.call(_this,$(this),_this);
+                }
+            }).click(function(e){
+                _this.onComplete();
             });
         }
         
