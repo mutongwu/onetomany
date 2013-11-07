@@ -5,14 +5,20 @@
  *@date 2013-11-06
  *   
  */
-define(['core/Common','io/AjaxProxy'],function(Common){
+define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper,AjaxProxy){
+    
+    BomHelper.loadCss("resources/css/searchInput.css");
     var $ = Common.jQuery;
     function SearchInput(cfg){
+        if(this instanceof SearchInput === false){
+            return new SearchInput(cfg);
+        }
         $.extend(this,{
             domEl: null,
             preVal: null,
-            val: null
-        });
+            value: null,
+            config:{}
+        },true);
         this.init(cfg);
     }
     SearchInput.prototype = {
@@ -26,7 +32,7 @@ define(['core/Common','io/AjaxProxy'],function(Common){
             url: '',
             
             //scirpt格式获取数据，适用于跨域请求
-            script: false,
+            crossX: false,
             
             //查询的值参数名
             queryKey: 'key',
@@ -34,8 +40,9 @@ define(['core/Common','io/AjaxProxy'],function(Common){
             //查询的额外参数
             exParams:{},
             
-            //返回值的数据属性
-            dataProp: '',
+            //返回值的数据层级，默认为空，多个层级用.号连接。
+            //例如：data.items，则数据的返回格式为： {data:{items:[...]},...}
+            dataPath: '',
 
             //没有查询结果的提示
             emptyTxt: '没有找到符合的结果',
@@ -82,64 +89,84 @@ define(['core/Common','io/AjaxProxy'],function(Common){
             this.domEl.css({
                 "position":"absolute",
                 "display": "none",
-                "top": offset.top + this.config.el.height() + 2,
+                "width": this.config.el.width(),
+                "top": offset.top + this.config.el.outerHeight(),
                 "left": offset.left
             }).appendTo(document.body);
         },
         
-        doSearch: function(){
+        doSearch: function(value){
+            if(!value){
+                return;
+            }
             var _this = this;
-            this.config.exParams[this.config.queryKey] = this.value; 
+            this.config.exParams[this.config.queryKey] = value; 
             AjaxProxy.request({
                 url: this.config.url,
                 tfType : this.config.crossX ? 'script': 'json',
                 dataType: 'json',
                 data: this.config.exParams,
-                success: function (json) {
+                success: function(json){
                     _this.showRs(json);
                 }
             });
         },
         
         showRs: function(json){
-            var data = this.config.dataProp ? json[this.config.dataProp] : json;
+            var data = json, paths = null;
+            if(this.config.dataPath){
+                paths = this.config.dataPath.split('.');
+                while(paths.length && data){
+                    data = data[paths.shift()];
+                }
+            }    
+            
             var html = '<ul class="ui-schInput-box">',
                 fn = this.config.itemTplFn;
             if(data && data.length){
                 $.each(data,function(i,item){
-                    html += '<li class="ui-schInput-item">' + (fn ? fn(item) : '') + '</li>';
+                    html += '<li class="ui-schInput-item '+(i === 0? 'active': '')+'">' + (fn ? fn(item) : '') + '</li>';
                 });
             }else{
                 html += '<li class="ui-schInput-empty">' + this.config.emptyTxt + '</li>';
             }
-            html += '<ul>';
+            html += '</ul>';
             this.domEl.html(html).show();
             html = null;
         },
         
-        
+        /**
+         *@description 上下移动光标 
+         *@param {Number} 移动方向  。向上：-1，向下：1
+         */
         navSearchRs: function(dir){
             var items = this.domEl.find('.ui-schInput-item'),
                 size = items.size(),
                 idx = items.filter(".active").index();
             if(size && this.domEl.is(':visible')){
-                idx = (idx + size + dir);
+                idx = (idx + size + dir)%size;
                 items.removeClass('active').eq(idx).addClass('active');
-                if(typeof _this.config.onItemActive === 'function'){
-                    _this.config.onItemActive.call(this,$(this),_this);
+                if(typeof this.config.onItemActive === 'function'){
+                    this.config.onItemActive.call(this,$(this),this);
                 }
             }          
         },
+        
+        /**
+         *@description 确定输入：回车或者是点击数据项
+         *  */
         onComplete:function(){
             var actItem = this.domEl.find('.active');
-            if(typeof _this.config.onItemSel === 'function'){
+            if(typeof this.config.onItemSel === 'function'){
                 this.config.onItemSel.call(this,this.config.el,actItem,this);
             }
             this.domEl.hide();
         },
         bindEvents: function(){
             var _this = this;
-            this.config.el.bind("keyup",function(e){
+            
+            //用户键盘输入事件
+            this.config.el.on("keyup",function(e){
                 
                 if(e.which === 38 || e.which === 40){ //上下光标
                     _this.navSearchRs(e.which === 38 ? -1 : 1);
@@ -158,21 +185,30 @@ define(['core/Common','io/AjaxProxy'],function(Common){
                         this.value = _this.config.maskFn(this.value);
                     }
                     if(this.value !== _this.preVal){
-                        _this.preVal = this.value;
-                        _this.doSearch();
+                        _this.value = _this.preVal = this.value;
+                        _this.doSearch(this.value);
                     }
                     
                 }
                 
             });
             
-            this.domEl.delegate('.ui-schInput-item','mouseover',function(e){
-                $(this).addClass('active').siblings().removeClass('active');
-                if(typeof _this.config.onItemActive === 'function'){
-                    _this.config.onItemActive.call(_this,$(this),_this);
+            //鼠标滑动事件
+            this.domEl.on({
+                "mouseover":function(e){
+                    $(this).addClass('active').siblings().removeClass('active');
+                    if(typeof _this.config.onItemActive === 'function'){
+                        _this.config.onItemActive.call(_this,$(this),_this);
+                    }
+                },
+                "click": function(e){
+                    _this.onComplete();
                 }
-            }).click(function(e){
-                _this.onComplete();
+            },'.ui-schInput-item');
+            
+            //点击页面其它地方，关闭弹层
+            $(document.body).on('click',function(e){
+                _this.domEl.hide();
             });
         }
         
