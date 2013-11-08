@@ -1,5 +1,5 @@
 h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td{margin:0;padding:0;}
-body, td, pre {color:#000; font:14px/1.5 tahoma,arial,宋体,sans-serif;}
+body, td, pre {color:#000; font:14px/1.5 tahoma,arial,宋体,sans-serif;word-break:break-all;}
 body {background:#FFF; margin:8px;min-height:420px;_height:420px;_overflow-y:visible;}
 body.mceForceColors {background:#FFF; color:#000;}
 body.mceBrowserDefaults {background:transparent; color:inherit; font-size:inherit; font-family:inherit;}
