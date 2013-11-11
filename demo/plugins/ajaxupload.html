@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+
+<style type="text/css">
+	#uploadBtn{width:100px;height:30px;border:1px solid #000000;font-size:14px;}
+</style>
+</head>
+<body>
+
+<h1>zTree Demo</h1>
+
+<pre>
+	1. 最好给页面的触发上传元素绑定宽度、高度；
+	
+	2. 后端可以直接返回json或者是返回带结果的页面。
+	<html>
+		<head><script type="text/javascript">document.domain="tianya.cn"</script></head>
+		<body>{"result":1,"error":"",
+			"data":{
+				"page":{},"photo":[
+					{"tags":"",
+					"bigurl":"http://img3.laibafile.cn/p/l/161927654.jpg",
+					"description":"",
+					"mediumurl":"http://img3.laibafile.cn/p/m/161927654.jpg",
+					"caption":"无标题 - 副本.jpg",
+					"pid":161927654,
+					"create":1384157511621,
+					"url":"http://img3.laibafile.cn/p/s/161927654.jpg"
+					}]
+				}
+			}
+		</body></html>
+	
+</pre>
+<input type="button" id="uploadBtn" value="上传" />
+<div>合理合理合理合理合理合理</div>
+
+<script>
+	//for demo only.
+	document.domain = 'tianya.cn';
+	
+	//加载edit插件
+	require(['plugins/jquery/AjaxUpload'],function(AjaxUpload){
+		new AjaxUpload('uploadBtn',{
+			action: 'http://photo.tianya.cn/photo?act=uploadphoto',
+			data:{
+				'app':'twitter'
+			},
+			name:'file',
+			responseType: 'json', //如果后端返回json，这里设置为json
+			onSubmit: function(file,extension){
+				
+			},
+			onComplete: function(file, response){
+				alert('response: ' + response);
+			}
+		});
+	});
+</script>
+</body>
+</html>
