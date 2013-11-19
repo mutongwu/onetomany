@@ -38,14 +38,17 @@ ul.tabnav li{
 	margin-left:8px;
 }
 .tabnav li a{
+    position:relative;
 	background-color:#CCFFCC;
 	border:1px solid #66CC66;
 	color:#666;
 	display:block;
-	padding:0 5px;
-	line-height:20px;
+	padding:0 15px;
+	line-height:25px;
+	height:25px;
 	float:left;
 	font-weight:bold;
+	border-radius:5px 5px 0 0;
 }
 .tabnav li.active  a,
 .tabnav li.active  a:hover{
@@ -53,6 +56,23 @@ ul.tabnav li{
 	border-bottom:1px solid #fff;
 	_position:relative;
 }
+.tabnav  .closeIco:hover{
+     color:#f00;
+}
+.tabnav  .closeIco  {
+    position:absolute;
+    width:12px;
+    height:12px;
+    line-height:12px;
+    font-size:15px;
+    font-weight:bold;
+    right:0;
+    top:0;
+}
+.tabnav .noclose .closeIco  {
+    display:none;
+}
+
 #demo2{position:absolute;left:200px;bottom:0;}
 #demo2 .tabnav li a{
 	margin-bottom:-1px;
@@ -77,14 +97,16 @@ ul.tabnav li{
     <div id="top">
     	<div id="demo2" class="demo">
 			<ul id="tabNav" class="tabnav nostyle clearfix">
-				<li data-id="a" class="active"><a href="#a">Tab One</a></li>
-				<li data-id="b" ><a href="#b">Tab Two</a></li>
-				<li data-id="c" ><a href="#c">Tab Three</a></li>
-				<li data-id="d" ><a href="#d">Tab Four</a></li>
+				<li data-id="a" class="active noclose"><a href="#a">Tab One<span class="closeIco">&times;</span></a></li>
+				<li data-id="b" ><a href="#b">Tab Two<span class="closeIco">&times;</span></a></li>
+				<li data-id="c" ><a href="#c">Tab Three<span class="closeIco">&times;</span></a></li>
+				<li data-id="d" ><a href="#d">Tab Four<span class="closeIco">&times;</span></a></li>
 			</ul>
 		</div>
     </div>  
-    <div id="bottom">bottom</div>  
+    <div id="bottom">
+        <div class="innerBox">bottom</div>
+    </div>  
     <div id="content">  
         <div id="inner">  
             <div id="mainCnt" class="innerBox">
@@ -171,33 +193,61 @@ ul.tabnav li{
 		var $ = jQuery;
 		var tabNav = $('#tabNav'),
 			mainCnt = $('#mainCnt');
-		tabNav.on('click','a',function(e){
-			e.preventDefault();
-			tabNav.find('li').removeClass('active');
-			$(this).parent().addClass('active');
-		});
+
+		function selMainCnt(dataId,content){
+		    var actItem = null;
+		    actItem = mainCnt.find('.pageCnt').filter('[data-id="'+dataId+'"]');
+            if(!actItem.size()){
+                actItem = $('<div data-id="'+dataId+'" class="pageCnt">'+content+'</div>');
+                mainCnt.append(actItem);
+            }
+            mainCnt.find('.pageCnt').removeClass('activePage');
+            actItem.addClass('activePage');
+		}
+		function removeMainCnt(dataId){
+		    mainCnt.find('.pageCnt').filter('[data-id="'+dataId+'"]').remove();
+		}
 		
+		function setTabNav(dataId,title){
+		    var actItem = null;
+            var actItem = tabNav.find('li[data-id='+dataId+']');
+            if(!actItem.size()){
+                actItem = $('<li data-id="'+dataId+'"><a href="#d">'+title+'<span class="closeIco">&times;</span></a></li>');
+                tabNav.append(actItem);
+            }
+            tabNav.find("li").removeClass("active");
+            actItem.addClass('active');
+		}
+		
+		function removeTabNav(dataId){
+		    tabNav.find('li[data-id='+dataId+']').remove();
+		}
+        tabNav.on('click','a',function(e){
+            e.preventDefault();
+            var el = $(this),
+                dataId = null;
+            tabNav.find('li').removeClass('active');
+            dataId = el.closest('li').addClass('active').attr("data-id");
+            selMainCnt(dataId); 
+            
+        }).on('click','.closeIco',function(e){
+            e.stopPropagation();
+            var el = $(this),
+                dataId = null;
+            dataId = el.closest('li').attr("data-id");
+            removeMainCnt(dataId);
+            removeTabNav(dataId);
+        });
+        
 		$('#left').find('dt').click(function(){
-			var title = $(this).html();
+			var title = $(this).html(),
+			    content = $(this).parent().html();
 			var dataId = $(this).attr("data-id");
 			
 			//导航条
-			var actItem = tabNav.find('li[data-id='+dataId+']');
-			if(!actItem.size()){
-				actItem = $('<li data-id="'+dataId+'"><a href="#d">'+title+'</a></li>');
-				tabNav.append(actItem);
-			}
-			tabNav.find("li").removeClass("active");
-			actItem.addClass('active');
-			
+			setTabNav(dataId,title);
 			//内容区
-			actItem = mainCnt.find('.pageCnt').filter('[data-id="'+dataId+'"]');
-			if(!actItem.size()){
-				actItem = $('<div data-id="'+dataId+'" class="pageCnt">'+$(this).parent().html()+'</div>');
-				mainCnt.append(actItem);
-			}
-			mainCnt.find('.pageCnt').removeClass('activePage');
-			actItem.addClass('activePage');
+			selMainCnt(dataId,content);
 		});
 		
 		/*require(['ui/SearchInput'],function(SearchInput){
