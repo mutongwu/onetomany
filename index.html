@@ -2,37 +2,208 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here2</title>
-<link type="text/css" rel="stylesheet" href="src/resources/css/base.css" >
-<!-- link type="text/css" rel="stylesheet" href="dist/test/resources/css/base.css" -->
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
 <style type="text/css">
-.aBox{width:50px;height:50px;border:1px solid #ccc;}
+/*布局*/
+body{width:100%;height:100%;overflow:hidden;}  
+.viewPort{position:absolute;width:100%;height:100%;overflow:hidden;}  
+#top,#bottom,#left,#right,#inner{background:#fff;overflow:auto;}  
+#top{position:absolute;height:100px;width:100%;background:#FFDE8E;}  
+#bottom{position:absolute;bottom:0;height:100px;width:100%;background:#ccc;}  
+  
+#left{position:absolute;width:200px;height:100%;background:yellow;overflow:auto;}  
+#right{position:absolute;width:200px;right:0;height:100%;background:#00DE8E;}  
+#content{position:absolute;top:100px;bottom:100px;width:100%; }  
+  
+#inner{position:absolute;left:200px;right:200px;height:100%;  }  
+.hideTop #top{display:none;}  
+.hideTop #content{top:0;}  
+  
+.hideBottom #bottom{display:none;}  
+.hideBottom #content{bottom:0;}  
+  
+.hideLeft #left{display:none;}  
+.hideLeft #inner{left:0;}  
+.hideRight #right{display:none;}  
+.hideRight #inner{right:0;}  
+.innerBox{padding:20px;}
+/*标签导航*/
+ul.tabnav li{
+	float:left;
+	display:inline;
+	margin-left:8px;
+}
+.tabnav li a{
+	background-color:#CCFFCC;
+	border:1px solid #66CC66;
+	color:#666;
+	display:block;
+	padding:0 5px;
+	line-height:20px;
+	float:left;
+	font-weight:bold;
+}
+.tabnav li.active  a,
+.tabnav li.active  a:hover{
+	background-color:#fff;
+	border-bottom:1px solid #fff;
+	_position:relative;
+}
+#demo2{position:absolute;left:200px;bottom:0;}
+#demo2 .tabnav li a{
+	margin-bottom:-1px;
+}
+#demo2 .tabnav{
+	border-bottom:1px solid #66CC66;
+}
+.pageCnt{display:none;}
+.activePage{display:block;}
 </style>
-<!-- script charset="utf-8" data-main="src/main" src="src/core/require-jquery.js"></script -->
-<script charset="utf-8" data-main="dist/test/main" src="dist/test/core/require-jquery.js"></script>
+<!--[if lt IE 7]>
+  <style type="text/css">
+  	#inner{expression(documentElement.clientWidth-document.all.left.offsetWidth-document.all.right.offsetWidth);}  
+	#left,#right,#inner{
+		height: expression(documentElement.clientHeight-document.all.top.offsetHeight-document.all.bottom.offsetHeight);
+	}
+  </style>
+<![endif]-->
 </head>
 <body>
-<h1>Uploadify Demo</h1>
-<form>
-	<div id="queue"></div>
-	<!-- input id="file_upload" name="file_upload" type="file" multiple="true" -->
-	<div style="position:relative;">
-		<div id="file_upload"></div>
-	</div>
-</form>
-	
-<h3>测试</h3>
-<textarea id="area1" style="width:400px;height:200px;"></textarea>
-<a href="#"  id="testa">链接</a>
-<div class="aBox"></div>
-<input id="inputName" type="input" value="shawn1" />
-<input id="inputValue" type="input" value="100" />
-<input id="set" type="button" value="设置"/>
-<input id="read" type="button" value="读取"/>
-<input id="del" type="button" value="删除"/>
-<div style="border:1px solid #ccc;width:800px;height:160px;">
-<div id="bBox" ></div>
-</div>
-<textarea id="output" style="width:600px;"></textarea><input style="width:50px" id="box" type="input" value=""/>
+<div class="viewPort hideBottom">  
+    <div id="top">
+    	<div id="demo2" class="demo">
+			<ul id="tabNav" class="tabnav nostyle clearfix">
+				<li data-id="a" class="active"><a href="#a">Tab One</a></li>
+				<li data-id="b" ><a href="#b">Tab Two</a></li>
+				<li data-id="c" ><a href="#c">Tab Three</a></li>
+				<li data-id="d" ><a href="#d">Tab Four</a></li>
+			</ul>
+		</div>
+    </div>  
+    <div id="bottom">bottom</div>  
+    <div id="content">  
+        <div id="inner">  
+            <div id="mainCnt" class="innerBox">
+            	
+            	<div  data-id="a" class="pageCnt activePage">
+            		<p>css expression_r(css表达式)又称Dynamic properties(动 态属性)是早期微软DHTML的产物，
+	            	以其可以在Css中定义表达式(公式)来达到建立元素间属性之间的联系等作用，从IE5开始得到支持，后因标准、性 能、安全性等问题，
+	            	微软从IE8 beta2标准模式开始，取消对css expression的支持。
+					CSS中的行为——expression最近对CSS中的行为比较感兴趣，虽然是不符合标准的也只有ie才能识别，
+					但是他确实给css的功能扩展了不少。下面是摘自互联网上的文字和例子，因为都被转烂了，没法注明出处。
+					IE5 及其以后版本支持在CSS中使用expression，用来把CSS属性和Javascript表达式关联起来，
+					这里的CSS属性可以是元素固有的属性， 也可以是自定义属性。就是说CSS属性后面可以是一段Javascript表达式，
+					CSS属性的值等于Javascript表达式计算的结果。 在表达式中可以直接引用元素自身的属性和方法，
+					也可以使用其他浏览器对象。这个表达式就好像是在这个元素的一个成员函数中一样。
+					给元素固有属性赋值下面是定义container容器的宽度，如果&lt; 725就为自己的宽度，
+					否则就等于725，相当于max-width:725px;。
+					微软提供了4个css expression方法：getExpression、recalc、removeExpression、setExpression。有兴趣可以参考msdn
+					</p> 
+            	</div> 
+            	<div  data-id="b" class="pageCnt">
+            		<p>Page2:css expression_r(css表达式)又称Dynamic properties(动 态属性)是早期微软DHTML的产物，
+	            	以其可以</p>
+            	</div>
+            	<div data-id="c" class="pageCnt">
+            		<p>Page3:css expression_r(css表达式)又称Dynamic properties(动 态属性)是早期微软DHTML的产物，
+	            	以其可以</p>
+            	</div>
+            	<div data-id="d" class="pageCnt">
+            		<p>Page4:css expression_r(css表达式)又称Dynamic properties(动 态属性)是早期微软DHTML的产物，
+	            	以其可以</p>
+            	</div>
+        	</div>  
+        </div> 
+        <div id="left">
+        	<div class="innerBox">
+        		<ul>
+        			<li>
+        				<dl>
+        					<dt  data-id="a">菜单一</dt>
+	        				<dd>菜单一菜单一</dd>
+	        				<dd>菜单一菜单一</dd>
+	        				<dd>菜单一菜单一</dd>
+	        			</dl>
+        			</li>
+        			<li>
+        				<dl>
+        					<dt  data-id="b">菜单二</dt>
+	        				<dd>菜单二菜单二</dd>
+	        				<dd>菜单二菜单二</dd>
+	        				<dd>菜单二菜单二</dd>
+	        			</dl></li>
+        			<li>
+        				<dl>
+        					<dt  data-id="c">菜单三</dt>
+	        				<dd>菜单三菜单三</dd>
+	        				<dd>菜单三菜单三</dd>
+	        				<dd>菜单三菜单三</dd>
+	        			</dl></li>
+        			<li>
+        				<dl>
+        					<dt  data-id="d">菜单四</dt>
+	        				<dd>菜单四菜单四</dd>
+	        				<dd>菜单四菜单四</dd>
+	        				<dd>菜单四菜单四</dd>
+	        			</dl></li>
+	        		<li>
+        				<dl>
+        					<dt data-id="e">菜单四</dt>
+	        				<dd>菜单四菜单四</dd>
+	        				<dd>菜单四菜单四</dd>
+	        				<dd>菜单四菜单四</dd>
+	        			</dl></li>
+        		</ul>
+        	</div>
+        </div> 
+        <div id="right">
+        	<div class="innerBox">
+        	</div>
+    	</div>   
+    </div>  
+</div>  
+<script>
+	jQuery(function(){
+		var $ = jQuery;
+		var tabNav = $('#tabNav'),
+			mainCnt = $('#mainCnt');
+		tabNav.on('click','a',function(e){
+			e.preventDefault();
+			tabNav.find('li').removeClass('active');
+			$(this).parent().addClass('active');
+		});
+		
+		$('#left').find('dt').click(function(){
+			var title = $(this).html();
+			var dataId = $(this).attr("data-id");
+			
+			//导航条
+			var actItem = tabNav.find('li[data-id='+dataId+']');
+			if(!actItem.size()){
+				actItem = $('<li data-id="'+dataId+'"><a href="#d">'+title+'</a></li>');
+				tabNav.append(actItem);
+			}
+			tabNav.find("li").removeClass("active");
+			actItem.addClass('active');
+			
+			//内容区
+			actItem = mainCnt.find('.pageCnt').filter('[data-id="'+dataId+'"]');
+			if(!actItem.size()){
+				actItem = $('<div data-id="'+dataId+'" class="pageCnt">'+$(this).parent().html()+'</div>');
+				mainCnt.append(actItem);
+			}
+			mainCnt.find('.pageCnt').removeClass('activePage');
+			actItem.addClass('activePage');
+		});
+		
+		/*require(['ui/SearchInput'],function(SearchInput){
+			
+		});*/
+	});
+</script>
 </body>
 </html>
