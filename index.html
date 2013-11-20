@@ -15,7 +15,7 @@ body{width:100%;height:100%;overflow:hidden;}
 #top{position:absolute;height:100px;width:100%;background:#FFDE8E;}  
 #bottom{position:absolute;bottom:0;height:100px;width:100%;background:#ccc;}  
   
-#left{position:absolute;width:200px;height:100%;background:yellow;overflow:auto;}  
+#left{position:absolute;width:200px;height:100%;background:yellow;}  
 #right{position:absolute;width:200px;right:0;height:100%;background:#00DE8E;}  
 #content{position:absolute;top:100px;bottom:100px;width:100%; }  
   
@@ -30,14 +30,19 @@ body{width:100%;height:100%;overflow:hidden;}
 .hideLeft #inner{left:0;}  
 .hideRight #right{display:none;}  
 .hideRight #inner{right:0;}  
-.innerBox{padding:20px;}
+.innerBox{padding:10px;}
 /*标签导航*/
-ul.tabnav li{
+.tabNavBox{position:absolute;left:200px;bottom:0;}
+
+.tabNavBox .tabNav{
+    border-bottom:1px solid #66CC66;
+}
+ul.tabNav li{
 	float:left;
 	display:inline;
 	margin-left:8px;
 }
-.tabnav li a{
+.tabNav li a{
     position:relative;
 	background-color:#CCFFCC;
 	border:1px solid #66CC66;
@@ -49,17 +54,24 @@ ul.tabnav li{
 	float:left;
 	font-weight:bold;
 	border-radius:5px 5px 0 0;
+	margin-bottom:-1px;
+	max-width:120px;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
 }
-.tabnav li.active  a,
-.tabnav li.active  a:hover{
+.tabNav li.active  a,
+.tabNav li.active  a:hover{
 	background-color:#fff;
 	border-bottom:1px solid #fff;
 	_position:relative;
 }
-.tabnav  .closeIco:hover{
+
+
+.tabNav  .closeIco:hover{
      color:#f00;
 }
-.tabnav  .closeIco  {
+.tabNav  .closeIco  {
     position:absolute;
     width:12px;
     height:12px;
@@ -69,17 +81,22 @@ ul.tabnav li{
     right:0;
     top:0;
 }
-.tabnav .noclose .closeIco  {
+.tabNav .noClose .closeIco  {
     display:none;
 }
 
-#demo2{position:absolute;left:200px;bottom:0;}
-#demo2 .tabnav li a{
-	margin-bottom:-1px;
-}
-#demo2 .tabnav{
-	border-bottom:1px solid #66CC66;
-}
+
+.hasTabCtrl{padding:0 30px;}
+.moreTab{padding-right:60px;}
+.hasTabCtrl .tabCtrl{position:absolute;z-index:1;top:2px;width:25px;height:25px;line-height:25px;background:#ccc;color:#FF0000;}
+.hasTabCtrl .ctrlLeft{left:0;}
+.hasTabCtrl .ctrlRight{right:0;}
+.hasTabCtrl .more{display:none;right:0;}
+.moreTab .ctrlRight{right:30px;}
+.moreTab .more{display:block;}
+
+/*导航标签-end*/
+
 .pageCnt{display:none;}
 .activePage{display:block;}
 </style>
@@ -95,9 +112,12 @@ ul.tabnav li{
 <body>
 <div class="viewPort hideBottom">  
     <div id="top">
-    	<div id="demo2" class="demo">
-			<ul id="tabNav" class="tabnav clearfix">
-				<li data-id="a" class="active noclose"><a href="#a">Tab One<span class="closeIco">&times;</span></a></li>
+    	<div  class="tabNavBox hasTabCtrl moreTab">
+    	    <a class="tabCtrl ctrlLeft" href="javascript:;">左滚</a>
+            <a class="tabCtrl ctrlRight" href="javascript:;">右滚</a>
+            <a class="tabCtrl more" href="javascript:;">更多 </a>
+			<ul id="tabNav" class="tabNav clearfix">
+				<li data-id="a" class="active noClose"><a href="#a">Tab One<span class="closeIco">&times;</span></a></li>
 				<li data-id="b" ><a href="#b">Tab Two<span class="closeIco">&times;</span></a></li>
 				<li data-id="c" ><a href="#c">Tab Three<span class="closeIco">&times;</span></a></li>
 				<li data-id="d" ><a href="#d">Tab Four<span class="closeIco">&times;</span></a></li>
@@ -200,6 +220,9 @@ ul.tabnav li{
 		var cntMH = inner.height()- padH;
 		function onResize(){
 			cntMH = Math.max(inner.height()- padH,cntMH);
+			
+			//update iframe height
+			mainCnt.find('.activePage iframe').css("height",cntMH);
 		}
 		$(window).resize(onResize);
 		
