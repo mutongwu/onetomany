@@ -19,7 +19,7 @@ body{width:100%;height:100%;overflow:hidden;}
 #right{position:absolute;width:200px;right:0;height:100%;background:#00DE8E;}  
 #content{position:absolute;top:100px;bottom:100px;width:100%; }  
   
-#inner{position:absolute;left:200px;right:200px;height:100%;  }  
+#inner{position:absolute;left:200px;right:200px;height:100%; overflow: hidden; }  
 .hideTop #top{display:none;}  
 .hideTop #content{top:0;}  
   
@@ -96,7 +96,7 @@ ul.tabnav li{
 <div class="viewPort hideBottom">  
     <div id="top">
     	<div id="demo2" class="demo">
-			<ul id="tabNav" class="tabnav nostyle clearfix">
+			<ul id="tabNav" class="tabnav clearfix">
 				<li data-id="a" class="active noclose"><a href="#a">Tab One<span class="closeIco">&times;</span></a></li>
 				<li data-id="b" ><a href="#b">Tab Two<span class="closeIco">&times;</span></a></li>
 				<li data-id="c" ><a href="#c">Tab Three<span class="closeIco">&times;</span></a></li>
@@ -109,7 +109,7 @@ ul.tabnav li{
     </div>  
     <div id="content">  
         <div id="inner">  
-            <div id="mainCnt" class="innerBox">
+            <div id="mainCnt" class="">
             	
             	<div  data-id="a" class="pageCnt activePage">
             		<p>css expression_r(css表达式)又称Dynamic properties(动 态属性)是早期微软DHTML的产物，
@@ -192,8 +192,18 @@ ul.tabnav li{
 	jQuery(function(){
 		var $ = jQuery;
 		var tabNav = $('#tabNav'),
-			mainCnt = $('#mainCnt');
+			mainCnt = $('#mainCnt'),
+			inner = $('#inner');
 
+		var padH = parseInt(mainCnt.css('paddingTop'),10)
+				 + parseInt(mainCnt.css('paddingBottom'),10);
+		var cntMH = inner.height()- padH;
+		function onResize(){
+			cntMH = Math.max(inner.height()- padH,cntMH);
+		}
+		$(window).resize(onResize);
+		
+		
 		function selMainCnt(dataId,content){
 		    var actItem = null;
 		    actItem = mainCnt.find('.pageCnt').filter('[data-id="'+dataId+'"]');
@@ -201,14 +211,15 @@ ul.tabnav li{
                 actItem = $('<div data-id="'+dataId+'" class="pageCnt">'+content+'</div>');
                 mainCnt.append(actItem);
             }
-            mainCnt.find('.pageCnt').removeClass('activePage');
-            actItem.addClass('activePage');
+            
+            actItem.siblings('.pageCnt').removeClass('activePage').end().addClass('activePage');
+            
 		}
 		function removeMainCnt(dataId){
 		    mainCnt.find('.pageCnt').filter('[data-id="'+dataId+'"]').remove();
 		}
 		
-		function setTabNav(dataId,title){
+		function selTabNav(dataId,title){
 		    var actItem = null;
             var actItem = tabNav.find('li[data-id='+dataId+']');
             if(!actItem.size()){
@@ -232,11 +243,21 @@ ul.tabnav li{
             
         }).on('click','.closeIco',function(e){
             e.stopPropagation();
-            var el = $(this),
-                dataId = null;
-            dataId = el.closest('li').attr("data-id");
-            removeMainCnt(dataId);
+            var liEl = $(this).closest('li');
+            var dataId = liEl.attr("data-id");
+            var preDataId = liEl.prev().attr("data-id");
+            
+            //导航条
             removeTabNav(dataId);
+            //内容区
+            removeMainCnt(dataId);
+            
+            //设置下一个激活的标签 
+            if(liEl.hasClass('active')){
+            	selTabNav(preDataId);
+            	selMainCnt(preDataId);	
+            }
+              
         });
         
 		$('#left').find('dt').click(function(){
@@ -245,8 +266,9 @@ ul.tabnav li{
 			var dataId = $(this).attr("data-id");
 			
 			//导航条
-			setTabNav(dataId,title);
+			selTabNav(dataId,title);
 			//内容区
+			content = '<iframe id="iframe_'+dataId+'" height="'+cntMH+'px" width="100%" src="b.html" frameborder=0 />';
 			selMainCnt(dataId,content);
 		});
 		
