@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<link type="text/css" rel="stylesheet" href="index.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+<style type="text/css">
+</style>
+<!--[if lt IE 7]>
+  <style type="text/css">
+  	#inner{expression(documentElement.clientWidth-document.all.left.offsetWidth-document.all.right.offsetWidth);}  
+	#left,#right,#inner{
+		height: expression(documentElement.clientHeight-document.all.top.offsetHeight-document.all.bottom.offsetHeight);
+	}
+  </style>
+<![endif]-->
+</head>
+<body>
+<div class="viewPort hideBottom">  
+    <div id="top">
+    	<div  class="tabNavBox hasTabCtrl moreTab">
+    	    <a class="tabCtrl ctrlLeft" href="javascript:;">左滚</a>
+            <a class="tabCtrl ctrlRight" href="javascript:;">右滚</a>
+            <a class="tabCtrl ctrlMore" href="javascript:;">更多 </a>
+			<ul id="tabNav" class="tabNav clearfix">
+				<li data-id="a" class="active noClose"><a href="#a">Tab One<span class="closeIco"></span></a></li>
+				<li data-id="b" ><a href="#b">Tab Two<span class="closeIco"></span></a></li>
+				<li data-id="c" ><a href="#c">Tab Three<span class="closeIco"></span></a></li>
+				<li data-id="d" ><a href="#d">Tab Four<span class="closeIco"></span></a></li>
+				<li data-id="a" ><a href="#a">Tab One<span class="closeIco"></span></a></li>
+				<li data-id="b" ><a href="#b">Tab Two<span class="closeIco"></span></a></li>
+				<li data-id="c" ><a href="#c">Tab Three<span class="closeIco"></span></a></li>
+				<li data-id="d" ><a href="#d">Tab Four<span class="closeIco"></span></a></li>
+				<li data-id="a"><a href="#a">Tab One<span class="closeIco"></span></a></li>
+				<li data-id="b" ><a href="#b">Tab Two<span class="closeIco"></span></a></li>
+				<li data-id="c" ><a href="#c">Tab Three<span class="closeIco"></span></a></li>
+				<li data-id="d" ><a href="#d">Tab Four<span class="closeIco"></span></a></li>
+			</ul>
+		</div>
+    </div>  
+    <div id="bottom">
+        <div class="innerBox">bottom</div>
+    </div>  
+    <div id="content">  
+        <div id="inner">  
+            <div id="mainCnt" class="">
+            	
+            	<div  data-id="a" class="pageCnt activePage">
+            		<p>css expression_r(css表达式)又称Dynamic properties(动 态属性)是早期微软DHTML的产物，
+	            	以其可以在Css中定义表达式(公式)来达到建立元素间属性之间的联系等作用，从IE5开始得到支持，后因标准、性 能、安全性等问题，
+	            	微软从IE8 beta2标准模式开始，取消对css expression的支持。
+					CSS中的行为——expression最近对CSS中的行为比较感兴趣，虽然是不符合标准的也只有ie才能识别，
+					但是他确实给css的功能扩展了不少。下面是摘自互联网上的文字和例子，因为都被转烂了，没法注明出处。
+					IE5 及其以后版本支持在CSS中使用expression，用来把CSS属性和Javascript表达式关联起来，
+					这里的CSS属性可以是元素固有的属性， 也可以是自定义属性。就是说CSS属性后面可以是一段Javascript表达式，
+					CSS属性的值等于Javascript表达式计算的结果。 在表达式中可以直接引用元素自身的属性和方法，
+					也可以使用其他浏览器对象。这个表达式就好像是在这个元素的一个成员函数中一样。
+					给元素固有属性赋值下面是定义container容器的宽度，如果&lt; 725就为自己的宽度，
+					否则就等于725，相当于max-width:725px;。
+					微软提供了4个css expression方法：getExpression、recalc、removeExpression、setExpression。有兴趣可以参考msdn
+					</p> 
+            	</div> 
+            	<div  data-id="b" class="pageCnt">
+            		<p>Page2:css expression_r(css表达式)又称Dynamic properties(动 态属性)是早期微软DHTML的产物，
+	            	以其可以</p>
+            	</div>
+            	<div data-id="c" class="pageCnt">
+            		<p>Page3:css expression_r(css表达式)又称Dynamic properties(动 态属性)是早期微软DHTML的产物，
+	            	以其可以</p>
+            	</div>
+            	<div data-id="d" class="pageCnt">
+            		<p>Page4:css expression_r(css表达式)又称Dynamic properties(动 态属性)是早期微软DHTML的产物，
+	            	以其可以</p>
+            	</div>
+        	</div>  
+        </div> 
+        <div id="left">
+        	<div class="innerBox">
+        		<ul>
+        			<li>
+        				<dl>
+        					<dt  data-id="a">菜单一</dt>
+	        				<dd>菜单一菜单一</dd>
+	        				<dd>菜单一菜单一</dd>
+	        				<dd>菜单一菜单一</dd>
+	        			</dl>
+        			</li>
+        			<li>
+        				<dl>
+        					<dt  data-id="b">菜单二</dt>
+	        				<dd>菜单二菜单二</dd>
+	        				<dd>菜单二菜单二</dd>
+	        				<dd>菜单二菜单二</dd>
+	        			</dl></li>
+        			<li>
+        				<dl>
+        					<dt  data-id="c">菜单三</dt>
+	        				<dd>菜单三菜单三</dd>
+	        				<dd>菜单三菜单三</dd>
+	        				<dd>菜单三菜单三</dd>
+	        			</dl></li>
+        			<li>
+        				<dl>
+        					<dt  data-id="d">菜单四</dt>
+	        				<dd>菜单四菜单四</dd>
+	        				<dd>菜单四菜单四</dd>
+	        				<dd>菜单四菜单四</dd>
+	        			</dl></li>
+	        		<li>
+        				<dl>
+        					<dt data-id="e">菜单四</dt>
+	        				<dd>菜单四菜单四</dd>
+	        				<dd>菜单四菜单四</dd>
+	        				<dd>菜单四菜单四</dd>
+	        			</dl></li>
+        		</ul>
+        	</div>
+        </div> 
+        <div id="right">
+        	<div class="innerBox">
+        	</div>
+    	</div>   
+    </div>  
+</div>  
+<script src="index.js"></script>
+</body>
+</html>
