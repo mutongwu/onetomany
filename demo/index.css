@@ -85,12 +85,12 @@ body{width:100%;height:100%;overflow:hidden;}
 
 /*菜单控制条*/
 .tabNav .tabCtrl{display:none;}
-.hasTabCtrl{padding:0 30px;}
+.hasTabCtrl{padding:0 20px;}
 .moreTab{padding-right:60px;}
-.hasTabCtrl .tabCtrl{display:block;position:absolute;z-index:1;top:2px;width:25px;height:25px;line-height:25px;background:#ccc;color:#FF0000;}
-.hasTabCtrl .ctrlLeft{left:0;}
-.hasTabCtrl .ctrlRight{right:0;}
-.hasTabCtrl .ctrlMore{display:none;right:0;}
+.hasTabCtrl .tabCtrl{display:block;border-radius:5px 5px 0 0;position:absolute;z-index:1;top:2px;width:25px;height:25px;line-height:25px;background:#ccc;color:#FF0000;background:url(images/arrow.png) no-repeat 0 0 #fff;}
+.hasTabCtrl .ctrlLeft{background-position:3px -42px;left:0;}
+.hasTabCtrl .ctrlRight{background-position:3px 4px;right:0;}
+.hasTabCtrl .ctrlMore{display:none;right:0;background-position:5px -188px;}
 .moreTab .ctrlRight{right:30px;}
 .moreTab .ctrlMore{display:block;}
 .shadowMenu{display:none;background:#fff;position:absolute;width:150px;overflow: hidden;border: 1px solid #f00;z-index:2;}
