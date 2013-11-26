@@ -15,9 +15,9 @@ if(array_key_exists( 'key',$_REQUEST)) {
 
 if($queryKey == "yes"){
 	$json = "{\"success\":1,\"data\":[";
-	for ($i=0; $i<5; $i++) {
+	for ($i=0; $i<10; $i++) {
 		$json .= "\"yes_".rand()."\"";
-		if($i != 4){
+		if($i != 9){
 			$json.= ",";
 		}
 	}

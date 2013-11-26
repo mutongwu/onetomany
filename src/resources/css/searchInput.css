@@ -1,5 +1,5 @@
 .ui-schInput-layer{border:1px solid #ccc;background:#CCFFFF;}
 /*{padding:2px;}*/
-
+.ui-schInput-box{overflow-y:auto;}
 .ui-schInput-item,.ui-schInput-empty{padding:2px;line-height:18px;}
 .ui-schInput-box .active{background:#FFFFCC;font-weight:bold;cursor:pointer;}
