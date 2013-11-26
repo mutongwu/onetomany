@@ -47,6 +47,9 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             //没有查询结果的提示
             emptyTxt: '没有找到符合的结果',
             
+            //显示浮层的最大高度,例如：200px
+            maxHeight: null,
+            
             //查询结果数据条目的处理函数，返回值作为Li元素的html
             itemTplFn: null,
             
@@ -121,8 +124,16 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                 }
             }    
             
-            var html = '<ul class="ui-schInput-box">',
+            var html = '<ul class="ui-schInput-box" MAX-HEIGHT>',
                 fn = this.config.itemTplFn;
+            if(this.config.maxHeight){
+                html = html.replace('MAX-HEIGHT',
+                    'style="max-height:' + this.config.maxHeight + 
+                    ';*height:' + this.config.maxHeight + 
+                    ';overflow:auto"');
+            }else{
+                 html = html.replace('MAX-HEIGHT','');
+            }
             if(data && data.length){
                 $.each(data,function(i,item){
                     html += '<li class="ui-schInput-item '+(i === 0? 'active': '')+'">' + (fn ? fn(item) : '') + '</li>';
@@ -142,10 +153,15 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
         navSearchRs: function(dir){
             var items = this.domEl.find('.ui-schInput-item'),
                 size = items.size(),
-                idx = items.filter(".active").index();
+                idx = items.filter(".active").index(),
+                item = null;
             if(size && this.domEl.is(':visible')){
                 idx = (idx + size + dir)%size;
-                items.removeClass('active').eq(idx).addClass('active');
+                item = items.removeClass('active').eq(idx).addClass('active');
+                if(this.config.maxHeight){
+                    this.domEl.find('.ui-schInput-box')[0].scrollTop = 
+                        Math.max(0,item.position().top + item.height());
+                }
                 if(typeof this.config.onItemActive === 'function'){
                     this.config.onItemActive.call(this,$(this),this);
                 }
@@ -167,16 +183,15 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             
             //用户键盘输入事件
             this.config.el.on("keyup",function(e){
-                
                 if(e.which === 38 || e.which === 40){ //上下光标
                     _this.navSearchRs(e.which === 38 ? -1 : 1);
                 }else if(e.which === 13){ //回车
                     _this.onComplete();
                 }else{
                     if(_this.config.simpleMask === 'number'){
-                        this.value = this.value.replace(/[^\d]/,'');
+                        this.value = this.value.replace(/[^\d]/g,'');
                     }else if(_this.config.simpleMask === 'letter'){
-                        this.value = this.value.replace(/[^a-zA-Z]/,'');
+                        this.value = this.value.replace(/[^a-zA-Z]/g,'');
                     }
                     if(typeof _this.config.maskReg === "objeck" && _this.config.maskReg.exec){
                         this.value = this.value.replace(_this.config.maskReg,'');
