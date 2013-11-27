@@ -53,6 +53,9 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             //查询结果数据条目的处理函数，返回值作为Li元素的html
             itemTplFn: null,
             
+            //input元素的单击事件
+            onClick: null,
+             
             //鼠标点击结果项或者是回车触发事件
             onItemSel: null,
             
@@ -82,8 +85,8 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             if(this.config.el.size() === 0){
                 return;
             }
-            this.initDom();
-            this.bindEvents();
+            
+            this.bindInputEl();
         },
         
         initDom: function(){
@@ -96,6 +99,8 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                 "top": offset.top + this.config.el.outerHeight(),
                 "left": offset.left
             }).appendTo(document.body);
+            
+            this.bindDomEl();
         },
         
         doSearch: function(value){
@@ -143,6 +148,15 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             }
             html += '</ul>';
             this.domEl.html(html).show();
+            
+            if(this.config.maxHeight && BomHelper.engine.ie && BomHelper.engine.ver < 8 ){
+                var realH = 0;
+                this.domEl.find('.ui-schInput-box>li').each(function(i,item){
+                   realH += item.offsetHeight; 
+                });
+                  
+                this.domEl.find('.ui-schInput-box').height(Math.min(realH,parseInt(this.config.maxHeight,10)));
+            }
             html = null;
         },
         
@@ -154,13 +168,20 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             var items = this.domEl.find('.ui-schInput-item'),
                 size = items.size(),
                 idx = items.filter(".active").index(),
-                item = null;
+                item = null,
+                ulEl = this.domEl.find('.ui-schInput-box'),
+                pos = null,
+                h = 0,
+                maxH = this.config.maxHeight ? parseInt(this.config.maxHeight,10) : 0;
             if(size && this.domEl.is(':visible')){
+                
                 idx = (idx + size + dir)%size;
                 item = items.removeClass('active').eq(idx).addClass('active');
-                if(this.config.maxHeight){
-                    this.domEl.find('.ui-schInput-box')[0].scrollTop = 
-                        Math.max(0,item.position().top + item.height());
+                pos = item.position();
+                h = item.outerHeight();
+                
+                if(maxH){
+                    ulEl.scrollTop( Math.max(0,pos.top + h - maxH + ulEl.scrollTop()) );
                 }
                 if(typeof this.config.onItemActive === 'function'){
                     this.config.onItemActive.call(this,$(this),this);
@@ -178,11 +199,16 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             }
             this.domEl.hide();
         },
-        bindEvents: function(){
+        
+        //input元素的事件绑定
+        bindInputEl: function(){
             var _this = this;
             
             //用户键盘输入事件
             this.config.el.on("keyup",function(e){
+                if(!_this.domEl){
+                    _this.initDom();
+                }
                 if(e.which === 38 || e.which === 40){ //上下光标
                     _this.navSearchRs(e.which === 38 ? -1 : 1);
                 }else if(e.which === 13){ //回车
@@ -203,11 +229,23 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                         _this.value = _this.preVal = this.value;
                         _this.doSearch(this.value);
                     }
-                    
+                    if(!this.value){
+                        _this.domEl.hide();
+                    }
                 }
                 
+            }).on('click',function(){
+                if(typeof _this.config.onClick === 'function'){
+                    _this.config.onClick.call(_this,$(this));
+                }
             });
+             
             
+        },
+        
+        //弹层的事件绑定
+        bindDomEl: function(){
+            var _this = this;
             //鼠标滑动事件
             this.domEl.on({
                 "mouseover":function(e){
