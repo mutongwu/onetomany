@@ -53,14 +53,14 @@ deferred.done(fn1).done(fn1)
 var $ = jQuery;
 var promise = $.Deferred().resolve('manchu',2),
 	filter = promise.pipe(function(x){
-		console.log("pipe" + x)
-		console.log("pipe" + arguments)
+		console.log("pipe" + x);
+		console.log("pipe" + arguments);
 		return x;
-	})
+	});
 $.when('foo', filter).done(function(x){
-	console.log(x)
-	console.log(arguments)
-})
+	console.log(x);
+	console.log(arguments);
+});
 function setPicUrl(url){
 	document.getElementById("url").value = url;
 	
