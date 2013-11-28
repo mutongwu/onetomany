@@ -90,6 +90,10 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
         },
         
         initDom: function(){
+            
+            if(this.domEl){
+                return this.domEl;
+            }
             this.domEl = $('<div class="ui-schInput-layer"></div>');
             var offset = this.config.el.offset();
             this.domEl.css({
@@ -101,6 +105,7 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             }).appendTo(document.body);
             
             this.bindDomEl();
+            return this.domEl;
         },
         
         doSearch: function(value){
@@ -115,6 +120,7 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                 dataType: 'json',
                 data: this.config.exParams,
                 success: function(json){
+                    _this.cacheData = json;
                     _this.showRs(json);
                 }
             });
@@ -147,15 +153,15 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                 html += '<li class="ui-schInput-empty">' + this.config.emptyTxt + '</li>';
             }
             html += '</ul>';
-            this.domEl.html(html).show();
+            this.initDom().html(html).show();
             
             if(this.config.maxHeight && BomHelper.engine.ie && BomHelper.engine.ver < 8 ){
                 var realH = 0;
-                this.domEl.find('.ui-schInput-box>li').each(function(i,item){
+                this.initDom().find('.ui-schInput-box>li').each(function(i,item){
                    realH += item.offsetHeight; 
                 });
                   
-                this.domEl.find('.ui-schInput-box').height(Math.min(realH,parseInt(this.config.maxHeight,10)));
+                this.initDom().find('.ui-schInput-box').height(Math.min(realH,parseInt(this.config.maxHeight,10)));
             }
             html = null;
         },
@@ -165,15 +171,15 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
          *@param {Number} 移动方向  。向上：-1，向下：1
          */
         navSearchRs: function(dir){
-            var items = this.domEl.find('.ui-schInput-item'),
+            var items = this.initDom().find('.ui-schInput-item'),
                 size = items.size(),
                 idx = items.filter(".active").index(),
                 item = null,
-                ulEl = this.domEl.find('.ui-schInput-box'),
+                ulEl = this.initDom().find('.ui-schInput-box'),
                 pos = null,
                 h = 0,
                 maxH = this.config.maxHeight ? parseInt(this.config.maxHeight,10) : 0;
-            if(size && this.domEl.is(':visible')){
+            if(size && this.initDom().is(':visible')){
                 
                 idx = (idx + size + dir)%size;
                 item = items.removeClass('active').eq(idx).addClass('active');
@@ -193,11 +199,11 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
          *@description 确定输入：回车或者是点击数据项
          *  */
         onComplete:function(){
-            var actItem = this.domEl.find('.active');
+            var actItem = this.initDom().find('.active');
             if(typeof this.config.onItemSel === 'function'){
                 this.config.onItemSel.call(this,this.config.el,actItem,this);
             }
-            this.domEl.hide();
+            this.initDom().hide();
         },
         
         //input元素的事件绑定
@@ -206,9 +212,7 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             
             //用户键盘输入事件
             this.config.el.on("keyup",function(e){
-                if(!_this.domEl){
-                    _this.initDom();
-                }
+
                 if(e.which === 38 || e.which === 40){ //上下光标
                     _this.navSearchRs(e.which === 38 ? -1 : 1);
                 }else if(e.which === 13){ //回车
@@ -228,9 +232,11 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                     if(this.value !== _this.preVal){
                         _this.value = _this.preVal = this.value;
                         _this.doSearch(this.value);
+                    }else{
+                        _this.showRs(_this.cacheData);
                     }
                     if(!this.value){
-                        _this.domEl.hide();
+                        _this.initDom().hide();
                     }
                 }
                 
@@ -247,7 +253,7 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
         bindDomEl: function(){
             var _this = this;
             //鼠标滑动事件
-            this.domEl.on({
+            this.initDom().on({
                 "mouseover":function(e){
                     $(this).addClass('active').siblings().removeClass('active');
                     if(typeof _this.config.onItemActive === 'function'){
@@ -261,7 +267,7 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             
             //点击页面其它地方，关闭弹层
             $(document.body).on('click',function(e){
-                _this.domEl.hide();
+                _this.initDom().hide();
             });
         }
         
