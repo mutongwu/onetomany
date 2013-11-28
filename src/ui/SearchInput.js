@@ -50,6 +50,9 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             //显示浮层的最大高度,例如：200px
             maxHeight: null,
             
+            //显示浮层的宽度,例如：200px。默认为input元素的宽度
+            width: null,
+            
             //查询结果数据条目的处理函数，返回值作为Li元素的html
             itemTplFn: null,
             
@@ -90,21 +93,19 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
         },
         
         initDom: function(){
-            
-            if(this.domEl){
-                return this.domEl;
+            if(!this.domEl){
+                this.domEl = $('<div class="ui-schInput-layer"></div>');
+                var offset = this.config.el.offset();
+                this.domEl.css({
+                    "position":"absolute",
+                    "display": "none",
+                    "width": this.config.width || this.config.el.width(),
+                    "top": offset.top + this.config.el.outerHeight(),
+                    "left": offset.left
+                }).appendTo(document.body);
+                
+                this.bindDomEl();
             }
-            this.domEl = $('<div class="ui-schInput-layer"></div>');
-            var offset = this.config.el.offset();
-            this.domEl.css({
-                "position":"absolute",
-                "display": "none",
-                "width": this.config.el.width(),
-                "top": offset.top + this.config.el.outerHeight(),
-                "left": offset.left
-            }).appendTo(document.body);
-            
-            this.bindDomEl();
             return this.domEl;
         },
         
@@ -240,7 +241,8 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                     }
                 }
                 
-            }).on('click',function(){
+            }).on('click',function(e){
+                e.stopPropagation();
                 if(typeof _this.config.onClick === 'function'){
                     _this.config.onClick.call(_this,$(this));
                 }
