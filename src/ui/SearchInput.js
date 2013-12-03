@@ -104,6 +104,13 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                     "left": offset.left
                 }).appendTo(document.body);
                 
+                if(BomHelper.engine.ie){
+                    /* IE在form表单存在 type=submit的input元素时，【回车】会自动捕获焦点并提交表单。
+                     * 导致input无法正确捕获【回车】事件.
+                     * 我们添加一个disabled的input元素，用于hack这种行为
+                     */
+                   this.config.el.after('<input type="hidden" disalbed />');
+                }
                 this.bindDomEl();
             }
             return this.domEl;
