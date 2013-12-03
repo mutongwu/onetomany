@@ -103,14 +103,6 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                     "top": offset.top + this.config.el.outerHeight(),
                     "left": offset.left
                 }).appendTo(document.body);
-                
-                if(BomHelper.engine.ie){
-                    /* IE在form表单存在 type=submit的input元素时，【回车】会自动捕获焦点并提交表单。
-                     * 导致input无法正确捕获【回车】事件.
-                     * 我们添加一个disabled的input元素，用于hack这种行为
-                     */
-                   this.config.el.after('<input type="hidden" disalbed />');
-                }
                 this.bindDomEl();
             }
             return this.domEl;
@@ -255,7 +247,17 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                 }
             });
              
-            
+            if(BomHelper.engine.ie){
+                 /* IE在form表单存在 type=submit的input元素时，【回车】会自动捕获焦点并提交表单。
+                 * 导致input无法正确捕获【回车】事件.
+                 * 我们添加一个keypress事件在form元素上，用于捕获回车事件.
+                 */
+                this.config.el.closest('form').keypress(function(e){
+                    if(e.which === 13 && _this.config.el.is($(e.target))){
+                         _this.onComplete();
+                    }
+                });
+            }
         },
         
         //弹层的事件绑定
@@ -273,7 +275,7 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                     _this.onComplete();
                 }
             },'.ui-schInput-item');
-            
+                            
             //点击页面其它地方，关闭弹层
             $(document.body).on('click',function(e){
                 _this.initDom().hide();
