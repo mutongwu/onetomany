@@ -199,11 +199,13 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
          *@description 确定输入：回车或者是点击数据项
          *  */
         onComplete:function(){
-            var actItem = this.initDom().find('.active');
-            if(typeof this.config.onItemSel === 'function'){
-                this.config.onItemSel.call(this,this.config.el,actItem,this);
+            if(this.initDom().is(':visible')){
+                var actItem = this.initDom().find('.active');
+                if(typeof this.config.onItemSel === 'function'){
+                    this.config.onItemSel.call(this,this.config.el,actItem,this);
+                }
+                this.initDom().hide();
             }
-            this.initDom().hide();
         },
         
         //input元素的事件绑定
@@ -245,19 +247,16 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                 if(typeof _this.config.onClick === 'function'){
                     _this.config.onClick.call(_this,$(this));
                 }
-            });
-             
-            if(BomHelper.engine.ie){
-                 /* IE在form表单存在 type=submit的input元素时，【回车】会自动捕获焦点并提交表单。
+            }).on('keypress',function(e){
+                /* form表单存在 type=submit的input元素时，【回车】会自动捕获焦点并提交表单。
                  * 导致input无法正确捕获【回车】事件.
                  * 我们添加一个keypress事件在form元素上，用于捕获回车事件.
                  */
-                this.config.el.closest('form').keypress(function(e){
-                    if(e.which === 13 && _this.config.el.is($(e.target))){
-                         _this.onComplete();
-                    }
-                });
-            }
+                if(e.which === 13){
+                    e.stopPropagation();
+                    e.preventDefault();
+                }
+            });
         },
         
         //弹层的事件绑定
