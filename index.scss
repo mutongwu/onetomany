@@ -1,0 +1,108 @@
+﻿/*依赖页面布局DOM结构：(<div class="innerBox"></div>可选)
+<body>
+<div class="viewPort tSpliter bSpliter lSpliter rSpliter"> 
+<div id="layout-top"></div>
+<div id="layout-center">  
+    <div id="layout-left"><div class="innerBox"></div></div>
+    <div id="layout-inner"> 
+        <div id="mainContainer"></div>
+    </div>   
+    <div id="layout-right"><div class="innerBox"></div></div>
+    
+    <div id="layout-leftSpliter" class="layout-spliter vSpliter"><div class="toggler"></div></div>
+    <div id="layout-rightSpliter" class="layout-spliter vSpliter"><div class="toggler"></div></div>    
+</div>
+<div id="layout-bottom"></div>
+<div id="layout-topSpliter" class="layout-spliter hSpliter"><div class="toggler"></div></div>
+<div id="layout-bottomSpliter" class="layout-spliter hSpliter"><div class="toggler"></div></div>
+</body> 
+*/
+$topHeight: 100px;
+$bottomHeight: 100px;
+$leftWidth: 200px;
+$rightWidth: 200px;
+
+$topBg: lightblue;
+$bottomBg: lightblue;
+$leftBg: lightblue;
+$rightBg: lightblue;
+
+$spliterWidth: 8px;
+$spliterBg: #ccc;
+$spliterCollapsedWidth:15px;
+
+$togglerWidth: 40px;
+$togglerBg: #ffde8e;
+$innerPadding:10px;
+
+body{width:100%;height:100%;overflow:hidden;}  
+.viewPort{position:absolute;width:100%;height:100%;overflow:hidden;}  
+#layout-top,#layout-bottom,#layout-left,#layout-right,#layout-inner{background:#fff;overflow:auto;}  
+#layout-top{position:absolute;height:$topHeight;width:100%;background:$topBg;}  
+#layout-bottom{position:absolute;bottom:0;height:$bottomHeight;width:100%;background:$bottomBg;}  
+
+#layout-left{position:absolute;width:$leftWidth;height:100%;background:$leftBg;}  
+#layout-right{position:absolute;width:$rightWidth;right:0;height:100%;background:$rightBg;}  
+#layout-center{position:absolute;top:$topHeight;bottom:$bottomHeight;width:100%; }  
+.layout-spliter{display:none;}
+.tSpliter #layout-topSpliter,
+.bSpliter #layout-bottomSpliter,
+.lSpliter #layout-leftSpliter,
+.rSpliter #layout-rightSpliter{display: block;}
+
+.tSpliter #layout-center{top:$topHeight+$spliterWidth;}
+.bSpliter #layout-center{bottom:$bottomHeight+$spliterWidth;}
+
+#layout-leftSpliter{left:$leftWidth;}
+#layout-rightSpliter{right:$rightWidth;}
+#layout-topSpliter{top:$topHeight;}
+#layout-bottomSpliter{bottom:$bottomHeight;}
+
+.vSpliter{position:absolute;width:$spliterWidth;background:$spliterBg;height:100%;overflow: hidden;}
+.vSpliter .toggler{position:absolute;top:50%; margin-top:-$togglerWidth/2;width:100%;height:$togglerWidth;background:$togglerBg;cursor:pointer;}
+.hSpliter{position:absolute;height:$spliterWidth;background:$spliterBg;width:100%;overflow: hidden;}
+.hSpliter .toggler{position:absolute;left:50%; margin-left:-$togglerWidth/2;height:100%;width:$togglerWidth;background:$togglerBg;cursor:pointer;}
+
+  
+#layout-inner{position:absolute;left:$leftWidth;right:$rightWidth;height:100%; overflow: hidden; }  
+.lSpliter #layout-inner{left:$leftWidth+$spliterWidth;}
+.rSpliter #layout-inner{right:$rightWidth+$spliterWidth;}
+
+.hideTop #layout-top{display:none;}  
+.hideTop #layout-topSpliter{top:0;height:$spliterCollapsedWidth;}  
+.hideTop #layout-center{top:0;}  
+.hideTop.tSpliter #layout-center{top:$spliterCollapsedWidth;}  
+  
+.hideBottom #layout-bottom{display:none;}  
+.hideBottom #layout-bottomSpliter{bottom:0;height:$spliterCollapsedWidth;}  
+.hideBottom #layout-center{bottom:0;}  
+.hideBottom.bSpliter #layout-center{bottom:$spliterCollapsedWidth;}  
+  
+.hideLeft #layout-left{display:none;}  
+.hideLeft #layout-inner{left:0;}  
+.hideLeft.lSpliter #layout-inner{left:$spliterCollapsedWidth;}  
+.hideLeft #layout-leftSpliter{left:0;width:$spliterCollapsedWidth;}  
+
+.hideRight #layout-right{display:none;}  
+.hideRight #layout-rightSpliter{right:0;width:$spliterCollapsedWidth;}
+.hideRight #layout-inner{right:0;}
+.hideRight.rSpliter #layout-inner{right:$spliterCollapsedWidth;}
+
+  
+.innerBox{padding:$innerPadding;}
+
+//IE6 only
+#layout-center{
+    _width:expression(documentElement.clientWidth-
+                        document.all.layout-left.offsetWidth - 
+                        document.all.layout-leftSpliter.offsetWidth - 
+                        document.all.layout-left.offsetWidth - 
+                        document.all.layout-rightSpliter.offsetWidth);
+}  
+#layout-left,#layout-right,#layout-inner{
+    _height: expression(documentElement.clientHeight - 
+                    document.all.layout-top.offsetHeight - 
+                    document.all.layout-topSpliter.offsetWidth - 
+                    document.all.layout-bottom.offsetHeight -
+                    document.all.layout-bottomSpliter.offsetWidth );
+}
