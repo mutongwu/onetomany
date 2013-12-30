@@ -92,17 +92,24 @@ body{width:100%;height:100%;overflow:hidden;}
 .innerBox{padding:$innerPadding;}
 
 //IE6 only
+/*
 #layout-center{
-    _width:expression(documentElement.clientWidth-
-                        document.all.layout-left.offsetWidth - 
-                        document.all.layout-leftSpliter.offsetWidth - 
-                        document.all.layout-left.offsetWidth - 
-                        document.all.layout-rightSpliter.offsetWidth);
-}  
-#layout-left,#layout-right,#layout-inner{
+    _top: expression(document.all['layout-top'].offsetHeight + document.all['layout-topSpliter'].offsetHeight + 'px');
     _height: expression(documentElement.clientHeight - 
-                    document.all.layout-top.offsetHeight - 
-                    document.all.layout-topSpliter.offsetWidth - 
-                    document.all.layout-bottom.offsetHeight -
-                    document.all.layout-bottomSpliter.offsetWidth );
+                    document.all['layout-top'].offsetHeight - 
+                    document.all['layout-topSpliter'].offsetHeight - 
+                    document.all['layout-bottom'].offsetHeight -
+                    document.all['layout-bottomSpliter'].offsetHeight
+                    );                       
+}  
+//#layout-left,#layout-right,
+#layout-inner{
+    //_left: expression(document.all['layout-left'].offsetWidth +  document.all['layout-leftSpliter'].offsetWidth);
+    _width:expression(documentElement.clientWidth -
+                        document.all['layout-left'].offsetWidth - 
+                        document.all['layout-leftSpliter'].offsetWidth - 
+                        document.all['layout-right'].offsetWidth - 
+                        document.all['layout-rightSpliter'].offsetWidth
+                       );
 }
+*/

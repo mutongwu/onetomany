@@ -197,17 +197,55 @@ ul.tabNav li{
 <script>
 	jQuery('#layout-leftSpliter .toggler').click(function(){
 		$('.viewPort').toggleClass('hideLeft');
+		
 	});
 	jQuery('#layout-rightSpliter .toggler').click(function(){
 		$('.viewPort').toggleClass('hideRight');
 	});
 	jQuery('#layout-topSpliter .toggler').click(function(){
 		$('.viewPort').toggleClass('hideTop');
+		//resizeLayout();
 	});
 	jQuery('#layout-bottomSpliter .toggler').click(function(){
 		$('.viewPort').toggleClass('hideBottom');
 	});
 </script>
+
+<!--[if lt IE 7]>
+<script>
+	function resizeLayout(){
+		function _el(id){
+			return document.getElementById(id);
+		}
+		if(!$.browser.msie || $.browser.version != 6){
+			return;
+		}
+		var docH = document.documentElement.clientHeight || document.body.clientHeight,
+			docW = document.documentElement.clientWidth || document.body.clientWidth;
+		//TODO 直接用jq的宽高方法，貌似有问题。
+		var posT = _el('layout-top').offsetHeight + _el('layout-topSpliter').offsetHeight,
+			posB = _el('layout-bottom').offsetHeight + _el('layout-bottomSpliter').offsetHeight,
+			posL = _el('layout-left').offsetWidth + _el('layout-leftSpliter').offsetWidth,
+			posR = _el('layout-right').offsetWidth+ _el('layout-rightSpliter').offsetWidth;
+		$('#layout-center').css({
+			top: posT,
+			height:docH - posT  - posB
+		});
+		$('#layout-inner').css({
+			left: posL,
+			width:docW - posL - posR
+		});
+	}
+	$(window).resize(resizeLayout);
+	 $('.viewPort')[0].onpropertychange = function(){
+		var event = window.event;
+		if(event.propertyName === 'className'){
+			resizeLayout();
+		}
+	}
+	resizeLayout();
+</script>
+<![endif]-->
 <script>
 	jQuery(function(){
 		var $ = jQuery;

@@ -191,9 +191,3 @@ body {
 
 .innerBox {
   padding: 10px; }
-
-#layout-center {
-  _width: expression(documentElement.clientWidth- document.all.layout-left.offsetWidth - document.all.layout-leftSpliter.offsetWidth - document.all.layout-left.offsetWidth - document.all.layout-rightSpliter.offsetWidth); }
-
-#layout-left, #layout-right, #layout-inner {
-  _height: expression(documentElement.clientHeight - document.all.layout-top.offsetHeight - document.all.layout-topSpliter.offsetWidth - document.all.layout-bottom.offsetHeight - document.all.layout-bottomSpliter.offsetWidth ); }
