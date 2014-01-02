@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+<style type="text/css">
+.showList {border:1px solid #ccc;}
+.showList li{padding:5px 0;}
+</style>
+</head>
+<body>
+<div style="width:800px;backgroud-color:#ccc;margin:50px auto 0; ">
+	<ul class="showList">
+		<li class="li-1">aaaaa</li>
+		<li class="li-2">bbbb</li>
+		<li class="li-3">ccccc</li>
+	</ul>
+</div>
+<script>
+	jQuery(function(){
+		require(['ui/ContextMenu'],function(ContextMenu){
+			new ContextMenu({
+				el: '.showList',
+				menu:[
+					{text: '菜单一','cls': 'add'},
+					{text: '菜单二','cls': 'edit'},
+					{text: '菜单三','cls': 'delete'}
+				]
+			});
+		});
+	});
+</script>
+</body>
+</html>
