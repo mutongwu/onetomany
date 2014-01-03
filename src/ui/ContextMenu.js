@@ -4,7 +4,7 @@
  * @date 2014-01-02
  *  
  */
-define(['core/Template','util/BomHelper'],function(Template,BomHelper){
+define(['core/Base','core/Template','util/BomHelper'],function(Base,Template,BomHelper){
     var $ = jQuery;
     BomHelper.loadCss('resources/css/contextMenu.css');
     
@@ -15,6 +15,7 @@ define(['core/Template','util/BomHelper'],function(Template,BomHelper){
         
         $.extend(this,{
             domEl: null,
+            tpl: null,
             config:{}
         },true);
         this.init(cfg);
@@ -27,8 +28,15 @@ define(['core/Template','util/BomHelper'],function(Template,BomHelper){
             //添加右键监听的jq对象或选择器
             el: '',
             
-            //菜单项选择器 ，用于事件绑定
-            itemSelector: '.ui-ctxMenu-item',
+            /**
+             * 菜单的宽度，超出不做隐藏 
+             */
+            minWidth: '100px',
+            
+            /**
+             *菜单的显示层级 
+             */
+            zIndex: 100,
             
             /**
              *@property {Array} 菜单内容，每一个菜单项包括以下配置项：
@@ -46,13 +54,19 @@ define(['core/Template','util/BomHelper'],function(Template,BomHelper){
             beforeItemCreate: null,
             
              /**
-             * @property 自定义返回菜单的html结构。menu/beforeItemCreate 配置将不起效。
+             * @property 自定义返回菜单的html结构。
              * 传递参数为激活事件的jq对象
              */
-            createMenu: null,
+            customMenu: null,
+            
+                        
+            /**
+             * 菜单项选择器 ，用于事件绑定
+             */
+            itemSelector: '.ui-ctxMenu-item',
             
             /**
-             *@property 菜单项的事件监听 
+             *@property 菜单项的事件绑定 
              */
             events:{
                 click: null,
@@ -75,34 +89,45 @@ define(['core/Template','util/BomHelper'],function(Template,BomHelper){
             if(typeof this.config.el === "string"){
                 this.config.el = $(this.config.el);
             }
+            if(this.config.tpl){
+                this.tpl = new Template(this.config.tpl);
+            }
+            if(!this.config.id){
+                this.config.id = Base.id();
+            }
         },
         init: function(cfg){
             this.initCfg(cfg); 
             this.initEvent();
         },
         
+        createMenuItem: function(item,target){
+            var valid = true , tpl = this.tpl;
+            if(typeof this.config.beforeItemCreate === 'function'){
+                valid = this.config.beforeItemCreate(item,target) === false ? false : true; 
+            }
+            return valid ? tpl.apply(item): '';
+        },
+        
         initDom: function(target){
             var _html = '', _this = this;
-            if(!this.domEl){
-                this.domEl = $('<ul class="ui-ctxMenu-box '+this.config.cls+'"></ul>');
+            if(!this.domEl){                
+                this.domEl = $('<div id="'+this.config.id+'" class="ui-ctxMenu-box '+ this.config.cls+
+                                '"><ul class="ui-ctxMenu-inner" style="min-width:'+ this.config.minWidth+
+                                '"></ul></div>');
                 this.domEl.appendTo(document.body);
-                this.bindEvents();
+                this.bindEvents(target);
             }
-            if(typeof this.config.createMenu === 'function'){
-                _html = this.config.createMenu(target);
+            if(typeof this.config.customMenu === 'function'){
+                _html = this.config.customMenu.call(this,target);
             }else if(this.config.menu){
-                var valid = true , 
-                    tpl =  new Template(this.config.tpl);
                 $.each(this.config.menu,function(i,item){
-                    if(typeof _this.config.beforeItemCreate === 'function'){
-                        valid = !!_this.config.beforeItemCreate(item,target); 
-                    }
-                    if(valid){
-                        _html += tpl.apply(item);;
-                    }
+                    _html += _this.createMenuItem(item,target);
                 });
             }
-            this.domEl.html(_html);
+            this.domEl.children('.ui-ctxMenu-inner').html(_html);
+            //只允许一个右键菜单显示
+            $('.ui-ctxMenu-box').hide();
         },
         
         hide: function(){
@@ -110,26 +135,39 @@ define(['core/Template','util/BomHelper'],function(Template,BomHelper){
             this.domEl.hide();
         },
         show: function(pos){
-            this.domEl.css(pos).show();
-        },
-        calculatePos: function(e){
-            var top = 0, left = 0;
-            top = e.clientY;
-            left = e.clientX;
-            return {
-                "top": top,
-                "left": left
-            };
+            this.domEl.css(pos[0]).children('.ui-ctxMenu-inner').css(pos[1]).end().show();
         },
         
-        bindEvents: function(){
+        calculatePos: function(e){
+            //作一次不可见的显示。用于计算内容宽高。
+            this.domEl.css({'visibility':'hidden',"top":0,"left":0}).show();
+            
+            var offset = {},
+                menu = this.domEl.children('.ui-ctxMenu-inner'),
+                h = menu.height(),
+                w = menu.width(),
+                docSize = {
+                    w: Math.max(document.documentElement.scrollWidth,document.documentElement.clientWidth),
+                    h: Math.max(document.documentElement.scrollHeight,document.documentElement.clientHeight)
+                };
+            
+            offset["top"] = (e.clientY + h > docSize.h) ? -h : 0;                
+            offset["left"] = (e.clientX + w > docSize.w) ? -w : 0;
+
+            return [{"top": e.clientY,"left": e.clientX,
+                    "zIndex":this.config.zIndex,
+                    "visibility":'visible'},
+                    offset];
+        },
+        
+        bindEvents: function(target){
             var _this = this, evMap = {};
             for(var p in this.config.events){
                 if(typeof this.config.events[p] === 'function'){
                     evMap[p] = this.config.events[p];
                 }
             }
-            this.domEl.on(evMap,this.config.itemSelector);
+            this.domEl.on(evMap,this.config.itemSelector,target);
             
             $(document.body).on('click',function(e){
                 _this.hide();
@@ -139,9 +177,9 @@ define(['core/Template','util/BomHelper'],function(Template,BomHelper){
         initEvent: function(){
             var _this = this;
             this.config.el.on('contextmenu', function(e) {
+                    e.preventDefault();
                     _this.initDom($(e.target));
                     _this.show(_this.calculatePos(e));
-                    e.preventDefault();
                 }
             );
         }

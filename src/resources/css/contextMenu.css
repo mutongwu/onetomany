@@ -1,5 +1,6 @@
-.ui-ctxMenu-box{position:absolute;background:#fff;border: 1px solid #ccc;border-width:1px 1px 0 1px;}
-.ui-ctxMenu-item{border-bottom:1px solid #ccc;padding:3px 15px 3px 32px;cursor: pointer;}
+.ui-ctxMenu-box{position:absolute;visibility: hidden;}
+.ui-ctxMenu-inner{position:absolute;background:#fff;border: 1px solid #ccc;box-shadow:1px 1px 3px #ccc;border-width:1px 1px 0 1px;}
+.ui-ctxMenu-item{border-bottom:1px solid #ccc;padding:3px 5px 3px 32px;cursor: pointer;}
 .ui-ctxMenu-item.add{background:url(../images/add.gif) no-repeat 5px 50%;}
 .ui-ctxMenu-item.edit{background:url(../images/edit.gif) no-repeat 5px 50%;}
 .ui-ctxMenu-item.delete{background:url(../images/delete.gif) no-repeat 5px 50%;}
