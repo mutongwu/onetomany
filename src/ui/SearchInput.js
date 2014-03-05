@@ -44,7 +44,10 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             //例如：data.items，则数据的返回格式为： {data:{items:[...]},...}
             dataPath: '',
 
-            //没有查询结果的提示
+            //启用没有查询结果提示
+            showEmptyTxt: false,
+            
+            //没有查询结果的提示,要求showEmptyTxt:true
             emptyTxt: '没有找到符合的结果',
             
             //显示浮层的最大高度,例如：200px
@@ -59,9 +62,12 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             //input元素的单击事件
             onClick: null,
              
-            //鼠标点击结果项或者是回车触发事件
+            //鼠标点击结果项或者是回车触发事件(如果form表单有submit的元素，需要设置onEnter函数捕获事件)
             onItemSel: null,
             
+            //input元素回车
+            onEnter: null,
+        
             //鼠标滑过、上下光标选中结果项触发事件
             onItemActive: null,
             
@@ -137,6 +143,11 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
             
             var html = '<ul class="ui-schInput-box" MAX-HEIGHT>',
                 fn = this.config.itemTplFn;
+            
+            if(!this.domEl){
+                this.initDom();
+            }
+                        
             if(this.config.maxHeight){
                 html = html.replace('MAX-HEIGHT',
                     'style="max-height:' + this.config.maxHeight + 
@@ -149,8 +160,11 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                 $.each(data,function(i,item){
                     html += '<li class="ui-schInput-item '+(i === 0? 'active': '')+'">' + (fn ? fn(item) : '') + '</li>';
                 });
-            }else{
+            }else if(this.config.showEmptyTxt){
                 html += '<li class="ui-schInput-empty">' + this.config.emptyTxt + '</li>';
+            }else{
+                this.domEl.empty().hide();
+                return;
             }
             html += '</ul>';
             this.initDom().html(html).show();
@@ -199,13 +213,11 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
          *@description 确定输入：回车或者是点击数据项
          *  */
         onComplete:function(){
-            if(this.initDom().is(':visible')){
-                var actItem = this.initDom().find('.active');
-                if(typeof this.config.onItemSel === 'function'){
-                    this.config.onItemSel.call(this,this.config.el,actItem,this);
-                }
-                this.initDom().hide();
+            var actItem = this.initDom().find('.active');
+            if(typeof this.config.onItemSel === 'function'){
+                this.config.onItemSel.call(this,this.config.el,actItem,this);
             }
+            this.initDom().hide();
         },
         
         //input元素的事件绑定
@@ -255,6 +267,7 @@ define(['core/Common','util/BomHelper','io/AjaxProxy'],function(Common,BomHelper
                 if(e.which === 13){
                     e.stopPropagation();
                     e.preventDefault();
+                    _this.config.onEnter && _this.config.onEnter.call(_this);
                 }
             });
         },
