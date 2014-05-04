@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="/src/resources/css/base.css" >
+<script charset="utf-8" src="/src/core/require-jquery.js"></script>
+<script src="/demo/baseUrl.js"></script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<div style="width:800px;backgroud-color:#ccc;margin:50px auto 0; ">
+	示例1：<input type="text" style="width:200px;height:28px;paddding:2px;" id="search" />
+	<div style="height:130px;background:lightblue;"><hr/></div>
+	
+	示例2：<input type="text" style="width:200px;height:28px;paddding:2px;" id="search2" />
+</div>
+<script>
+	jQuery(function(){
+		require(['ui/DatePicker'],function(DatePicker){
+			var searchInput = new DatePicker({
+				el: jQuery('#search')
+			});
+			
+			var searchInput2 = new DatePicker({
+				el: jQuery('#search2')
+			});
+			
+		});
+	});
+</script>
+</body>
+</html>

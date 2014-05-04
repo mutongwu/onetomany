@@ -16,7 +16,7 @@ define(['core/Common','util/BomHelper','util/Format'],function(Common,BomHelper,
 
     
    var jQuery = Common.jQuery;
-   
+   BomHelper.loadCss("resources/css/datePicker.css");
    
    function DatePicker(cfg){
        jQuery.extend(this,{
