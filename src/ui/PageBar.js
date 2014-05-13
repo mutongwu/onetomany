@@ -1,10 +1,10 @@
 
-define(['core/Common','util/BomHelper'],function(Common){
+define(['core/Common','util/BomHelper'],function(Common,BomHelper){
     
     var jQuery = Common.jQuery,
         Template = Common.Template;
     
-        
+    BomHelper.loadCss("resources/css/pageBar.css");    
     function PageBar(cfg){
         jQuery.extend(this,{
             config:{},
@@ -21,6 +21,8 @@ define(['core/Common','util/BomHelper'],function(Common){
         defaultCfg: {
             el : null,
 
+            align:'center',
+            
             //分页个数
             total: -1,
             
@@ -37,10 +39,12 @@ define(['core/Common','util/BomHelper'],function(Common){
             page : 1,
             
             //单击页面的回调函数
-            onPage: null    
+            onPage: null    ,
+            
+            jumpTo: true
         },
-        tpl: new Template('<li class="{cls}"><a href="#" val={n}>{n}</a></li>'),
-        dotStr: '<li>...</li>',
+        tpl: new Template('<a href="#"  class="{cls}" val={n}>{n}</a>'),
+        dotStr: '<span>...</span>',
         
         init: function(cfg){
             jQuery.extend(this.config,this.defaultCfg);
@@ -54,7 +58,7 @@ define(['core/Common','util/BomHelper'],function(Common){
             }
             
             this.domEl = this.config.el;
-            this.domEl.empty().addClass('ui_pageBar clearfix');
+            this.domEl.empty().addClass('ui_pageBar ' + this.config.align);
             
             this.bindEvent();
             
@@ -79,17 +83,13 @@ define(['core/Common','util/BomHelper'],function(Common){
                 maxPage = this.config.maxPage; //显示项个数
             
             var tpl = this.tpl;
-            var nH = '<ul class="ui_pageBar_total"><li>共'+this.config.totalNum+'个，</li>' + 
-                    '<li>分'+this.config.total+'页</li></ul>';
-            ah.push(nH);
-            
-            ah.push('<ul class="ui_pageBar_pages">');
-            ah.push('<li><a href="#" class="ui_pageBar_previous" style="visibility:' +
-                        (page > 1?'visible':'hidden')+'">上一页</a></li>');
+
+            ah.push('<a href="#" class="ui_pageBar_previous" style="visibility:' +
+                        (page > 1?'visible':'hidden')+'">上一页</a>');
             if(total <= maxPage){
                 for(i=1; i<=total;i++){
                     if(i == page){
-                        ah.push(tpl.apply({cls:"on",n:i}));
+                        ah.push(tpl.apply({cls:"current",n:i}));
                     }else{
                         ah.push(tpl.apply({n:i}));
                     }
@@ -100,7 +100,7 @@ define(['core/Common','util/BomHelper'],function(Common){
                     for(i=1; i < page; i++){
                         ah.push(tpl.apply({n:i}));
                     }
-                    ah.push(tpl.apply({cls:"on",n:page}));
+                    ah.push(tpl.apply({cls:"current",n:page}));
                     for(i++;i < maxPage;i++){
                         ah.push(tpl.apply({n:i}));
                     }
@@ -112,7 +112,7 @@ define(['core/Common','util/BomHelper'],function(Common){
                     ah.push(tpl.apply({n:1}));
                     ah.push(this.dotStr);
                     for(i=total-maxPage+2;i<=total;i++){
-                        ah.push(tpl.apply({cls:(i == page?'on':'') , n:i}));
+                        ah.push(tpl.apply({cls:(i == page?'current':'') , n:i}));
                     }
                 }else{
                     ah.push(tpl.apply({n:1}));
@@ -122,7 +122,7 @@ define(['core/Common','util/BomHelper'],function(Common){
                         ah.push(tpl.apply({n:i}));
                         count++;
                     }
-                    ah.push(tpl.apply({cls:"on",n:page}));
+                    ah.push(tpl.apply({cls:"current",n:page}));
                     var right = Math.min(maxPage-count-2,side);
                     i=page+1;
                     for(j=0;j<right;j++){
@@ -135,21 +135,49 @@ define(['core/Common','util/BomHelper'],function(Common){
                     ah.push(tpl.apply({n:total}));
                 }
             }
-            ah.push('<li><a href="#" class="ui_pageBar_next" style="visibility:' +
-                        (page < total?'visible':'hidden')+'">下一页</a></li>');
+            ah.push('<a href="#" class="ui_pageBar_next" style="visibility:' +
+                        (page < total?'visible':'hidden')+'">下一页</a>');
             
-            ah.push('</ul>');
+            ah.push([
+    	         '<ins><form action="">',
+    	         	'<span>共'+this.config.totalNum+'条记录</span>',
+    	         	this.config.jumpTo ? [
+	    	         	'<span>，跳到第</span>',
+	    	         	'<input type="text" class="ui_pageBar_jumpto" >',
+	    	         	'<span>/'+total+'页</span>',
+	    	         	'<button class="ui_pageBar_jump">确定</button>'].join('') : "",
+	         	'</form></ins>'
+	         ].join(''));
+
             this.config.el.html(ah.join(''));
+        },
+        
+        updatePage: function(page){
+        	if(!isNaN(page)){
+                page = Math.min(page,this.config.total);
+                page = Math.max(page,1)
+                if(page === 0){
+                    _this.config.el.empty();
+                    return;
+                }
+                this.setList(page);
+                if(typeof this.config.onPage === "function"){
+                    this.config.onPage(page);
+                }
+            }
         },
         bindEvent: function(){
             var _this = this,
-                ul = this.domEl,
                 page = this.val;
-            ul.click(function(e){
+            this.domEl.on('click','.ui_pageBar_jump',function(){
+            	var jumpVal = $(this).siblings(".ui_pageBar_jumpto").val();
+            	_this.updatePage(jumpVal);
+            }).on('keypress','.ui_pageBar_jumpto',function(e){
+            	if(e.keyCode === 13){
+            		_this.updatePage($(this).val());
+            	}            	
+            }).on('click','a',function(e){
                 var target = $(e.target);
-                if(!target.is('a')){
-                    return;
-                } 
                 e.preventDefault();
                 if(target.hasClass("ui_pageBar_previous")){
                     page = _this.val - 1;
@@ -158,17 +186,7 @@ define(['core/Common','util/BomHelper'],function(Common){
                 }else{
                     page = parseInt(target.attr("val"),10);
                 }
-                if(!isNaN(page)){
-                    page = Math.min(page,_this.config.total);
-                    if(page === 0){
-                        _this.config.el.empty();
-                        return;
-                    }
-                    _this.setList(page);
-                    if(typeof _this.config.onPage === "function"){
-                        _this.config.onPage(page);
-                    }
-                }
+                _this.updatePage(page);
             });
         }
     });

@@ -1,7 +1,75 @@
-/*页码组件样式表*/
-.ui_pageBar{margin:10px 0;}
-.ui_pageBar .ui_pageBar_total li{float:left;display:inline;}
-.ui_pageBar .ui_pageBar_pages{float:right}
-.ui_pageBar .ui_pageBar_pages li{float:left;display:inline;margin:0 2px;}
-.ui_pageBar .ui_pageBar_pages li a{display:inline-block;font-size:14px;line-height:20px;padding:0 5px;border:1px solid #ccc;}
-.ui_pageBar .ui_pageBar_pages li a:hover,.ui_pageBar .ui_pageBar_pages li.on a{text-decoration:none;background-color: #0B59B2;color:#fff;}
+/*
+ * 新分页码
+ * 默认是水平居中，可以调样式实现左对齐或右对齐
+ * */
+.ui_pageBar {
+	width: 100%;
+	clear: both;
+	font-size: 0;
+}
+.ui_pageBar a,
+.ui_pageBar span,
+.ui_pageBar .ui_pageBar_jumpto,
+.ui_pageBar .ui_pageBar_jump {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	vertical-align: top;
+	white-space: nowrap;
+	font-size: 12px;
+}
+.ui_pageBar a {
+	height: 22px;
+	line-height: 22px;
+	padding: 0 8px;
+	margin: 2px;
+	border: 1px solid #d8d8d8;
+	color: #666;
+	background: #eee;
+}
+.ui_pageBar a:hover {
+	text-decoration: none;
+	border-color: #2791CA;
+	color: #666;
+}
+.ui_pageBar a.current {
+	cursor: default;
+	font-weight: 700;
+	color: #fff !important;
+	background-color: #2fa2e0;
+	border-color: #2791CA;
+}
+/* 增加类round，页码非IE下实现圆角效果 */
+.ui_pageBar.round  a,
+.ui_pageBar.round ins .ui_pageBar_jumpto {
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+/* 增加子组件 */
+.ui_pageBar span {
+	line-height: 24px;
+	margin: 2px;
+	color: #666;
+}
+.ui_pageBar ins {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	vertical-align: top;
+	margin-left: 2px;
+}
+.ui_pageBar ins span {
+	margin: 2px 0;
+}
+.ui_pageBar ins .ui_pageBar_jumpto {
+	width: 2em;
+	height: 18px;
+	line-height: 18px;
+	padding: 2px 4px;
+	margin: 2px 0;
+	border: 1px solid #D8D8D8;
+}
+.ui_pageBar ins .ui_pageBar_jump {
+	margin: 2px 0;
+	height: 24px;
+}

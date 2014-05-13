@@ -12,23 +12,29 @@
 <body>
 <div style="width:800px;backgroud-color:#ccc;margin:50px auto 0; ">
 	示例1：<input type="text" style="width:200px;height:28px;paddding:2px;" id="search" />
-	<div style="height:130px;background:lightblue;"><hr/></div>
+	
+	<div id="p1" style="height:130px;background:lightblue;">
+	</div>
 	
 	示例2：<input type="text" style="width:200px;height:28px;paddding:2px;" id="search2" />
+	<div id="p2" style="height:130px;background:lightblue;">
+	</div>
 </div>
 <script>
 	jQuery(function(){
-		require(['ui/DatePicker'],function(DatePicker){
-			var searchInput = new DatePicker({
-				el: jQuery('#search')
+		require(['ui/PageBar'],function(PageBar){
+			var p1 = new PageBar({
+				el: jQuery('#p1'),
+				totalNum: 250
 			});
 			
-			var searchInput2 = new DatePicker({
-				el: jQuery('#search2'),
-				hasTime:true,
-				format: 'YYYY-MM-DD hh:mm:ss'
+			var p2 = new PageBar({
+				el: jQuery('#p2'),
+				totalNum: 250,
+				page: 10,
+				align:"tr",
+				jumpTo: false
 			});
-			
 		});
 	});
 </script>

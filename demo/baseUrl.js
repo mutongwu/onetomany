@@ -1,1 +1,1 @@
-requirejs.config({baseUrl: "http://shawn.tianya.cn:5678/src"});
+requirejs.config({baseUrl: "http://shawn.yy.com:5678/src"});
