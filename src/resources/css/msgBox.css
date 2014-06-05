@@ -11,7 +11,7 @@
 .ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_success{padding-left:40px;}
 .ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_info{background:url(../images/info.png) no-repeat 0 0 ;}
 .ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_warn{background:url(../images/warn.png) no-repeat 0 0 ;}
-.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_error{background:url(../images/error.png) no-repeat 0 0 ;}
+.ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_error{background:url(../images/error.png) no-repeat 0 0 ;_background:url(../images/error.gif) no-repeat 0 0 ;}
 .ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_confirm{background:url(../images/confirm.png) no-repeat 0 0 ;}
 .ui_msgBox_box .ui_msgBox_cnt .ui_msgBox_success{background:url(../images/success.png) no-repeat 0 0 ;}
 
